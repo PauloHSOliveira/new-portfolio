@@ -15,6 +15,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
+        darkMode: false,
         mytheme: {
           primary: '#22d3ee',
           secondary: '#5eead4',
