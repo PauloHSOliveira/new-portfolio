@@ -4,6 +4,7 @@ specifiers:
   '@hookform/resolvers': ^3.1.0
   '@phosphor-icons/react': ^2.0.9
   '@types/node': 18.16.3
+  '@types/nodemailer': ^6.4.7
   '@types/react': 18.2.0
   '@types/react-dom': 18.2.1
   '@typescript-eslint/eslint-plugin': ^5.42.0
@@ -16,6 +17,7 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-prettier: ^4.2.1
   next: 13.3.4
+  nodemailer: ^6.9.1
   postcss: 8.4.23
   prettier: ^2.7.1
   react: 18.2.0
@@ -36,6 +38,7 @@ dependencies:
   autoprefixer: 10.4.14_postcss@8.4.23
   daisyui: 2.51.6_zmwpaxxolxfsc5pnrezed2bx24
   next: 13.3.4_biqbaboplfbrettd7655fr4n2y
+  nodemailer: 6.9.1
   postcss: 8.4.23
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -47,6 +50,7 @@ dependencies:
   yup: 1.1.1
 
 devDependencies:
+  '@types/nodemailer': 6.4.7
   '@typescript-eslint/eslint-plugin': 5.59.2_32d7tizk3cz4wthpscftobsqvm
   '@typescript-eslint/parser': 5.59.2_voubu7prgxjfsfbgx5d4sqnwiy
   eslint: 8.38.0
@@ -321,7 +325,12 @@ packages:
 
   /@types/node/18.16.3:
     resolution: {integrity: sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==}
-    dev: false
+
+  /@types/nodemailer/6.4.7:
+    resolution: {integrity: sha512-f5qCBGAn/f0qtRcd4SEn88c8Fp3Swct1731X4ryPKqS61/A3LmmzN8zaEz7hneJvpjFbUUgY7lru/B/7ODTazg==}
+    dependencies:
+      '@types/node': 18.16.3
+    dev: true
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -2082,6 +2091,11 @@ packages:
 
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+    dev: false
+
+  /nodemailer/6.9.1:
+    resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /normalize-path/3.0.0:

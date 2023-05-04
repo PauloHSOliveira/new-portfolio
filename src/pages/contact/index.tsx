@@ -26,9 +26,18 @@ function Contact() {
     },
   })
 
-  const onSubmit = (data: any) => {
-    // eslint-disable-next-line no-console
-    console.log(data)
+  const onSubmit = async (data: any) => {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const { message } = await response.json()
+
+    alert(message)
   }
 
   return (
