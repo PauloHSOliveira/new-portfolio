@@ -8,7 +8,7 @@ interface SEOProps {
 
 const SEO = ({ title, description }: SEOProps) => {
   const canonical = getCanonical()
-  const titleTemplate = '%s | Meu Site'
+  const titleTemplate = '%s | Portfólio'
   const defaultTitle = 'Meu Site - Descrição do site aqui'
   const defaultDescription =
     'Este é um exemplo de descrição padrão. Este texto pode ser personalizado para cada página.'
