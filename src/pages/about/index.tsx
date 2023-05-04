@@ -136,7 +136,7 @@ export default function About() {
   return (
     <>
       <div className="p-4 md:p-24">
-        <div className="text-gray-900 text-3xl md:text-5xl p-4 md:p-12">
+        <div className="text-gray-900 text-3xl md:text-5xl pt-12 pb-4 px-4 md:p-12">
           <p>
             I am a passionate <strong>software engineer</strong> specialized in
             <strong> front-end</strong> development, <strong>design</strong> and
@@ -151,8 +151,8 @@ export default function About() {
         />
       </div>
       <div className="bg-gray-900 w-full h-96"></div>
-      <div className="p-4 md:p-24">
-        <div className="text-gray-900 text-5xl">How i work</div>
+      <div className="w-screen p-8">
+        <div className="text-gray-900 text-5xl text-left">How I work</div>
         <TwoThirdsOneThird
           text={text2}
           position="left"
