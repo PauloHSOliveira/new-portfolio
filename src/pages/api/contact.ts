@@ -12,20 +12,20 @@ const contactApi: NextApiHandler = async (req, res) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.umbler.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: process.env.NEXT_PUBLIC_EMAIL_HOST,
+    port: Number(process.env.NEXT_PUBLIC_EMAIL_PORT),
+    secure: true,
     auth: {
-      user: 'contato@pholiveira.dev', // your email
-      pass: '88495456@Ph', // your email password
+      user: process.env.NEXT_PUBLIC_EMAIL_USERNAME,
+      pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
     },
   })
 
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: `"${name}" <${email}>`, // sender address
-    to: 'contato@pholiveira.dev', // list of receivers
-    subject: 'New message from your portfolio site', // Subject line
+    from: process.env.NEXT_PUBLIC_EMAIL_USERNAME, // sender address
+    to: process.env.NEXT_PUBLIC_EMAIL_TO, // list of receivers
+    subject: `NEW CONTACT - <${name}> - <${email}>`, // Subject line
     text: message, // plain text body
   })
 
