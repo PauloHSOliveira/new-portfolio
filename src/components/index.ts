@@ -1,1 +1,6 @@
 export * from './Header'
+export * from './Footer'
+export * from './layout'
+export * from './SkillsList'
+export * from './TwoThirdsOneThird'
+export * from './MobileMenu'
