@@ -9,22 +9,21 @@ interface ContactFormData {
 
 const contactApi: NextApiHandler = async (req, res) => {
   const { name, email, message } = req.body as ContactFormData
-
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: process.env.NEXT_PUBLIC_EMAIL_HOST,
+    host: String(process.env.NEXT_PUBLIC_EMAIL_HOST),
     port: Number(process.env.NEXT_PUBLIC_EMAIL_PORT),
     secure: true,
     auth: {
-      user: process.env.NEXT_PUBLIC_EMAIL_USERNAME,
-      pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+      user: String(process.env.NEXT_PUBLIC_EMAIL_USERNAME),
+      pass: String(process.env.NEXT_PUBLIC_EMAIL_PASSWORD),
     },
   })
 
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: process.env.NEXT_PUBLIC_EMAIL_USERNAME, // sender address
-    to: process.env.NEXT_PUBLIC_EMAIL_TO, // list of receivers
+    from: String(process.env.NEXT_PUBLIC_EMAIL_USERNAME), // sender address
+    to: String(process.env.NEXT_PUBLIC_EMAIL_TO), // list of receivers
     subject: `NEW CONTACT - <${name}> - <${email}>`, // Subject line
     text: message, // plain text body
   })
