@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import Link from 'next/link'
 
@@ -8,8 +9,38 @@ interface HeaderProps {
 }
 
 const Header = ({ openMenu }: HeaderProps) => {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+
+    const handleScroll = () => {
+      setHidden(true)
+      clearTimeout(timeout)
+      timeout = setTimeout(() => setHidden(false), 300)
+    }
+
+    const handleMouseMove = () => {
+      setHidden(false)
+      clearTimeout(timeout)
+      timeout = setTimeout(() => setHidden(true), 3000)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
   return (
-    <nav className={`bg-white ${ibm.className} fixed top-0 left-0 w-full`}>
+    <nav
+      className={`bg-white ${ibm.className} fixed top-0 left-0 w-full ${
+        hidden ? 'transform -translate-y-full' : ''
+      } transition-transform`}
+    >
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
         <a className="text-xl font-bold">PH Oliveira</a>
         <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden">
