@@ -18,6 +18,8 @@
   3. Allow percentage-based heights in the application
 */
 html, body {
+  width: 100%;
+  overflow-x: hidden;
   height: 100%;
 }
 /*

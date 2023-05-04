@@ -9,14 +9,14 @@ const Footer: React.FC = () => {
     <footer
       className={`footer footer-center p-10 bg-gray-900 text-white ${ibm.className}`}
     >
-      <div className="flex w-full py-24">
-        <div className="w-2/3 flex flex-col items-start gap-4">
-          <h3 className="text-6xl font-bold">Lets work togheder</h3>
-          <p>Let's work togrther to build something</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-24">
+        <div className="flex flex-col items-start gap-4">
+          <h3 className="text-6xl font-bold">Let's work together</h3>
+          <p>Let's work together to build something</p>
 
-          <button className="btn btn-neutral">Say Helo</button>
+          <button className="btn btn-neutral">Say Hello</button>
         </div>
-        <div className="w-1/3 flex flex-col items-start">
+        <div className="flex flex-col items-start gap-4">
           <div className="flex gap-2">
             <a href="#">GitHub</a>
             <span>\</span>
@@ -26,18 +26,20 @@ const Footer: React.FC = () => {
           </div>
           <p>paulooliveirtadev@gmail.com</p>
         </div>
-      </div>
-      <div className="flex gap-2">
-        <p>PH Oliveira</p>
-        <Link href={'/'}>
-          <GithubLogo size={40} />
-        </Link>
-        <Link href={'/'}>
-          <LinkedinLogo size={40} />
-        </Link>
-        <Link href={'/'}>
-          <InstagramLogo size={40} />
-        </Link>
+        <div className="flex flex-col items-start gap-4">
+          <p>PH Oliveira</p>
+          <div className="flex gap-2">
+            <Link href={'/'}>
+              <GithubLogo size={40} />
+            </Link>
+            <Link href={'/'}>
+              <LinkedinLogo size={40} />
+            </Link>
+            <Link href={'/'}>
+              <InstagramLogo size={40} />
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   )
