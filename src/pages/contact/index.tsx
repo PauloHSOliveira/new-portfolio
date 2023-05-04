@@ -1,11 +1,30 @@
 import { useForm } from 'react-hook-form'
+import * as Yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string()
+    .email('Please enter a valid email')
+    .required('Email is required'),
+  message: Yup.string().required('Message is required'),
+})
+
+const resolver = yupResolver(schema)
 
 function Contact() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    resolver,
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  })
 
   const onSubmit = (data: any) => {
     // eslint-disable-next-line no-console
@@ -14,7 +33,7 @@ function Contact() {
 
   return (
     <div className="max-w-4xl mx-auto my-8 px-4">
-      <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
+      <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
       <p className="text-gray-600 mb-8">
         Do you fancy saying hi to me or you want to get started with your
         project and you need my help? Feel free to contact me.
@@ -32,13 +51,6 @@ function Contact() {
             }`}
             {...register('name', { required: true })}
           />
-          {/* {errors.name && (
-            <Tooltip position="right-end" title="Name is required">
-              <span className="text-red-500 mt-2 text-sm">
-                Name is required
-              </span>
-            </Tooltip>
-          )} */}
         </div>
         <div className="flex flex-col">
           <label htmlFor="email" className="font-semibold mb-2">
@@ -52,18 +64,6 @@ function Contact() {
             }`}
             {...register('email', { required: true })}
           />
-          {/* {errors.email && (
-            <Tooltip
-              title="Email is required"
-              position="right"
-              arrow={true}
-              distance={10}
-            >
-              <span className="text-red-500 mt-2 text-sm">
-                Email is required
-              </span>
-            </Tooltip>
-          )} */}
         </div>
         <div className="flex flex-col">
           <label htmlFor="message" className="font-semibold mb-2">
@@ -76,23 +76,8 @@ function Contact() {
             }`}
             {...register('message', { required: true })}
           />
-          {/* {errors.message && (
-            <Tooltip
-              title="Message is required"
-              position="right"
-              arrow={true}
-              distance={10}
-            >
-              <span className="text-red-500 mt-2 text-sm">
-                Message is required
-              </span>
-            </Tooltip>
-          )} */}
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-        >
+        <button type="submit" className="btn btn-gray-900 float-right">
           Send Message
         </button>
       </form>
