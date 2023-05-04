@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header = ({ openMenu }: HeaderProps) => {
   return (
-    <nav className={`bg-neutral ${ibm.className}`}>
+    <nav className={`bg-white ${ibm.className} fixed top-0 left-0 w-full`}>
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
         <a className="text-xl font-bold">PH Oliveira</a>
         <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden">
