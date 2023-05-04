@@ -17,6 +17,7 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-prettier: ^4.2.1
   next: 13.3.4
+  next-seo: ^6.0.0
   nodemailer: ^6.9.1
   postcss: 8.4.23
   prettier: ^2.7.1
@@ -39,6 +40,7 @@ dependencies:
   autoprefixer: 10.4.14_postcss@8.4.23
   daisyui: 2.51.6_zmwpaxxolxfsc5pnrezed2bx24
   next: 13.3.4_biqbaboplfbrettd7655fr4n2y
+  next-seo: 6.0.0_vwuoxxmoeydgew5hhkavebkk4e
   nodemailer: 6.9.1
   postcss: 8.4.23
   react: 18.2.0
@@ -2046,6 +2048,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-seo/6.0.0_vwuoxxmoeydgew5hhkavebkk4e:
+    resolution: {integrity: sha512-jKKt1p1z4otMA28AyeoAONixVjdYmgFCWwpEFtu+DwRHQDllVX3RjtyXbuCQiUZEfQ9rFPBpAI90vDeLZlMBdg==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 13.3.4_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/13.3.4_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-sod7HeokBSvH5QV0KB+pXeLfcXUlLrGnVUXxHpmhilQ+nQYT3Im2O8DswD5e4uqbR8Pvdu9pcWgb1CbXZQZlmQ==}
