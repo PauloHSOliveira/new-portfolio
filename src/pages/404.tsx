@@ -10,7 +10,6 @@ function Custom404() {
           alt="404 image"
           width={400}
           height={200}
-          layout="responsive"
         />
       </div>
       <p className="text-gray-600 text-center my-8 sm:text-lg md:text-xl lg:text-2xl">

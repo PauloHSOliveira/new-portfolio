@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import Link from 'next/link'
 
-const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: '400' })
+const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400'] })
 
 interface HeaderProps {
   openMenu: () => void
@@ -39,7 +39,7 @@ const Header = ({ openMenu }: HeaderProps) => {
     <nav
       className={`bg-white ${ibm.className} fixed top-0 left-0 w-full ${
         hidden ? 'transform -translate-y-full' : ''
-      } transition-transform`}
+      } transition-transform z-10`}
     >
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
         <a className="text-xl font-bold">PH Oliveira</a>
