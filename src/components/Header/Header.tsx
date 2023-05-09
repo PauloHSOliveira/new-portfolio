@@ -78,7 +78,7 @@ const Header = ({ openMenu }: HeaderProps) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/work" className="nav-link">
+              <Link href="/works" className="nav-link">
                 Works
               </Link>
             </li>
