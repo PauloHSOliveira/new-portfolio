@@ -90,4 +90,4 @@ const ProjectCarousel = () => {
   )
 }
 
-export { ProjectCarousel }
+export default ProjectCarousel
