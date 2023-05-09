@@ -1,19 +1,31 @@
+import { FaArrowRight } from 'react-icons/fa'
+import { useRouter } from 'next/router'
+
 const projects = [
   {
-    name: 'Project 1',
-    image: '/static/developer.webp',
+    name: 'EVO.ART',
+    image: '/static/evo.png',
+    description: 'This is a description for EVO.ART project',
   },
   {
-    name: 'Project 2',
-    image: '/static/developer.webp',
+    name: 'VIRL MARKETPLACE',
+    image: '/static/virl.png',
+    description: 'This is a description for VIRL MARKETPLACE project',
   },
   {
-    name: 'Project 3',
-    image: '/static/developer.webp',
+    name: 'MEMORIAN',
+    image: '/static/memorian.png',
+    description: 'This is a description for MEMORIAN project',
   },
 ]
 
 const Projects = () => {
+  const router = useRouter()
+
+  const handleProjectClick = (projectName: string) => {
+    router.push(`/projects/${projectName}`)
+  }
+
   return (
     <div className="w-full flex flex-col gap-4">
       {projects.map((project) => (
@@ -23,6 +35,7 @@ const Projects = () => {
               <h2 className="text-4xl font-bold text-gray-900">
                 {project.name}
               </h2>
+              <div className="text-lg text-gray-500">{project.description}</div>
             </div>
             <div
               className="relative h-full w-1/2"
@@ -32,10 +45,11 @@ const Projects = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
               }}
+              onClick={() => handleProjectClick(project.name)}
             >
               <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                <button className="btn btn-primary px-6 py-2 shadow-neumorphism right-0">
-                  View Project
+                <button className="btn-gray-900 btn border-none p-0 px-4 rounded-lg bg-gray-100 hover:bg-gray-50 shadow-lg">
+                  View Project <FaArrowRight className="ml-2" />
                 </button>
               </div>
             </div>
