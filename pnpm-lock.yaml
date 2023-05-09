@@ -24,6 +24,7 @@ specifiers:
   prettier: ^2.7.1
   react: 18.2.0
   react-animations: ^1.0.0
+  react-awesome-slider: ^4.1.0
   react-dom: 18.2.0
   react-hook-form: ^7.43.9
   react-icons: ^4.8.0
@@ -44,12 +45,13 @@ dependencies:
   '@types/react-dom': 18.2.1
   autoprefixer: 10.4.14_postcss@8.4.23
   daisyui: 2.51.6_zmwpaxxolxfsc5pnrezed2bx24
-  next: 13.3.4_biqbaboplfbrettd7655fr4n2y
+  next: 13.3.4_3j7hb26pwgm6spbxoejtjx6xja
   next-seo: 6.0.0_vwuoxxmoeydgew5hhkavebkk4e
   nodemailer: 6.9.1
   postcss: 8.4.23
   react: 18.2.0
   react-animations: 1.0.0
+  react-awesome-slider: 4.1.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.9_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
@@ -2460,7 +2462,7 @@ packages:
       eslint: 8.38.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.5_sog26ue67uxxyecpstt7lz3afe
-      eslint-plugin-import: 2.27.5_jgxzf4zcvx65hf4kugvnqasfve
+      eslint-plugin-import: 2.27.5_3e6zzkzeassmlspu43dynsmaai
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.38.0
       eslint-plugin-react: 7.32.2_eslint@8.38.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.38.0
@@ -2500,7 +2502,7 @@ packages:
       enhanced-resolve: 5.13.0
       eslint: 8.38.0
       eslint-module-utils: 2.8.0_t2cvvdthac4qxjj6yk3axtgsfe
-      eslint-plugin-import: 2.27.5_jgxzf4zcvx65hf4kugvnqasfve
+      eslint-plugin-import: 2.27.5_3e6zzkzeassmlspu43dynsmaai
       get-tsconfig: 4.5.0
       globby: 13.1.4
       is-core-module: 2.12.0
@@ -2510,6 +2512,35 @@ packages:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
       - eslint-import-resolver-webpack
+      - supports-color
+    dev: true
+
+  /eslint-module-utils/2.8.0_mos63unmzh2olwzbv7dpxhxcyu:
+    resolution: {integrity: sha512-aWajIYfsqCKRDgUfjEXNN/JlrzauMuSEy5sbd7WXbtW3EH6A6MpwEh42c7qD+MqQo9QMJ6fWLAeIJynx0g6OAw==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      eslint: '*'
+      eslint-import-resolver-node: '*'
+      eslint-import-resolver-typescript: '*'
+      eslint-import-resolver-webpack: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+      eslint:
+        optional: true
+      eslint-import-resolver-node:
+        optional: true
+      eslint-import-resolver-typescript:
+        optional: true
+      eslint-import-resolver-webpack:
+        optional: true
+    dependencies:
+      '@typescript-eslint/parser': 5.59.2_voubu7prgxjfsfbgx5d4sqnwiy
+      debug: 3.2.7
+      eslint: 8.38.0
+      eslint-import-resolver-node: 0.3.7
+    transitivePeerDependencies:
       - supports-color
     dev: true
 
@@ -2543,7 +2574,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.5_jgxzf4zcvx65hf4kugvnqasfve:
+  /eslint-plugin-import/2.27.5_3e6zzkzeassmlspu43dynsmaai:
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -2561,7 +2592,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.38.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.8.0_t2cvvdthac4qxjj6yk3axtgsfe
+      eslint-module-utils: 2.8.0_mos63unmzh2olwzbv7dpxhxcyu
       has: 1.0.3
       is-core-module: 2.12.0
       is-glob: 4.0.3
@@ -3513,12 +3544,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 13.3.4_biqbaboplfbrettd7655fr4n2y
+      next: 13.3.4_3j7hb26pwgm6spbxoejtjx6xja
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /next/13.3.4_biqbaboplfbrettd7655fr4n2y:
+  /next/13.3.4_3j7hb26pwgm6spbxoejtjx6xja:
     resolution: {integrity: sha512-sod7HeokBSvH5QV0KB+pXeLfcXUlLrGnVUXxHpmhilQ+nQYT3Im2O8DswD5e4uqbR8Pvdu9pcWgb1CbXZQZlmQ==}
     engines: {node: '>=16.8.0'}
     hasBin: true
@@ -3546,7 +3577,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      styled-jsx: 5.1.1_react@18.2.0
+      styled-jsx: 5.1.1_wn6zaaxe2xt3xsygjqv5uvr2am
     optionalDependencies:
       '@next/swc-darwin-arm64': 13.3.4
       '@next/swc-darwin-x64': 13.3.4
@@ -3900,6 +3931,12 @@ packages:
 
   /react-animations/1.0.0:
     resolution: {integrity: sha512-ePPpVgdKnNEXm+LP1ww5s3n0JzebBw9QdRfxRqogzeg1PDIn6kf0pmvgeTeVZQXXpGmHImkIeTiaQR1O6xjntA==}
+    dev: false
+
+  /react-awesome-slider/4.1.0:
+    resolution: {integrity: sha512-cbPI1MTpVLKbEH6gf9bwtJb8Ja6R/YJonKbUQehfq2B2AAJkgDMeHntaa4SgGCRqWd55xKiT+CkjfKau1QRsKw==}
+    dependencies:
+      web-animation-club: 0.6.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
@@ -4264,7 +4301,7 @@ packages:
       - supports-color
     dev: false
 
-  /styled-jsx/5.1.1_react@18.2.0:
+  /styled-jsx/5.1.1_wn6zaaxe2xt3xsygjqv5uvr2am:
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
@@ -4277,6 +4314,7 @@ packages:
       babel-plugin-macros:
         optional: true
     dependencies:
+      '@babel/core': 7.21.8
       client-only: 0.0.1
       react: 18.2.0
     dev: false
@@ -4519,6 +4557,11 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: false
+
+  /web-animation-club/0.6.0:
+    resolution: {integrity: sha512-9W+EQu1HiaPLe/7WZlhJ2ULqQ4VL80RPDYW+ZcjfTKp6ayOuT1k3SVO6+tu0VBRmOqueJ/mrG+rjjInIv8Aglg==}
+    deprecated: 'WARNING: This project has been renamed to @rcaferati/wac; install it using @rcaferati/wac instead.'
     dev: false
 
   /which-boxed-primitive/1.0.2:

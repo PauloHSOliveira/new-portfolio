@@ -1,7 +1,14 @@
 import { FaArrowRight } from 'react-icons/fa'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const TopHomePage: React.FC = () => {
+  const router = useRouter()
+
+  const handleClickOnWorks = () => {
+    router.push('/works')
+  }
+
   return (
     <div className="relative w-full min-h-screen flex flex-col sm:flex-row items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="relative w-full sm:w-2/5 flex flex-col gap-3 items-center sm:items-start text-center sm:text-left">
@@ -12,7 +19,10 @@ const TopHomePage: React.FC = () => {
           Hi i&apos;m Paulo Oliveira. A Passionate software engineer, designer
           and business strategist based in Brazil.
         </div>
-        <button className="btn-gray-900 btn border-none p-0 px-4 rounded-lg bg-gray-100 shadow-lg">
+        <button
+          onClick={handleClickOnWorks}
+          className="btn-gray-900 btn border-none p-0 px-4 rounded-lg bg-gray-100 shadow-lg"
+        >
           See my works <FaArrowRight className="ml-2" />
         </button>
       </div>
