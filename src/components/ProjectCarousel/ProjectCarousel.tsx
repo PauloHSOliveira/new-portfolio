@@ -1,31 +1,8 @@
+import { projects } from '@/constants/projects'
 import { useRouter } from 'next/router'
 import AwesomeSlider from 'react-awesome-slider'
 import 'react-awesome-slider/dist/styles.css'
 import { FaArrowRight } from 'react-icons/fa'
-
-type Project = {
-  name: string
-  image: string
-  description: string
-}
-
-const projects: Project[] = [
-  {
-    name: 'EVO.ART',
-    image: '/static/evo.png',
-    description: 'This is a description for EVO.ART project',
-  },
-  {
-    name: 'VIRL MARKETPLACE',
-    image: '/static/virl.png',
-    description: 'This is a description for VIRL MARKETPLACE project',
-  },
-  {
-    name: 'MEMORIAN',
-    image: '/static/memorian.png',
-    description: 'This is a description for MEMORIAN project',
-  },
-]
 
 const ProjectCarousel = () => {
   const router = useRouter()

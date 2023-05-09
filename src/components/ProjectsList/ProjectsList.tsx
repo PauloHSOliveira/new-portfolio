@@ -1,23 +1,6 @@
 import { FaArrowRight } from 'react-icons/fa'
 import { useRouter } from 'next/router'
-
-const projects = [
-  {
-    name: 'EVO.ART',
-    image: '/static/evo.png',
-    description: 'This is a description for EVO.ART project',
-  },
-  {
-    name: 'VIRL MARKETPLACE',
-    image: '/static/virl.png',
-    description: 'This is a description for VIRL MARKETPLACE project',
-  },
-  {
-    name: 'MEMORIAN',
-    image: '/static/memorian.png',
-    description: 'This is a description for MEMORIAN project',
-  },
-]
+import { projects } from '@/constants/projects'
 
 const Projects = () => {
   const router = useRouter()
