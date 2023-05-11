@@ -27,10 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout>
-      <SEO
-        title="PH OLIVEIRA DEV"
-        description="Hi i'm Paulo Oliveira. A Passionate software engineer, designer and business strategist based in Brazil."
-      />
+      <SEO />
       <Component {...pageProps} />
     </Layout>
   )

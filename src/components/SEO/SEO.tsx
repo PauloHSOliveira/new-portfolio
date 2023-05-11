@@ -1,35 +1,38 @@
 import { NextSeo } from 'next-seo'
 import { getCanonical } from './utils'
 
-interface SEOProps {
-  title: string
-  description: string
-}
-
-const SEO = ({ title, description }: SEOProps) => {
+const SEO = () => {
   const canonical = getCanonical()
   const titleTemplate = '%s | Portfólio'
-  const defaultTitle = 'Meu Site - Descrição do site aqui'
+  const defaultTitle =
+    'PH Oliveira DEV | Software Engineer & Fullstack Developer, UI/UX Designer and Business Strategist'
   const defaultDescription =
-    'Este é um exemplo de descrição padrão. Este texto pode ser personalizado para cada página.'
+    'Hi, I am Paulo Oliveira, a passionate software engineer, designer, and business strategist based in Brazil. With experience in front-end and back-end development, UI/UX design, and digital advertising including Facebook and Google Ads.'
   const siteUrl = getCanonical()
 
   return (
     <NextSeo
-      title={title}
+      title={defaultTitle}
       titleTemplate={titleTemplate}
-      description={description || defaultDescription}
+      description={defaultDescription}
       canonical={canonical || siteUrl}
       openGraph={{
         url: siteUrl,
-        title: title || defaultTitle,
-        description: description || defaultDescription,
+        siteName: 'PH Oliveira',
+        title: defaultTitle,
+        description: defaultDescription,
+        type: 'website',
         images: [
           {
             url: `/static/developer.webp`,
-            alt: title || defaultTitle,
+            alt: defaultTitle,
           },
         ],
+      }}
+      robotsProps={{
+        nosnippet: false, // permite que o snippet seja exibido nos resultados da pesquisa
+        notranslate: false, // permite que o Google traduza a página
+        noimageindex: false, // permite que as imagens sejam indexadas
       }}
     />
   )

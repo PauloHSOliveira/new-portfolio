@@ -42,7 +42,9 @@ const Header = ({ openMenu }: HeaderProps) => {
       } transition-transform z-10`}
     >
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
-        <a className="text-xl font-bold">PH Oliveira</a>
+        <Link href="/" className="text-xl font-bold">
+          PH Oliveira
+        </Link>
         <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden">
           <svg
             className="w-6 h-6"
