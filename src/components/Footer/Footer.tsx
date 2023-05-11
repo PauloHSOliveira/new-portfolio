@@ -18,24 +18,26 @@ const Footer: React.FC = () => {
         </div>
         <div className="flex flex-col items-start gap-4">
           <div className="flex gap-2">
-            <a href="#">GitHub</a>
+            <Link href="https://github.com/PauloHSOliveira">GitHub</Link>
             <span>\</span>
-            <a href="#">Linkedin</a>
+            <Link href="https://www.linkedin.com/in/paulo-oliveira-ph/">
+              Linkedin
+            </Link>
             <span>\</span>
-            <a href="#">Instagram</a>
+            <Link href="#">Instagram</Link>
           </div>
-          <p>paulooliveirtadev@gmail.com</p>
+          <Link href="mail:contato@pholiveira.dev">contato@pholiveira.dev</Link>
         </div>
         <div className="flex flex-col items-start gap-4">
           <p>PH Oliveira</p>
           <div className="flex gap-2">
-            <Link href={'/'}>
+            <Link href={'https://github.com/PauloHSOliveira'}>
               <GithubLogo size={40} />
             </Link>
-            <Link href={'/'}>
+            <Link href={'https://www.linkedin.com/in/paulo-oliveira-ph/'}>
               <LinkedinLogo size={40} />
             </Link>
-            <Link href={'/'}>
+            <Link href={'https://www.instagram.com/pholiveira.eth/'}>
               <InstagramLogo size={40} />
             </Link>
           </div>
