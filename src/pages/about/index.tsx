@@ -9,7 +9,6 @@ import {
   FaFacebook,
   FaChartBar,
 } from 'react-icons/fa'
-
 import {
   SiNextdotjs,
   SiFirebase,
@@ -26,6 +25,12 @@ import {
   SiAdobe,
   SiTiktok,
 } from 'react-icons/si'
+import { GetLayout } from '@/interfaces/global'
+import { Layout } from '@/components'
+
+const getLayout: GetLayout = (page: JSX.Element) => {
+  return <Layout>{page}</Layout>
+}
 
 const otherSkills = [
   { name: 'Figma', icon: <FaFigma /> },
@@ -132,7 +137,7 @@ const text2 = (
   </>
 )
 
-export default function About() {
+const About = () => {
   return (
     <>
       <div className="p-4 md:p-24">
@@ -180,3 +185,7 @@ export default function About() {
     </>
   )
 }
+
+About.getLayout = getLayout
+
+export default About
