@@ -6,7 +6,6 @@ specifiers:
   '@types/node': 18.16.3
   '@types/nodemailer': ^6.4.7
   '@types/react': 18.2.0
-  '@types/react-animations': ^1.0.0
   '@types/react-dom': 18.2.1
   '@typescript-eslint/eslint-plugin': ^5.42.0
   '@typescript-eslint/parser': ^5.42.0
@@ -24,14 +23,11 @@ specifiers:
   postcss: 8.4.23
   prettier: ^2.7.1
   react: 18.2.0
-  react-animations: ^1.0.0
   react-awesome-slider: ^4.1.0
   react-dom: 18.2.0
   react-hook-form: ^7.43.9
   react-icons: ^4.8.0
-  react-intersection-observer: ^9.4.3
   react-spinners: ^0.13.8
-  react-tippy: ^1.4.0
   styled-components: 6.0.0-rc.1
   tailwindcss: 3.3.2
   typescript: 5.0.4
@@ -42,7 +38,6 @@ dependencies:
   '@phosphor-icons/react': 2.0.9_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.16.3
   '@types/react': 18.2.0
-  '@types/react-animations': 1.0.0
   '@types/react-dom': 18.2.1
   autoprefixer: 10.4.14_postcss@8.4.23
   daisyui: 2.51.6_zmwpaxxolxfsc5pnrezed2bx24
@@ -52,14 +47,11 @@ dependencies:
   nodemailer: 6.9.1
   postcss: 8.4.23
   react: 18.2.0
-  react-animations: 1.0.0
   react-awesome-slider: 4.1.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.9_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
-  react-intersection-observer: 9.4.3_react@18.2.0
   react-spinners: 0.13.8_biqbaboplfbrettd7655fr4n2y
-  react-tippy: 1.4.0
   styled-components: 6.0.0-rc.1_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.3.2
   typescript: 5.0.4
@@ -2179,10 +2171,6 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: false
-
-  /@types/react-animations/1.0.0:
-    resolution: {integrity: sha512-ItPuRqOf7UML26hc0kaALEtlzeXtbflqI2VtPxsJh/DcqDZFbPIVNi2apSs+1WuhRfmU6YqhZPXmpxns7zPZKg==}
     dev: false
 
   /@types/react-dom/18.2.1:
@@ -4442,11 +4430,6 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /popper.js/1.16.1:
-    resolution: {integrity: sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==}
-    deprecated: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
-    dev: false
-
   /postcss-import/15.1.0_postcss@8.4.23:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -4603,10 +4586,6 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  /react-animations/1.0.0:
-    resolution: {integrity: sha512-ePPpVgdKnNEXm+LP1ww5s3n0JzebBw9QdRfxRqogzeg1PDIn6kf0pmvgeTeVZQXXpGmHImkIeTiaQR1O6xjntA==}
-    dev: false
-
   /react-awesome-slider/4.1.0:
     resolution: {integrity: sha512-cbPI1MTpVLKbEH6gf9bwtJb8Ja6R/YJonKbUQehfq2B2AAJkgDMeHntaa4SgGCRqWd55xKiT+CkjfKau1QRsKw==}
     dependencies:
@@ -4640,14 +4619,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-intersection-observer/9.4.3_react@18.2.0:
-    resolution: {integrity: sha512-WNRqMQvKpupr6MzecAQI0Pj0+JQong307knLP4g/nBex7kYfIaZsPpXaIhKHR+oV8z+goUbH9e10j6lGRnTzlQ==}
-    peerDependencies:
-      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -4660,12 +4631,6 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /react-tippy/1.4.0:
-    resolution: {integrity: sha512-r/hM5XK9Ztr2ZY7IWKuRmISTlUPS/R6ddz6PO2EuxCgW+4JBcGZRPU06XcVPRDCOIiio8ryBQFrXMhFMhsuaHA==}
-    dependencies:
-      popper.js: 1.16.1
     dev: false
 
   /react/18.2.0:
