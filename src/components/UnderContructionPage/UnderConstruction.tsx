@@ -1,19 +1,15 @@
-import Image from 'next/image'
+import { ClimbingBoxLoader } from 'react-spinners'
 
 const UnderConstruction = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <Image
-        src="/construction.png"
-        alt="Under construction"
-        width={200}
-        height={200}
-      />
-      <h1 className="text-4xl font-bold mb-4 text-center">
-        We are building our site!
+      <ClimbingBoxLoader />
+
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+        We're building something grand!
       </h1>
-      <p className="text-lg text-gray-700 mb-8 text-center">
-        But don't worry, it will be awesome when it's done!
+      <p className="text-lg text-center text-gray-600 mb-8">
+        Stay tuned for exciting updates and new features.
       </p>
     </div>
   )

@@ -41,6 +41,8 @@ const otherSkills = [
 ]
 
 import { IoLogoJavascript } from 'react-icons/io'
+import { useRedirect } from '@/hooks'
+import { useEffect } from 'react'
 
 const webDevSkills = [
   { name: 'Next.js', icon: <SiNextdotjs /> },
@@ -138,6 +140,12 @@ const text2 = (
 )
 
 const About = () => {
+  const { redirectHome } = useRedirect()
+
+  useEffect(() => {
+    redirectHome()
+  }, [redirectHome])
+
   return (
     <>
       <div className="p-4 md:p-24">

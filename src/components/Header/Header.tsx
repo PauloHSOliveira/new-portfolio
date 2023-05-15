@@ -8,12 +8,14 @@ const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
 interface HeaderProps {
   openMenu: () => void
+  isBuilding: boolean
 }
 
-const Header = ({ openMenu }: HeaderProps) => {
-  const [hidden, setHidden] = useState(false)
+const Header = ({ openMenu, isBuilding }: HeaderProps) => {
+  const [hidden, setHidden] = useState(!isBuilding)
 
   useEffect(() => {
+    if (isBuilding) return
     let timeout: NodeJS.Timeout
 
     const handleScroll = () => {
@@ -78,30 +80,32 @@ const Header = ({ openMenu }: HeaderProps) => {
           id="menu-toggle"
           onClick={openMenu}
         />
-        <div className="hidden lg:flex lg:items-center lg:w-auto" id="menu">
-          <ul className="flex flex-col lg:flex-row list-none gap-4">
-            <li className="nav-item">
-              <Link href="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/about" className="nav-link">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/works" className="nav-link">
-                Works
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/contact" className="nav-link">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {!isBuilding && (
+          <div className="hidden lg:flex lg:items-center lg:w-auto" id="menu">
+            <ul className="flex flex-col lg:flex-row list-none gap-4">
+              <li className="nav-item">
+                <Link href="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/about" className="nav-link">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/works" className="nav-link">
+                  Works
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/contact" className="nav-link">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   )

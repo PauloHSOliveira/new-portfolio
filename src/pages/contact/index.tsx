@@ -1,11 +1,17 @@
 import { GetLayout } from '@/interfaces/global'
 import { Layout, ContactForm } from '@/components'
+import { useRedirect } from '@/hooks'
+import { useEffect } from 'react'
 
 const getLayout: GetLayout = (page: JSX.Element) => {
   return <Layout>{page}</Layout>
 }
 
 function Contact() {
+  const { redirectHome } = useRedirect()
+
+  useEffect(() => redirectHome(), [redirectHome])
+
   return (
     <div className="max-w-4xl mx-auto my-8 px-4">
       <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>

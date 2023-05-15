@@ -5,16 +5,17 @@ import {
   ContactForm,
   UnderConstruction,
 } from '@/components'
+import { useRedirect } from '@/hooks'
 
-const underContruction = process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION
 const getLayout = (page: any) => {
   return <Layout>{page}</Layout>
 }
 
 function Home() {
+  const { underConstruction } = useRedirect()
   return (
     <>
-      {underContruction ? (
+      {underConstruction ? (
         <UnderConstruction />
       ) : (
         <>
