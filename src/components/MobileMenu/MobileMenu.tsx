@@ -32,16 +32,18 @@ const MobileMenu = ({
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <ul className="text-white">
-          <li className="py-4">
+          <li className="py-4" onClick={handleMenu}>
             <Link href="/">Home</Link>
           </li>
-          <li className="py-4">
-            <Link href="/about">About</Link>
+          <li className="py-4" onClick={handleMenu}>
+            <Link href="/about" onClick={handleMenu}>
+              About
+            </Link>
           </li>
-          <li className="py-4">
+          <li className="py-4" onClick={handleMenu}>
             <Link href="/works">Works</Link>
           </li>
-          <li className="py-4">
+          <li className="py-4" onClick={handleMenu}>
             <Link href="/contact">Contact</Link>
           </li>
         </ul>
