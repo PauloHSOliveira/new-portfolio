@@ -1,10 +1,4 @@
-import {
-  Projects,
-  TopHomePage,
-  Layout,
-  ContactForm,
-  UnderConstruction,
-} from '@/components'
+import { Projects, TopHomePage, Layout, UnderConstruction } from '@/components'
 import { useRedirect } from '@/hooks'
 
 const getLayout = (page: any) => {
@@ -20,14 +14,8 @@ function Home() {
       ) : (
         <>
           <TopHomePage />
-          <div className="p-4 sm:p-6 lg:p-8 w-full">
+          <div className="px-4 py-12 sm:p-6 lg:p-8 w-full">
             <Projects />
-          </div>
-          <div className="p-4 sm:p-6 lg:p-8 w-full">
-            <h1 className="text-5xl font-bold mb-8l">Get in Touch</h1>
-            <div className="bg-white shadow-lg rounded-md p-4 sm:p-6 lg:p-8 h-full">
-              <ContactForm />
-            </div>
           </div>
         </>
       )}

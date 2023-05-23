@@ -7,9 +7,10 @@ const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
 interface LayoutProps {
   children: ReactNode
+  transparentHeader?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children, transparentHeader }) => {
   const { underConstruction } = useRedirect()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -17,7 +18,11 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <Header openMenu={handleMenu} isBuilding={!!underConstruction} />
+      <Header
+        openMenu={handleMenu}
+        isBuilding={!!underConstruction}
+        transparent={transparentHeader}
+      />
       {!underConstruction && (
         <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />
       )}

@@ -74,70 +74,87 @@ const webDevSkills = [
 const text = (
   <>
     <p>
-      Hello, my name is Paulo Oliveira and I am a passionate software engineer
-      specialized in front-end development and design. I also offer traffic
-      management services and business strategies. I develop custom websites and
-      applications that meet the specific needs of each project, always seeking
-      the best usability, design, and performance. My passion for technology and
-      innovation leads me to constantly search for the best practices and tools
-      to deliver exceptional work.
+      Hello! I'm Paulo Oliveira, a passionate software engineer specializing in
+      front-end development and design. I offer custom website and application
+      development services focused on usability, design, and performance.
     </p>
     <br />
     <p>
-      Outside of work, I love to travel and explore new places and cultures.
-      This allows me to bring new perspectives and inspirations to my projects.
-      My ultimate professional goal is to found a technology company that can
-      transform the way people use technology in their daily lives. Currently, I
-      am working on new ideas, such as a fintech startup and other projects in
-      the area of application and website development.
+      I constantly seek the best practices and tools to deliver exceptional
+      work. When I'm not working, I enjoy traveling and exploring new places and
+      cultures, which brings fresh perspectives and inspirations to my projects.
     </p>
     <br />
     <p>
-      My work process is simple and efficient. First, I have a meeting with the
-      client to understand their business needs and goals. From there, I develop
-      a customized solution that meets their needs and objectives. My goal is
-      always to deliver quality work that helps achieve the expected results. If
-      you are looking for front-end development and design services, as well as
-      strategies to leverage your business, contact me and let's work together
-      to turn your ideas into reality.
+      My ultimate professional goal is to establish a technology company that
+      transforms the way people use technology in their daily lives. Currently,
+      I'm working on exciting projects, including a fintech startup and other
+      application and website development endeavors.
+    </p>
+    <br />
+    <p>
+      My work process is simple and efficient. It begins with a thorough
+      understanding of your business needs and goals through personalized
+      meetings. Then, I develop a customized solution that meets your
+      objectives. My focus is on delivering high-quality work that helps you
+      achieve the expected results.
+    </p>
+    <br />
+    <p>
+      If you're seeking front-end development and design services, as well as
+      strategies to enhance your business, let's collaborate to bring your ideas
+      to life. Contact me to get started.
     </p>
   </>
 )
 
-const text2 = (
-  <>
-    <p>
-      My working process is based on a personalized and efficient approach.
-      Firstly, I have a meeting with the client to understand their needs and
-      business objectives. This conversation is fundamental so that I can
-      understand the specific demands of the project, as well as the
-      expectations regarding the expected results.
-    </p>
-    <br />
-    <p>
-      From this, I develop a personalized solution that meets the client's needs
-      and objectives. Throughout the development process, I maintain constant
-      communication with the client so that we can exchange feedback and adjust
-      the work as needs arise.
-    </p>
-    <br />
-    <p>
-      My goal is always to deliver quality work that helps achieve the expected
-      results. To do this, I use the best practices and tools in the market,
-      ensuring exceptional work. Additionally, I'm always looking to improve my
-      skills and knowledge so that I can always offer the best possible service.
-    </p>
-    <br />
-    <p>
-      I believe that the key to a successful project is the partnership between
-      client and developer. Therefore, I'm always open to suggestions and ideas
-      from the client so that we can work together to find the ideal solution.
-      If you're looking for personalized and quality software development
-      services, please contact me and let's work together to turn your ideas
-      into reality. 🚀
-    </p>
-  </>
-)
+import React from 'react'
+import {
+  LineSegment,
+  Rocket,
+  CheckSquare,
+  Desktop,
+  CodeBlock,
+} from '@phosphor-icons/react'
+
+const Diagram = () => {
+  const steps = [
+    {
+      icon: <Desktop size={68} />,
+      text: "Understand client's needs and objectives",
+    },
+    {
+      icon: <CodeBlock size={68} />,
+      text: 'Develop a personalized solution',
+    },
+    {
+      icon: <LineSegment size={68} />,
+      text: 'Maintain constant communication and exchange feedback',
+    },
+    {
+      icon: <Rocket size={68} />,
+      text: 'Deliver quality work using best practices and tools',
+    },
+    {
+      icon: <CheckSquare size={68} />,
+      text: 'Achieve successful project completion',
+    },
+  ]
+
+  return (
+    <div className="flex items-center gap-4 flex-wrap md:flex-nowrap">
+      {steps.map((step, index) => (
+        <div
+          className="w-full flex flex-col justify-center items-center max-w-sm bg-white rounded-lg shadow-sm shadow-white p-8 my-4 h-52"
+          key={index}
+        >
+          <div>{step.icon}</div>
+          <p className="text-md mt-4">{step.text}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const About = () => {
   const { redirectHome } = useRedirect()
@@ -149,7 +166,7 @@ const About = () => {
   return (
     <>
       <div className="p-4 md:p-24">
-        <div className="text-gray-900 text-3xl md:text-5xl pt-12 pb-4 px-4 md:p-12">
+        <div className="text-gray-900 text-3xl md:text-5xl pt-16 pb-4 px-4 sm:p-12">
           <p>
             I am a passionate <strong>software engineer</strong> specialized in
             <strong> front-end</strong> development, <strong>design</strong> and
@@ -163,14 +180,9 @@ const About = () => {
           imagePath="/static/developer.webp"
         />
       </div>
-      <div className="bg-gray-900 w-full h-96"></div>
-      <div className="w-screen p-8">
-        <div className="text-gray-900 text-5xl text-left">How I work</div>
-        <TwoThirdsOneThird
-          text={text2}
-          position="left"
-          imagePath="/static/meeting.webp"
-        />
+      <div className="w-screen p-8 sm:p-16 bg-gray-900">
+        <div className="text-white text-5xl text-left mb-12">How I work</div>
+        <Diagram />
       </div>
 
       <SkillsList

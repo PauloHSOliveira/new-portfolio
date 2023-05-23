@@ -9,13 +9,14 @@ const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 interface HeaderProps {
   openMenu: () => void
   isBuilding: boolean
+  transparent?: boolean
 }
 
-const Header = ({ openMenu, isBuilding }: HeaderProps) => {
-  const [hidden, setHidden] = useState(!isBuilding)
+const Header = ({ openMenu, isBuilding, transparent }: HeaderProps) => {
+  const [hidden, setHidden] = useState(!isBuilding || !transparent)
 
   useEffect(() => {
-    if (isBuilding) return
+    if (isBuilding || transparent) return
     let timeout: NodeJS.Timeout
 
     const handleScroll = () => {
@@ -37,13 +38,15 @@ const Header = ({ openMenu, isBuilding }: HeaderProps) => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [])
+  }, [transparent, isBuilding])
 
   return (
     <nav
-      className={`bg-white ${ibm.className} fixed top-0 left-0 w-full ${
-        hidden ? 'transform -translate-y-full' : ''
-      } transition-transform z-10`}
+      className={`${transparent ? 'bg-transparent' : 'bg-white'} ${
+        ibm.className
+      } fixed top-0 left-0 w-full ${
+        hidden && !transparent ? 'transform -translate-y-full' : ''
+      } transition-transform z-10 ${transparent ? 'text-white' : ''}`}
     >
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
         <Link href="/" className="text-xl font-bold">
