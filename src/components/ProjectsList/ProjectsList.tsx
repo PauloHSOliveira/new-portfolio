@@ -12,13 +12,18 @@ const Projects = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       {projects.map((project) => (
-        <div key={project.name} className="bg-gray-100 shadow-lg h-96 w-full">
+        <div
+          key={project.name}
+          className="bg-gray-100 shadow-lg h-56 md:h-96 w-full"
+        >
           <div className="h-full w-full flex justify-between">
             <div className="p-8 w-1/2">
-              <h2 className="text-4xl font-bold text-gray-900">
+              <h2 className="text-lg md:text-3xl font-bold text-gray-900">
                 {project.name}
               </h2>
-              <div className="text-lg text-gray-500">{project.description}</div>
+              <div className="text-sm md:text-lg text-gray-500">
+                {project.description}
+              </div>
             </div>
             <div
               className="relative h-full w-1/2"
