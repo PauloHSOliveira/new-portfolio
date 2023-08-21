@@ -21,7 +21,7 @@ const SkillsList = ({
   skills2,
 }: SkillsProps) => {
   return (
-    <div className="bg-white p-8 flex flex-col">
+    <div className="bg-white p-8 flex flex-col text-black">
       <h2 className="text-5xl">{title}</h2>
       <div className="flex-grow mt-4">
         <h3 className="text-xl">{subtitle1}</h3>

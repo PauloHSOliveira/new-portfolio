@@ -6,7 +6,11 @@ import { useRedirect } from '@/hooks'
 const DynamicCarousel = dynamic(() => import('@/components/ProjectCarousel'))
 
 const getLayout: GetLayout = (page: JSX.Element) => {
-  return <Layout transparentHeader>{page}</Layout>
+  return (
+    <Layout transparentHeader containFooterInMobile={false}>
+      {page}
+    </Layout>
+  )
 }
 
 const Works = () => {

@@ -1,17 +1,23 @@
 import { FC, ReactNode, useCallback, useState } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { Header, Footer, MobileMenu } from '@/components'
-import { useRedirect } from '@/hooks'
+import { useIsMobile, useRedirect } from '@/hooks'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
 interface LayoutProps {
   children: ReactNode
   transparentHeader?: boolean
+  containFooterInMobile?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({ children, transparentHeader }) => {
+const Layout: FC<LayoutProps> = ({
+  children,
+  transparentHeader,
+  containFooterInMobile = true,
+}) => {
   const { underConstruction } = useRedirect()
+  const { isMobile } = useIsMobile()
   const [isOpen, setIsOpen] = useState(false)
 
   const handleMenu = useCallback(() => setIsOpen((oldState) => !oldState), [])
@@ -31,7 +37,7 @@ const Layout: FC<LayoutProps> = ({ children, transparentHeader }) => {
       >
         {children}
       </main>
-      {!underConstruction && <Footer />}
+      {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
     </>
   )
 }

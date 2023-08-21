@@ -46,7 +46,7 @@ const Header = ({ openMenu, isBuilding, transparent }: HeaderProps) => {
         ibm.className
       } fixed top-0 left-0 w-full ${
         hidden && !transparent ? 'transform -translate-y-full' : ''
-      } transition-transform z-10 ${transparent ? 'text-white' : ''}`}
+      } transition-transform z-10 ${transparent ? 'text-white' : 'text-black'}`}
     >
       <div className="flex justify-between items-center px-4 py-3 md:px-8 lg:px-16 xl:px-24">
         <Link href="/" className="text-xl font-bold">

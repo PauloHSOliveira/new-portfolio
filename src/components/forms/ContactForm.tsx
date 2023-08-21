@@ -52,7 +52,10 @@ const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-8 text-black"
+    >
       <div className="flex flex-col">
         <label htmlFor="name" className="font-semibold text-sm mb-2">
           Name
@@ -93,9 +96,7 @@ const ContactForm = () => {
       </div>
       <button
         type="submit"
-        className={`btn mt-4 ${
-          isLoading ? 'btn-disabled' : 'btn-gray-900'
-        } w-full md:w-52 h-14`}
+        className="btn-gray-900 btn border-none p-0 px-4 rounded-lg bg-gray-100 shadow-lg mt-6"
         disabled={isLoading}
       >
         {isLoading ? <RingLoader size={24} color="#000000" /> : 'Send Message'}

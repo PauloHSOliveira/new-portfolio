@@ -36,9 +36,7 @@ const MobileMenu = ({
             <Link href="/">Home</Link>
           </li>
           <li className="py-4" onClick={handleMenu}>
-            <Link href="/about" onClick={handleMenu}>
-              About
-            </Link>
+            <Link href="/about">About</Link>
           </li>
           <li className="py-4" onClick={handleMenu}>
             <Link href="/works">Works</Link>

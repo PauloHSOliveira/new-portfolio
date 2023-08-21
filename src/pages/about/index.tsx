@@ -145,7 +145,7 @@ const Diagram = () => {
     <div className="flex items-center gap-4 flex-wrap md:flex-nowrap">
       {steps.map((step, index) => (
         <div
-          className="w-full flex flex-col justify-center items-center max-w-sm bg-white rounded-lg shadow-sm shadow-white p-8 my-4 h-52"
+          className="w-full flex flex-col justify-center items-center max-w-sm bg-white rounded-lg shadow-sm shadow-white p-8 my-4 h-52 text-black"
           key={index}
         >
           <div>{step.icon}</div>
@@ -181,7 +181,7 @@ const About = () => {
         />
       </div>
       <div className="w-screen p-8 sm:p-16 bg-gray-900">
-        <div className="text-white text-5xl text-left mb-12">How I work</div>
+        <div className="text-neutral text-5xl text-left mb-12">How I work</div>
         <Diagram />
       </div>
 
