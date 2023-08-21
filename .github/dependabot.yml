@@ -2,10 +2,11 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    target-branch: "develop"
     schedule:
       interval: "weekly"
-      time: "monday:09:00"
-      base: "develop"
+      day: "monday"
+      time: "09:00"
     open-pull-requests-limit: 5
     labels:
       - "dependencies"
