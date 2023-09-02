@@ -1,17 +1,5 @@
-import { ReactNode } from 'react'
-
-type Skill = {
-  name: string
-  icon: ReactNode
-}
-
-interface SkillsProps {
-  title: string
-  subtitle1: string
-  subtitle2: string
-  skills1: Skill[]
-  skills2: Skill[]
-}
+import { SkillsProps } from '@/types'
+import { map } from 'lodash'
 
 const SkillsList = ({
   title,
@@ -26,7 +14,7 @@ const SkillsList = ({
       <div className="flex-grow mt-4">
         <h3 className="text-xl">{subtitle1}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {skills1.map((skill) => (
+          {map(skills1, (skill) => (
             <div
               className="bg-gray-100 shadow-lg rounded-lg p-4 flex items-center"
               key={skill.name}
@@ -41,7 +29,7 @@ const SkillsList = ({
         <hr className="my-4" />
         <h3 className="text-2xl">{subtitle2}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {skills2.map((skill) => (
+          {map(skills2, (skill) => (
             <div
               className="bg-gray-100 shadow-lg rounded-lg p-4 flex items-center"
               key={skill.name}
@@ -58,4 +46,4 @@ const SkillsList = ({
   )
 }
 
-export { SkillsList }
+export default SkillsList
