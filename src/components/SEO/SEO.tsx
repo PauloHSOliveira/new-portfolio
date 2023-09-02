@@ -1,14 +1,14 @@
 import { NextSeo } from 'next-seo'
-import useSEO from './hooks'
+import { getCanonical } from './utils'
 
 const SEO = () => {
-  const {
-    canonical,
-    defaultDescription,
-    defaultTitle,
-    siteUrl,
-    titleTemplate,
-  } = useSEO()
+  const canonical = getCanonical()
+  const titleTemplate = '%s | Portfólio'
+  const defaultTitle =
+    'PH Oliveira DEV | Software Engineer & Fullstack Developer, UI/UX Designer and Business Strategist'
+  const defaultDescription =
+    'Hi, I am Paulo Oliveira, a passionate software engineer, designer, and business strategist based in Brazil. With experience in front-end and back-end development, UI/UX design, and digital advertising including Facebook and Google Ads.'
+  const siteUrl = getCanonical()
 
   return (
     <NextSeo
