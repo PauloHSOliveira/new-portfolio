@@ -1,4 +1,5 @@
-import { Layout, HomePage } from '@/components'
+import { Layout } from '@/components'
+import HomePage from '@/components/HomePage'
 
 const getLayout = (page: any) => {
   return <Layout>{page}</Layout>
@@ -9,4 +10,5 @@ function Home() {
 }
 
 Home.getLayout = getLayout
+
 export default Home

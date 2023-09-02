@@ -1,5 +1,6 @@
 import { GetLayout } from '@/interfaces/global'
-import { Layout, DynamicCarousel } from '@/components'
+import { Layout } from '@/components'
+import ProjectCarousel from '@/components/ProjectCarousel/ProjectCarousel'
 
 const getLayout: GetLayout = (page: JSX.Element) => {
   return (
@@ -10,7 +11,7 @@ const getLayout: GetLayout = (page: JSX.Element) => {
 }
 
 const Works = () => {
-  return <DynamicCarousel />
+  return <ProjectCarousel />
 }
 
 Works.getLayout = getLayout

@@ -1,5 +1,6 @@
 import { GetLayout } from '@/interfaces/global'
-import { Layout, ContactPage } from '@/components'
+import { Layout } from '@/components'
+import ContactPage from '@/components/ContactPage'
 
 const getLayout: GetLayout = (page: JSX.Element) => {
   return <Layout>{page}</Layout>
