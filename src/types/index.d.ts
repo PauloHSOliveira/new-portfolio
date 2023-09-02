@@ -34,3 +34,15 @@ export interface Projects {
   ids: string[]
   entities: Record<string, Project>
 }
+
+export interface HeaderProps {
+  isBuilding: boolean
+  transparent?: boolean
+  openMenu?: () => void
+}
+
+interface LayoutProps {
+  children: ReactNode
+  transparentHeader?: boolean
+  containFooterInMobile?: boolean
+}

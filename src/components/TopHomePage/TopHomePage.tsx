@@ -2,7 +2,7 @@ import { FaArrowRight } from 'react-icons/fa'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-const TopHomePage: React.FC = () => {
+const TopHomePage = () => {
   const router = useRouter()
 
   const handleClickOnWorks = () => {

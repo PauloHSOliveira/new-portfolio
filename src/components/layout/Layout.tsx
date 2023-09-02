@@ -1,45 +1,34 @@
-import { FC, ReactNode, useCallback, useState } from 'react'
+import { FC, memo } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { Header, Footer, MobileMenu } from '@/components'
-import { useIsMobile, useRedirect } from '@/hooks'
+import { LayoutProps } from '@/types'
+import useLayout from './hooks'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
-interface LayoutProps {
-  children: ReactNode
-  transparentHeader?: boolean
-  containFooterInMobile?: boolean
-}
+const Layout: FC<LayoutProps> = memo(
+  ({ children, transparentHeader, containFooterInMobile = true }) => {
+    const { handleMenu, underConstruction, isMobile, isOpen } = useLayout()
 
-const Layout: FC<LayoutProps> = ({
-  children,
-  transparentHeader,
-  containFooterInMobile = true,
-}) => {
-  const { underConstruction } = useRedirect()
-  const { isMobile } = useIsMobile()
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleMenu = useCallback(() => setIsOpen((oldState) => !oldState), [])
-
-  return (
-    <>
-      <Header
-        openMenu={handleMenu}
-        isBuilding={!!underConstruction}
-        transparent={transparentHeader}
-      />
-      {!underConstruction && (
-        <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />
-      )}
-      <main
-        className={`flex min-h-screen flex-col items-center justify-center ${ibm.className} bg-neutral`}
-      >
-        {children}
-      </main>
-      {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
-    </>
-  )
-}
+    return (
+      <>
+        <Header
+          openMenu={handleMenu}
+          isBuilding={!!underConstruction}
+          transparent={transparentHeader}
+        />
+        {!underConstruction && (
+          <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />
+        )}
+        <main
+          className={`flex min-h-screen flex-col items-center justify-center ${ibm.className} bg-neutral`}
+        >
+          {children}
+        </main>
+        {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
+      </>
+    )
+  }
+)
 
 export { Layout }
