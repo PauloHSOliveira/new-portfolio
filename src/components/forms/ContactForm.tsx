@@ -14,6 +14,7 @@ const schema = Yup.object().shape({
 
 const resolver = yupResolver(schema)
 
+// million-ignore
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false)
 

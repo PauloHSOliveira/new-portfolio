@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -39,6 +39,37 @@ const Header = ({ openMenu, isBuilding, transparent }: HeaderProps) => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [transparent, isBuilding])
+
+  const renderMenu = useCallback(() => {
+    if (isBuilding) return null
+
+    return (
+      <div className="hidden lg:flex lg:items-center lg:w-auto" id="menu">
+        <ul className="flex flex-col lg:flex-row list-none gap-4">
+          <li className="nav-item">
+            <Link href="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link href="/about" className="nav-link">
+              About
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link href="/works" className="nav-link">
+              Works
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link href="/contact" className="nav-link">
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </div>
+    )
+  }, [isBuilding])
 
   return (
     <nav
@@ -83,32 +114,7 @@ const Header = ({ openMenu, isBuilding, transparent }: HeaderProps) => {
           id="menu-toggle"
           onClick={openMenu}
         />
-        {!isBuilding && (
-          <div className="hidden lg:flex lg:items-center lg:w-auto" id="menu">
-            <ul className="flex flex-col lg:flex-row list-none gap-4">
-              <li className="nav-item">
-                <Link href="/" className="nav-link">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/about" className="nav-link">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/works" className="nav-link">
-                  Works
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/contact" className="nav-link">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
+        {renderMenu()}
       </div>
     </nav>
   )
