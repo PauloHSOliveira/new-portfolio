@@ -15,4 +15,4 @@ const UnderConstruction = () => {
   )
 }
 
-export default UnderConstruction
+export { UnderConstruction }
