@@ -1,17 +1,4 @@
-import { ReactNode } from 'react'
-
-type Skill = {
-  name: string
-  icon: ReactNode
-}
-
-interface SkillsProps {
-  title: string
-  subtitle1: string
-  subtitle2: string
-  skills1: Skill[]
-  skills2: Skill[]
-}
+import { SkillsProps } from '@/types'
 
 const SkillsList = ({
   title,
@@ -58,4 +45,4 @@ const SkillsList = ({
   )
 }
 
-export { SkillsList }
+export default SkillsList

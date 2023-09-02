@@ -38,4 +38,4 @@ const TopHomePage: React.FC = () => {
   )
 }
 
-export { TopHomePage }
+export default TopHomePage

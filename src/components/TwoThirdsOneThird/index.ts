@@ -1,1 +1,1 @@
-export * from './TwoThirdsOneThird'
+export { default } from './TwoThirdsOneThird'

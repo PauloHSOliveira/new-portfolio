@@ -1,26 +1,11 @@
-import { Projects, TopHomePage, Layout, UnderConstruction } from '@/components'
-import { useRedirect } from '@/hooks'
+import { Layout, HomePage } from '@/components'
 
 const getLayout = (page: any) => {
   return <Layout>{page}</Layout>
 }
 
 function Home() {
-  const { underConstruction } = useRedirect()
-  return (
-    <>
-      {underConstruction ? (
-        <UnderConstruction />
-      ) : (
-        <>
-          <TopHomePage />
-          <div className="px-4 py-12 sm:p-6 lg:p-8 w-full">
-            <Projects />
-          </div>
-        </>
-      )}
-    </>
-  )
+  return <HomePage />
 }
 
 Home.getLayout = getLayout

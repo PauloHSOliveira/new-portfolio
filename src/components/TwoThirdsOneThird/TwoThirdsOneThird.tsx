@@ -31,4 +31,4 @@ const TwoThirdsOneThird = ({
   )
 }
 
-export { TwoThirdsOneThird }
+export default TwoThirdsOneThird
