@@ -7,6 +7,7 @@ export type Project = {
 }
 
 export type Skill = {
+  id?: string
   name: string
   icon: ReactNode
 }
@@ -19,15 +20,10 @@ export interface SkillsProps {
   skills2: Skill[]
 }
 
-export interface StepEntity {
-  icon: JSX.Element
-  text?: string
-  name?: string
-}
-
 export interface Steps {
-  ids: string[]
-  entities: Record<string, StepEntity>
+  id?: string
+  text: string
+  icon: ReactNode
 }
 
 export interface Projects {

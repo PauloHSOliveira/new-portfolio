@@ -2,14 +2,13 @@ import { IBM_Plex_Mono } from 'next/font/google'
 import { GithubLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icons/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import useFooter from './hooks'
+import { memo } from 'react'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
-const Footer: React.FC = () => {
-  const router = useRouter()
-
-  const handleClick = () => router.push('/contact')
+const Footer = memo(() => {
+  const { handleClick } = useFooter()
 
   return (
     <footer
@@ -26,13 +25,21 @@ const Footer: React.FC = () => {
         </div>
         <div className="flex flex-col items-start gap-4">
           <div className="flex gap-2">
-            <Link href="https://github.com/PauloHSOliveira">GitHub</Link>
+            <Link href="https://github.com/PauloHSOliveira" target="_blank">
+              GitHub
+            </Link>
             <span>\</span>
-            <Link href="https://www.linkedin.com/in/paulo-oliveira-ph/">
+            <Link
+              href="https://www.linkedin.com/in/paulo-oliveira-ph/"
+              target="_blank"
+            >
               Linkedin
             </Link>
             <span>\</span>
-            <Link href="https://www.instagram.com/pholiveira.dev/">
+            <Link
+              href="https://www.instagram.com/pholiveira.dev/"
+              target="_blank"
+            >
               Instagram
             </Link>
           </div>
@@ -44,13 +51,19 @@ const Footer: React.FC = () => {
       <div className="flex flex-col items-center gap-4 p-4">
         <Image src="/static/me.webp" width={52} height={52} alt="PH Oliveira" />
         <div className="flex gap-2">
-          <Link href={'https://github.com/PauloHSOliveira'}>
+          <Link href={'https://github.com/PauloHSOliveira'} target="_blank">
             <GithubLogo size={40} />
           </Link>
-          <Link href={'https://www.linkedin.com/in/paulo-oliveira-ph/'}>
+          <Link
+            href={'https://www.linkedin.com/in/paulo-oliveira-ph/'}
+            target="_blank"
+          >
             <LinkedinLogo size={40} />
           </Link>
-          <Link href={'https://www.instagram.com/pholiveira.eth/'}>
+          <Link
+            href={'https://www.instagram.com/pholiveira.eth/'}
+            target="_blank"
+          >
             <InstagramLogo size={40} />
           </Link>
         </div>
@@ -58,6 +71,6 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   )
-}
+})
 
 export { Footer }
