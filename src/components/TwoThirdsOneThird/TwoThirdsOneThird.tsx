@@ -25,4 +25,4 @@ const TwoThirdsOneThird = memo(
   }
 )
 
-export default TwoThirdsOneThird
+export { TwoThirdsOneThird }

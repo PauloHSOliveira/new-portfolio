@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-
 export type Project = {
   name: string
   image: string

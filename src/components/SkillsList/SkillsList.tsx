@@ -17,4 +17,4 @@ const SkillsList = memo(
   }
 )
 
-export default SkillsList
+export { SkillsList }
