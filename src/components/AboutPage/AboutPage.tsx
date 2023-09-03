@@ -1,12 +1,12 @@
 import SkillsList from '../SkillsList'
 import TwoThirdsOneThird from '../TwoThirdsOneThird'
 import Diagram from './Diagram'
-import useAboutPage from './hooks'
-import { text } from './constants'
 import { memo } from 'react'
+import { text } from './constants'
+import useAboutPage from './hooks'
 
 const AboutPage = memo(() => {
-  const { getWebSkills, getOtherSkills } = useAboutPage()
+  const { getSkills1, getSkills2, getSteps } = useAboutPage()
 
   return (
     <>
@@ -27,12 +27,12 @@ const AboutPage = memo(() => {
       </div>
       <div className="w-screen p-8 sm:p-16 bg-gray-900">
         <div className="text-neutral text-5xl text-left mb-12">How I work</div>
-        <Diagram />
+        <Diagram steps={getSteps} />
       </div>
 
       <SkillsList
-        skills1={getWebSkills}
-        skills2={getOtherSkills}
+        skills1={getSkills1}
+        skills2={getSkills2}
         title="My Skills"
         subtitle1="Development Skills"
         subtitle2="Other Skills"

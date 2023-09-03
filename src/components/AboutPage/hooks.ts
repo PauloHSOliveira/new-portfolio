@@ -1,32 +1,19 @@
-import { map } from 'lodash'
-import { useEffect, useMemo } from 'react'
-import { steps, webDevSkills, otherSkills } from './constants'
-import { useRedirect } from '@/hooks'
-import { Skill } from '@/types'
+import { useCallback, useMemo } from 'react'
+import { skills, skills2, steps } from './constants'
+import { map, uniqueId } from 'lodash'
+import { Skill, Steps } from '@/types'
 
 const useAboutPage = () => {
-  const { redirectHome } = useRedirect()
-
-  useEffect(() => {
-    redirectHome()
-  }, [redirectHome])
-
-  const getSteps = useMemo(
-    () => map(steps.ids, (id) => steps.entities[id]),
-    [steps]
+  const buildData = useCallback(
+    (data: any[]) => map(data, (item) => ({ ...item, id: uniqueId() })),
+    []
   )
 
-  const getWebSkills = useMemo(
-    () => map(webDevSkills.ids, (id) => webDevSkills.entities[id]),
-    [webDevSkills]
-  ) as Skill[]
+  const getSteps = useMemo(() => buildData(steps), [steps]) as Steps[]
+  const getSkills1 = useMemo(() => buildData(skills), [skills]) as Skill[]
+  const getSkills2 = useMemo(() => buildData(skills2), [skills2]) as Skill[]
 
-  const getOtherSkills = useMemo(
-    () => map(otherSkills.ids, (id) => otherSkills.entities[id]),
-    [otherSkills]
-  ) as Skill[]
-
-  return { getSteps, getOtherSkills, getWebSkills }
+  return { getSteps, getSkills1, getSkills2 }
 }
 
 export default useAboutPage
