@@ -1,9 +1,13 @@
 import { useCallback, useState } from 'react'
 import resolver from './resolver'
 import { useForm } from 'react-hook-form'
+import { useAlert } from '@/providers/AlertProvider'
+import { sendContactEmail } from '@/services/sendContactEmail'
 
 const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false)
+
+  const { showAlert } = useAlert()
 
   const {
     register,
@@ -21,23 +25,15 @@ const useContactForm = () => {
   const onSubmit = useCallback(async (data: any) => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      const { message } = await response.json()
-
-      alert(message)
+      await sendContactEmail(data)
+      showAlert.success('Message sent successfully')
     } catch (error) {
-      alert(error)
+      showAlert.error('Error when send email contact')
     } finally {
       setIsLoading(false)
     }
   }, [])
+
   return { isLoading, onSubmit, handleSubmit, register, errors }
 }
 

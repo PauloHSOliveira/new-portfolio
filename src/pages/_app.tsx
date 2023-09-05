@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { analytics } from '@/services/firebase'
 import { logEvent } from 'firebase/analytics'
+import { AlertProvider } from '@/providers/AlertProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -32,9 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const renderComponent = () => getLayout(<Component {...pageProps} />)
 
   return (
-    <React.Fragment>
+    <AlertProvider>
       <SEO />
       {renderComponent()}
-    </React.Fragment>
+    </AlertProvider>
   )
 }
