@@ -1,5 +1,5 @@
-import * as cors from 'cors'
+import cors from "cors"
 
 const corsHandler = cors({ origin: true })
 
-export default corsHandler
+export { corsHandler }

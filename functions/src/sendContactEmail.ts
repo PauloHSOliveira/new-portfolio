@@ -1,12 +1,11 @@
 import * as functions from "firebase-functions"
-import corsHandler from "./utils/corsHandler"
+import { corsHandler } from "./utils/corsHandler"
 import { ContactFormData } from "./types"
 import sendContactEmail from "./helpers/sendContactEmail"
 
 export const sendContact = functions.https.onRequest((req, res) => {
   corsHandler(req, res, async () => {
     try {
-
       const data = req.body.data as ContactFormData
 
       if (!data || !data.name || !data.email || !data.message) {
