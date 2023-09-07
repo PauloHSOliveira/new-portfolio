@@ -1,5 +1,5 @@
-import * as functions from "firebase-functions"
-import * as nodemailer from "nodemailer"
+import functions from "firebase-functions"
+import nodemailer from "nodemailer"
 import { ContactFormData } from "../../types"
 
 const sendContactEmail = async (data: ContactFormData) => {
