@@ -1,13 +1,11 @@
 import { useCallback, useState } from 'react'
 import resolver from './resolver'
 import { useForm } from 'react-hook-form'
-import { useAlert } from '@/providers/AlertProvider'
 import { sendContactEmail } from '@/services/sendContactEmail'
+import { toast } from 'react-toastify'
 
 const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false)
-
-  const { showAlert } = useAlert()
 
   const {
     register,
@@ -26,9 +24,9 @@ const useContactForm = () => {
     setIsLoading(true)
     try {
       await sendContactEmail(data)
-      showAlert.success('Message sent successfully')
+      toast.success('Contact message sent successfully')
     } catch (error) {
-      showAlert.error('Error when send email contact')
+      toast.error('Error on send contact message')
     } finally {
       setIsLoading(false)
     }
