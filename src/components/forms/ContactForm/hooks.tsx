@@ -11,6 +11,7 @@ const useContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({
     resolver,
     defaultValues: {
@@ -25,6 +26,7 @@ const useContactForm = () => {
     try {
       await sendContactEmail(data)
       toast.success('Contact message sent successfully')
+      reset()
     } catch (error) {
       toast.error('Error on send contact message')
     } finally {
