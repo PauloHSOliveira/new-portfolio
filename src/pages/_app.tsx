@@ -1,10 +1,12 @@
 import '@/styles/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 import type { AppProps } from 'next/app'
 import { Layout, SEO } from '@/components'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { analytics } from '@/services/firebase'
 import { logEvent } from 'firebase/analytics'
+import { ToastContainer } from 'react-toastify'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -32,9 +34,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const renderComponent = () => getLayout(<Component {...pageProps} />)
 
   return (
-    <React.Fragment>
+    <>
       <SEO />
+      <ToastContainer position="top-right" />
       {renderComponent()}
-    </React.Fragment>
+    </>
   )
 }

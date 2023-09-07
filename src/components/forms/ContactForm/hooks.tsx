@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react'
 import resolver from './resolver'
 import { useForm } from 'react-hook-form'
+import { sendContactEmail } from '@/services/sendContactEmail'
+import { toast } from 'react-toastify'
 
 const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -9,6 +11,7 @@ const useContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver,
     defaultValues: {
@@ -21,23 +24,16 @@ const useContactForm = () => {
   const onSubmit = useCallback(async (data: any) => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      const { message } = await response.json()
-
-      alert(message)
+      await sendContactEmail(data)
+      toast.success('Contact message sent successfully')
+      reset()
     } catch (error) {
-      alert(error)
+      toast.error('Error on send contact message')
     } finally {
       setIsLoading(false)
     }
   }, [])
+
   return { isLoading, onSubmit, handleSubmit, register, errors }
 }
 
