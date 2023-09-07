@@ -1,4 +1,4 @@
-import functions from "firebase-functions"
+import * as functions from "firebase-functions"
 import { corsHandler } from "./utils/corsHandler"
 import { ContactFormData } from "./types"
 import sendContactEmail from "./helpers/sendContactEmail"
