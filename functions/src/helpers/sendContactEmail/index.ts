@@ -1,6 +1,6 @@
-import * as functions from "firebase-functions"
-import * as nodemailer from "nodemailer"
-import { ContactFormData } from "../../types"
+import * as functions from 'firebase-functions'
+import * as nodemailer from 'nodemailer'
+import { ContactFormData } from '../../types'
 
 const sendContactEmail = async (data: ContactFormData) => {
   const { name, email, message } = data
@@ -22,7 +22,7 @@ const sendContactEmail = async (data: ContactFormData) => {
     text: message,
   })
 
-  console.log("Message sent: %s", info.messageId)
+  console.log('Message sent: %s', info.messageId)
   return info
 }
 

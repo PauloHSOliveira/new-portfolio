@@ -8,4 +8,8 @@ typings/
 # Node.js dependency directory
 node_modules/
 
+.env
 .runtimeconfig.json
+
+data/**
+data/firebase-export-metadata.json
