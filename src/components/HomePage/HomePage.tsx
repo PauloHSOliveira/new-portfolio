@@ -1,8 +1,10 @@
 import React, { memo } from 'react'
-import UnderConstruction from '../UnderContructionPage'
-import TopHomePage from '../TopHomePage'
+
 import { useRedirect } from '@/hooks'
+
 import Projects from '../ProjectsList'
+import TopHomePage from '../TopHomePage'
+import UnderConstruction from '../UnderContructionPage'
 
 const HomePage = memo(() => {
   const { underConstruction } = useRedirect()
@@ -14,7 +16,7 @@ const HomePage = memo(() => {
       ) : (
         <>
           <TopHomePage />
-          <div className="px-4 py-12 sm:p-6 lg:p-8 w-full">
+          <div className='px-4 py-12 sm:p-6 lg:p-8 w-full'>
             <Projects />
           </div>
         </>
