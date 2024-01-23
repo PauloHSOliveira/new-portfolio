@@ -35,10 +35,27 @@ export interface HeaderProps {
   isBuilding: boolean
   transparent?: boolean
   openMenu?: () => void
+  containSearch?: boolean
 }
 
-interface LayoutProps {
+export type LayoutProps = {
   children: ReactNode
   transparentHeader?: boolean
   containFooterInMobile?: boolean
+  containSearch?: boolean
+}
+
+export type BlogPost = {
+  id?: string
+  title: string
+  description: string
+  date: string
+  likes: number
+  views: number
+  slug: string
+  tags: string[]
+  categories: string[]
+  author: string
+  body: string
+  timeToRead: number
 }

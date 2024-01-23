@@ -1,14 +1,19 @@
 import { IBM_Plex_Mono } from 'next/font/google'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+
 import profilePicture from '/public/static/me.webp'
+
 import { HeaderProps } from '@/types'
-import useHeader from './hooks'
+
 import { memo } from 'react'
+
+import useHeader from './hooks'
+import SearchInput from '../inputs/SearchInput'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
-const Header = memo(({ openMenu, isBuilding, transparent }: HeaderProps) => {
+const Header = memo(({ openMenu, isBuilding, transparent, containSearch }: HeaderProps) => {
   const { renderMenu, renderOpenMenu } = useHeader({
     isBuilding,
     transparent,
@@ -53,6 +58,11 @@ const Header = memo(({ openMenu, isBuilding, transparent }: HeaderProps) => {
         {renderOpenMenu()}
         {renderMenu()}
       </div>
+      {containSearch && (
+        <div className='p-6'>
+          <SearchInput />
+        </div>
+      )}
     </nav>
   )
 })

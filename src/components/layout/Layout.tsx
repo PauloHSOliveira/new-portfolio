@@ -1,13 +1,16 @@
 import { FC, memo } from 'react'
+
 import { IBM_Plex_Mono } from 'next/font/google'
-import { Header, Footer, MobileMenu } from '@/components'
-import { LayoutProps } from '@/types'
+
+import { Footer, Header, MobileMenu } from '@/components'
+import type { LayoutProps } from '@/types'
+
 import useLayout from './hooks'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
 const Layout: FC<LayoutProps> = memo(
-  ({ children, transparentHeader, containFooterInMobile = true }) => {
+  ({ children, transparentHeader, containFooterInMobile = true, containSearch }) => {
     const { handleMenu, underConstruction, isMobile, isOpen } = useLayout()
 
     return (
@@ -16,10 +19,9 @@ const Layout: FC<LayoutProps> = memo(
           openMenu={handleMenu}
           isBuilding={!!underConstruction}
           transparent={transparentHeader}
+          containSearch={containSearch}
         />
-        {!underConstruction && (
-          <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />
-        )}
+        {!underConstruction && <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />}
         <main
           className={`flex min-h-screen flex-col items-center justify-center ${ibm.className} bg-neutral`}
         >
@@ -28,7 +30,7 @@ const Layout: FC<LayoutProps> = memo(
         {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
       </>
     )
-  }
+  },
 )
 
 export { Layout }
