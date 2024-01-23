@@ -22,7 +22,7 @@ const InputText = ({
       {label ? (
         <label
           htmlFor={name}
-          className={`font-semibold text-sm mb-2 ${containError ? 'text-red-500' : ''}`}
+          className={`font-semibold text-sm mb-2 ${containError ? 'text-red-500' : 'text-gray-600'}`}
         >
           {label}
         </label>
@@ -30,7 +30,7 @@ const InputText = ({
       <input
         id={name}
         type='text'
-        className={`w-full py-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 ${
+        className={`w-full text-gray-700 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 ${
           containError ? 'border-red-500' : ''
         }`}
         {...register(name, { required: isRequired })}

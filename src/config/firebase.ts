@@ -1,6 +1,8 @@
-import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import { getFunctions, connectFunctionsEmulator } from 'firebase/functions'
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import { connectFunctionsEmulator, getFunctions } from 'firebase/functions'
+
 import { getEnvs } from './getEnvs'
 
 const firebaseConfig = {
@@ -26,9 +28,10 @@ const EMULATOR_FUNCTIONS_PORT = Number(process.env.NEXT_PUBLIC_FIREBASE_FUNCTION
 // Initialize analytics only if window is defined
 const analytics = isWindowDefined ? getAnalytics(app) : undefined
 const functions = getFunctions(app)
+const firestore = getFirestore(app)
 
 if (isDevlopment && USE_EMULATOR) {
   connectFunctionsEmulator(functions, EMULATOR_HOST as string, EMULATOR_FUNCTIONS_PORT)
 }
 
-export { app, analytics, functions }
+export { app, analytics, functions, firestore }

@@ -49,7 +49,7 @@ export type BlogPost = {
   id?: string
   title: string
   description: string
-  date: string
+  date: Date
   likes: number
   views: number
   slug: string

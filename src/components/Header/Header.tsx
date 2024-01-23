@@ -2,6 +2,7 @@ import { IBM_Plex_Mono } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 
+// eslint-disable-next-line import/no-unresolved
 import profilePicture from '/public/static/me.webp'
 
 import { HeaderProps } from '@/types'
