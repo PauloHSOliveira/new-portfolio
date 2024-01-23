@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import { Layout, SEO } from '@/components'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { analytics } from '@/services/firebase'
+import { analytics } from '@/config/firebase'
 import { logEvent } from 'firebase/analytics'
 import { ToastContainer } from 'react-toastify'
 
@@ -27,16 +27,14 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events, analytics])
 
-  const getLayout =
-    (Component as any).getLayout ||
-    ((page: JSX.Element) => <Layout>{page}</Layout>)
+  const getLayout = (Component as any).getLayout || ((page: JSX.Element) => <Layout>{page}</Layout>)
 
   const renderComponent = () => getLayout(<Component {...pageProps} />)
 
   return (
     <>
       <SEO />
-      <ToastContainer position="top-right" />
+      <ToastContainer position='top-right' />
       {renderComponent()}
     </>
   )

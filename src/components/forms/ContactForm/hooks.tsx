@@ -1,8 +1,11 @@
 import { useCallback, useState } from 'react'
-import resolver from './resolver'
+
 import { useForm } from 'react-hook-form'
-import { sendContactEmail } from '@/services/sendContactEmail'
 import { toast } from 'react-toastify'
+
+import { sendContactEmail } from '@/services/sendContactEmail'
+
+import resolver from './resolver'
 
 const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false)
