@@ -7,14 +7,14 @@ const ProjectCarousel = memo(() => {
   const { renderProjects } = useProjectCarousel()
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative">
+    <div className='h-screen w-screen overflow-hidden relative'>
       <AwesomeSlider
         organicArrows={true}
         selected={0}
         fillParent={true}
         infinite={true}
         mobileTouch={true}
-        animation="cubeAnimation"
+        animation='cubeAnimation'
         cssModule={{
           slider: 'slider fluid-slider',
           slide: 'slide fluid-slide',

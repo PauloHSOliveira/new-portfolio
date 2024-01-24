@@ -2,13 +2,7 @@ import { NextSeo } from 'next-seo'
 import useSEO from './hooks'
 
 const SEO = () => {
-  const {
-    canonical,
-    defaultDescription,
-    defaultTitle,
-    siteUrl,
-    titleTemplate,
-  } = useSEO()
+  const { canonical, defaultDescription, defaultTitle, siteUrl, titleTemplate } = useSEO()
 
   return (
     <NextSeo

@@ -5,7 +5,7 @@ export const getCanonical = () => {
     typeof window === 'undefined'
       ? ''
       : isDev
-      ? window.location.origin
-      : 'https://www.pholiveira.dev/'
+        ? window.location.origin
+        : 'https://www.pholiveira.dev/'
   return canonical
 }

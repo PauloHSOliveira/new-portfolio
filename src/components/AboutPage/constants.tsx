@@ -1,10 +1,4 @@
-import {
-  LineSegment,
-  Rocket,
-  CheckSquare,
-  Desktop,
-  CodeBlock,
-} from '@phosphor-icons/react'
+import { LineSegment, Rocket, CheckSquare, Desktop, CodeBlock } from '@phosphor-icons/react'
 import { IoLogoJavascript } from 'react-icons/io'
 import {
   FaReact,
@@ -95,36 +89,33 @@ const skills2: Skill[] = [
 const text = (
   <>
     <p>
-      Hello! I'm Paulo Oliveira, a passionate software engineer specializing in
-      front-end development and design. I offer custom website and application
-      development services focused on usability, design, and performance.
+      Hello! I'm Paulo Oliveira, a passionate software engineer specializing in front-end
+      development and design. I offer custom website and application development services focused on
+      usability, design, and performance.
     </p>
     <br />
     <p>
-      I constantly seek the best practices and tools to deliver exceptional
-      work. When I'm not working, I enjoy traveling and exploring new places and
-      cultures, which brings fresh perspectives and inspirations to my projects.
+      I constantly seek the best practices and tools to deliver exceptional work. When I'm not
+      working, I enjoy traveling and exploring new places and cultures, which brings fresh
+      perspectives and inspirations to my projects.
     </p>
     <br />
     <p>
-      My ultimate professional goal is to establish a technology company that
-      transforms the way people use technology in their daily lives. Currently,
-      I'm working on exciting projects, including a fintech startup and other
-      application and website development endeavors.
+      My ultimate professional goal is to establish a technology company that transforms the way
+      people use technology in their daily lives. Currently, I'm working on exciting projects,
+      including a fintech startup and other application and website development endeavors.
     </p>
     <br />
     <p>
-      My work process is simple and efficient. It begins with a thorough
-      understanding of your business needs and goals through personalized
-      meetings. Then, I develop a customized solution that meets your
-      objectives. My focus is on delivering high-quality work that helps you
-      achieve the expected results.
+      My work process is simple and efficient. It begins with a thorough understanding of your
+      business needs and goals through personalized meetings. Then, I develop a customized solution
+      that meets your objectives. My focus is on delivering high-quality work that helps you achieve
+      the expected results.
     </p>
     <br />
     <p>
-      If you're seeking front-end development and design services, as well as
-      strategies to enhance your business, let's collaborate to bring your ideas
-      to life. Contact me to get started.
+      If you're seeking front-end development and design services, as well as strategies to enhance
+      your business, let's collaborate to bring your ideas to life. Contact me to get started.
     </p>
   </>
 )
