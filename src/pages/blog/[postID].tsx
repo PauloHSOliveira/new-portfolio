@@ -1,51 +1,87 @@
-import React, { useCallback, useEffect, useState } from 'react'
-
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useRouter } from 'next/router'
+// eslint-disable-next-line import/named
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize'
+import { CopyBlock, dracula } from 'react-code-blocks'
 
 import { firestore } from '@/config/firebase'
 import { BlogPost } from '@/types'
 
-const postsCollectionRef = collection(firestore, 'posts')
+const components = {
+  h1: (props: any) => <h1 className='text-3xl text-black' {...props} />,
+  h2: (props: any) => <h2 className='text-2xl text-black' {...props} />,
+  p: (props: any) => <p {...props} />,
+  code: (props: any) => {
+    const language = props.className.split('-')[1]
+    return (
+      <CopyBlock
+        text={props.children}
+        language={language}
+        showLineNumbers={true}
+        theme={dracula}
+        wrapLongLines={true}
+        copied={false}
+        codeBlock={true}
+      />
+    )
+  },
+}
 
-const Post: React.FC = () => {
-  const router = useRouter()
-  const [post, setPost] = useState<BlogPost | null>(null)
+const Post: React.FC<{
+  post: BlogPost
+  source: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>
+}> = ({ post, source }) => (
+  <div className='w-full p-24 h-full'>
+    {post ? (
+      <div className='flex flex-col h-full w-full gap-4'>
+        <h1 className='text-4xl text-black font-semibold'>{post.title}</h1>
+        <p className='text-gray-400 text-md'>{`Published on ${post.date} by ${post.author}`}</p>
 
-  const postID = router.query.postID as string // Substitua `any` pelo tipo correto do seu objeto Post
+        <MDXRemote {...source} components={components} />
+      </div>
+    ) : (
+      <p>Loading...</p>
+    )}
+  </div>
+)
 
-  const getPost = useCallback(async () => {
-    if (postID) {
-      const q = query(postsCollectionRef, where('slug', '==', postID))
-      const querySnapshot = await getDocs(q)
+export async function getServerSideProps(context: any) {
+  const { params } = context
+  const postID = params?.postID as string
 
-      if (querySnapshot.size > 0) {
-        const postData = querySnapshot.docs[0].data() as BlogPost
-        setPost(postData)
-      } else {
-        console.error(`Post with slug ${postID} not found`)
-      }
+  const postsCollectionRef = collection(firestore, 'posts')
+  const q = query(postsCollectionRef, where('slug', '==', postID))
+  const querySnapshot = await getDocs(q)
+
+  let post = null
+
+  if (querySnapshot.size > 0) {
+    const postData = querySnapshot.docs[0].data() as BlogPost
+    post = {
+      ...postData,
+      body: postData.body || '', // Ensure body is a string to avoid serialization issues
     }
-  }, [postID])
+  } else {
+    console.error(`Post with slug ${postID} not found`)
+  }
 
-  useEffect(() => {
-    getPost()
-  }, [getPost])
+  if (!post) {
+    return {
+      notFound: true,
+    }
+  }
 
-  return (
-    <div>
-      {post ? (
-        <>
-          <h1>{post.title}</h1>
-          <p>{`Published on ${post.date} by ${post.author}`}</p>
+  const source = await serialize(post.body)
 
-          {post.body}
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  )
+  return {
+    props: {
+      post: {
+        ...post,
+        date: '10/11/2023',
+      },
+      source,
+    },
+  }
 }
 
 export default Post

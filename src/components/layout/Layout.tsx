@@ -22,9 +22,7 @@ const Layout: FC<LayoutProps> = memo(
           containSearch={containSearch}
         />
         {!underConstruction && <MobileMenu isOpen={isOpen} handleMenu={handleMenu} />}
-        <main
-          className={`flex min-h-screen flex-col items-center justify-center ${ibm.className} bg-neutral`}
-        >
+        <main className={`flex min-h-screen flex-col items-center ${ibm.className} bg-neutral`}>
           {children}
         </main>
         {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
