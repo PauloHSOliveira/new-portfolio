@@ -1,31 +1,32 @@
-import { LineSegment, Rocket, CheckSquare, Desktop, CodeBlock } from '@phosphor-icons/react'
+import { CheckSquare, CodeBlock, Desktop, LineSegment, Rocket } from '@phosphor-icons/react'
+import {
+  FaChartBar,
+  FaCss3Alt,
+  FaDocker,
+  FaFacebook,
+  FaFigma,
+  FaHtml5,
+  FaNodeJs,
+  FaReact,
+} from 'react-icons/fa'
 import { IoLogoJavascript } from 'react-icons/io'
 import {
-  FaReact,
-  FaNodeJs,
-  FaDocker,
-  FaHtml5,
-  FaCss3Alt,
-  FaFigma,
-  FaFacebook,
-  FaChartBar,
-} from 'react-icons/fa'
-import {
-  SiNextdotjs,
+  SiAdobe,
+  SiAlgolia,
+  SiCypress,
   SiFirebase,
   SiGraphql,
-  SiAlgolia,
-  SiMongodb,
-  SiPostgresql,
   SiJavascript,
-  SiTypescript,
-  SiCypress,
-  SiStorybook,
-  SiWordpress,
+  SiMongodb,
+  SiNextdotjs,
+  SiPostgresql,
   SiShopify,
-  SiAdobe,
+  SiStorybook,
   SiTiktok,
+  SiTypescript,
+  SiWordpress,
 } from 'react-icons/si'
+
 import { Skill, Steps } from '@/types'
 
 const steps: Steps[] = [

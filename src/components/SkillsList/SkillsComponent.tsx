@@ -1,4 +1,5 @@
 import { Skill } from '@/types'
+
 import SkillComponent from './SkillComponent'
 
 const SkillsComponent = ({ title, skills }: { title: string; skills: Skill[] }) => {

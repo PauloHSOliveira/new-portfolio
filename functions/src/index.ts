@@ -1,1 +1,1 @@
-export * from "./sendContactEmail"
+export * from './sendContactEmail'

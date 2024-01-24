@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router'
 import { useCallback } from 'react'
+
+import { useRouter } from 'next/router'
 
 const useFooter = () => {
   const router = useRouter()

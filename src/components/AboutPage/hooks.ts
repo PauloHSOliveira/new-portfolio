@@ -1,7 +1,10 @@
 import { useCallback, useMemo } from 'react'
-import { skills, skills2, steps } from './constants'
+
 import { map, uniqueId } from 'lodash'
+
 import { Skill, Steps } from '@/types'
+
+import { skills, skills2, steps } from './constants'
 
 const useAboutPage = () => {
   const buildData = useCallback(

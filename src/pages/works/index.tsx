@@ -1,6 +1,6 @@
-import { GetLayout } from '@/interfaces/global'
 import { Layout } from '@/components'
 import ProjectCarousel from '@/components/ProjectCarousel/ProjectCarousel'
+import { GetLayout } from '@/interfaces/global'
 
 const getLayout: GetLayout = (page: JSX.Element) => {
   return (

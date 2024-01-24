@@ -1,5 +1,6 @@
-import { useIsMobile, useRedirect } from '@/hooks'
 import { useCallback, useState } from 'react'
+
+import { useIsMobile, useRedirect } from '@/hooks'
 
 const useLayout = () => {
   const { underConstruction } = useRedirect()

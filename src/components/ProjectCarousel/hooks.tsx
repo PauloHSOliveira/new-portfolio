@@ -1,9 +1,12 @@
-import { useRedirect } from '@/hooks'
-import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo } from 'react'
-import { projects } from './contants'
+
 import { map } from 'lodash'
+import { useRouter } from 'next/router'
 import { FaArrowRight } from 'react-icons/fa'
+
+import { useRedirect } from '@/hooks'
+
+import { projects } from './contants'
 
 const useProjectCarousel = () => {
   const router = useRouter()

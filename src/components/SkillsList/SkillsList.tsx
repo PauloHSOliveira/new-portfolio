@@ -1,6 +1,8 @@
-import { SkillsProps } from '@/types'
-import SkillsComponent from './SkillsComponent'
 import { memo } from 'react'
+
+import { SkillsProps } from '@/types'
+
+import SkillsComponent from './SkillsComponent'
 
 const SkillsList = memo(({ title, subtitle1, subtitle2, skills1, skills2 }: SkillsProps) => {
   return (

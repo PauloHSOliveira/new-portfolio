@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
+
 import { map } from 'lodash'
 import { FaArrowRight } from 'react-icons/fa'
+
 import useProjectCarousel from '../ProjectCarousel/hooks'
 
 const useProjectList = () => {

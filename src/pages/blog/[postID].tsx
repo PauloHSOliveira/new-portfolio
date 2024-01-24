@@ -1,5 +1,4 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
-// eslint-disable-next-line import/named
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { CopyBlock, dracula } from 'react-code-blocks'

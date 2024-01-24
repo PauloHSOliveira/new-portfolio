@@ -1,5 +1,7 @@
 import { memo } from 'react'
+
 import { map } from 'lodash'
+
 import { Steps } from '@/types'
 
 const Diagram = memo(({ steps }: { steps: Steps[] }) => {

@@ -1,8 +1,10 @@
-import { HeaderProps } from '@/types'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
+
 import Link from 'next/link'
 
-const useHeader = ({ isBuilding, transparent, openMenu }: HeaderProps) => {
+import { HeaderProps } from '@/types'
+
+const useHeader = ({ isBuilding, openMenu }: HeaderProps) => {
   const renderMenu = useCallback(() => {
     if (isBuilding) return null
 

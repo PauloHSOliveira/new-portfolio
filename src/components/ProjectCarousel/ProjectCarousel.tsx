@@ -1,5 +1,7 @@
 import { memo } from 'react'
+
 import AwesomeSlider from 'react-awesome-slider'
+
 import 'react-awesome-slider/dist/styles.css'
 import useProjectCarousel from './hooks'
 

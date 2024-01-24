@@ -1,9 +1,11 @@
-import { IBM_Plex_Mono } from 'next/font/google'
-import { GithubLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icons/react'
-import Link from 'next/link'
-import Image from 'next/image'
-import useFooter from './hooks'
 import { memo } from 'react'
+
+import { GithubLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react'
+import { IBM_Plex_Mono } from 'next/font/google'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import useFooter from './hooks'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 

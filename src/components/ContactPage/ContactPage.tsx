@@ -1,6 +1,8 @@
 import { memo, useEffect } from 'react'
-import { ContactForm } from '../forms'
+
 import { useRedirect } from '@/hooks'
+
+import { ContactForm } from '../forms'
 
 const ContactPage = memo(() => {
   const { redirectHome } = useRedirect()
