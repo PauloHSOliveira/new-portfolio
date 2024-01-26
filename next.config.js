@@ -10,7 +10,7 @@ const nextConfig = {
   },
   modularizeImports: {
     '@phosphor-icons/react': {
-      transform: '@phosphor-icons/{{member}}',
+      transform: '@phosphor-icons/react/{{member}}',
     },
   },
   env: {
