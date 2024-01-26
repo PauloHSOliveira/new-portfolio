@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useMemo } from 'react'
 
 import {
@@ -14,34 +15,40 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { CopyBlock, dracula } from 'react-code-blocks'
 import { RingLoader } from 'react-spinners'
+import { toast } from 'react-toastify'
 
 import { firestore } from '@/config/firebase'
 import { BlogPost, ReturnPostDate } from '@/types'
 
 const getPostByID = async (postID: string) => {
-  const postsCollectionRef = collection(firestore, 'posts')
-  const q = query(postsCollectionRef, where('slug', '==', postID))
-  const querySnapshot = await getDocs(q)
+  try {
+    const postsCollectionRef = collection(firestore, 'posts')
+    const q = query(postsCollectionRef, where('slug', '==', postID))
+    const querySnapshot = await getDocs(q)
 
-  if (querySnapshot.empty) {
-    throw new Error(`No docs found for post with slug ${postID}`)
+    if (querySnapshot.empty) {
+      throw new Error(`No docs found for post with slug ${postID}`)
+    }
+
+    const postData = querySnapshot.docs[0].data() as BlogPost
+
+    if (!postData) {
+      throw new Error(`Post with slug ${postID} not found`)
+    }
+
+    const post: ReturnPostDate = {
+      ...postData,
+      date: postData.date.toDate().toISOString(),
+      body: postData.body,
+    }
+
+    const source = await serialize(post.body)
+
+    return { post, source }
+  } catch (error) {
+    console.error(error)
+    toast.error('Error on get POST')
   }
-
-  const postData = querySnapshot.docs[0].data() as BlogPost
-
-  if (!postData) {
-    throw new Error(`Post with slug ${postID} not found`)
-  }
-
-  const post: ReturnPostDate = {
-    ...postData,
-    date: postData.date.toDate().toISOString(),
-    body: postData.body,
-  }
-
-  const source = await serialize(post.body)
-
-  return { post, source }
 }
 
 const components = {
@@ -129,7 +136,7 @@ export async function getServerSideProps(context: any) {
   const postID = params?.postID as string
 
   const queryClient = new QueryClient()
-
+  console.log({ postID })
   await queryClient.prefetchQuery({
     queryKey: ['post', postID],
     queryFn: async () => await getPostByID(postID),
