@@ -3,15 +3,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import React, { useState } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-// import { logEvent } from 'firebase/analytics'
 import type { AppProps } from 'next/app'
-// import { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify'
 
 import { Layout, SEO } from '@/components'
-import { isDevelopment } from '@/config/contants'
-// import { analytics } from '@/config/firebase'
 import { SearchProvider } from '@/providers/SearchProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -56,7 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <SEO />
           <ToastContainer position='top-right' />
           {renderComponent()}
-          <ReactQueryDevtools initialIsOpen={isDevelopment} />
         </>
       </SearchProvider>
     </QueryClientProvider>
