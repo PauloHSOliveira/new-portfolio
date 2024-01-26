@@ -8,6 +8,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -67,6 +68,7 @@ const components = {
       />
     )
   },
+  img: (props: any) => <Image width={200} height={200} alt='post_image' {...props} />,
 }
 
 const Post = () => {
