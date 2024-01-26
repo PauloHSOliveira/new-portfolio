@@ -2,9 +2,6 @@
   "name": "new-portfolio",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "18"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -70,10 +67,9 @@
     "prettier": "^3.2.4"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
-  "main": "next.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "lint-staged": {
     "*.{ts,tsx}": [
       "prettier --write",
