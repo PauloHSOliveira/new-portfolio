@@ -1,17 +1,17 @@
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { logEvent } from 'firebase/analytics'
+// import { logEvent } from 'firebase/analytics'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify'
 
 import { Layout, SEO } from '@/components'
 import { isDevelopment } from '@/config/contants'
-import { analytics } from '@/config/firebase'
+// import { analytics } from '@/config/firebase'
 import { SearchProvider } from '@/providers/SearchProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -20,31 +20,30 @@ export default function App({ Component, pageProps }: AppProps) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            // With SSR, we usually want to set some default staleTime
-            // above 0 to avoid refetching immediately on the client
-            staleTime: 60 * 1000,
+            staleTime: 1000 * 60 * 10,
+            gcTime: 60 * 60 * 4,
           },
         },
       }),
   )
 
-  const router = useRouter()
+  // const router = useRouter()
 
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      if (analytics) {
-        logEvent(analytics, 'screen_view', { screen_name: url } as never)
-      }
-    }
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string) => {
+  //     if (analytics) {
+  //       logEvent(analytics, 'screen_view', { screen_name: url } as never)
+  //     }
+  //   }
 
-    // When the component is mounted, subscribe to router changes
-    router.events.on('routeChangeComplete', handleRouteChange)
+  //   // When the component is mounted, subscribe to router changes
+  //   router.events.on('routeChangeComplete', handleRouteChange)
 
-    // If the component is unmounted, unsubscribe
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events, analytics])
+  //   // If the component is unmounted, unsubscribe
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange)
+  //   }
+  // }, [router.events, analytics])
 
   const getLayout = (Component as any).getLayout || ((page: JSX.Element) => <Layout>{page}</Layout>)
 
