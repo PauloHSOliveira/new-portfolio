@@ -1,17 +1,60 @@
+import { useMemo } from 'react'
+
+import {
+  dehydrate,
+  DehydratedState,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from '@tanstack/react-query'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { useRouter } from 'next/router'
+import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { CopyBlock, dracula } from 'react-code-blocks'
+import { RingLoader } from 'react-spinners'
 
 import { firestore } from '@/config/firebase'
-import { BlogPost } from '@/types'
+import { BlogPost, ReturnPostDate } from '@/types'
+
+const getPostByID = async (postID: string) => {
+  const postsCollectionRef = collection(firestore, 'posts')
+  const q = query(postsCollectionRef, where('slug', '==', postID))
+  const querySnapshot = await getDocs(q)
+
+  if (querySnapshot.empty) {
+    throw new Error(`No docs found for post with slug ${postID}`)
+  }
+
+  const postData = querySnapshot.docs[0].data() as BlogPost
+
+  if (!postData) {
+    throw new Error(`Post with slug ${postID} not found`)
+  }
+
+  const post: ReturnPostDate = {
+    ...postData,
+    date: postData.date.toDate().toISOString(),
+    body: postData.body,
+  }
+
+  const source = await serialize(post.body)
+
+  return { post, source }
+}
 
 const components = {
-  h1: (props: any) => <h1 className='text-3xl text-black' {...props} />,
-  h2: (props: any) => <h2 className='text-2xl text-black' {...props} />,
-  p: (props: any) => <p {...props} />,
+  p: (props: any) => <p {...props} className='text-black' />,
+  h1: (props: any) => <h1 className='text-6xl text-black' {...props} />,
+  h2: (props: any) => <h2 className='text-5xl text-black' {...props} />,
+  h3: (props: any) => <h2 className='text-4xl text-black' {...props} />,
+  h4: (props: any) => <h2 className='text-3xl text-black' {...props} />,
+  h5: (props: any) => <h2 className='text-2xl text-black' {...props} />,
+  h6: (props: any) => <h2 className='text-xl text-black' {...props} />,
+  blockquote: (props: any) => <blockquote {...props} />,
+
   code: (props: any) => {
-    const language = props.className.split('-')[1]
+    const language = props?.className ? props?.className.split('-')[1] : ''
     return (
       <CopyBlock
         text={props.children}
@@ -26,61 +69,82 @@ const components = {
   },
 }
 
-const Post: React.FC<{
-  post: BlogPost
-  source: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>
-}> = ({ post, source }) => (
-  <div className='w-full p-24 h-full'>
-    {post ? (
-      <div className='flex flex-col h-full w-full gap-4'>
-        <h1 className='text-4xl text-black font-semibold'>{post.title}</h1>
-        <p className='text-gray-400 text-md'>{`Published on ${post.date} by ${post.author}`}</p>
+const Post = () => {
+  const router = useRouter()
 
-        <MDXRemote {...source} components={components} />
+  const { postID } = router.query
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['post', postID],
+    queryFn: () => getPostByID(postID as string),
+    gcTime: 60 * 60 * 4,
+    refetchOnWindowFocus: true,
+  })
+
+  const { post: memoizedPost, source: memoizedSource } = useMemo(() => {
+    return {
+      post: data?.post,
+      source: data?.source,
+    }
+  }, [data])
+
+  if (isLoading) {
+    return (
+      <div className='w-full p-24 h-full'>
+        <RingLoader size={24} color='#000000' />
       </div>
-    ) : (
-      <p>Loading...</p>
-    )}
-  </div>
-)
+    )
+  }
+
+  if (!memoizedPost || !memoizedSource) {
+    return (
+      <div className='w-full p-24 h-full'>
+        <h1 className='text-4xl text-black'>Something went wrong</h1>
+      </div>
+    )
+  }
+
+  return (
+    <div className='w-full p-24 h-full'>
+      {!isLoading && memoizedPost && memoizedSource ? (
+        <div className='flex flex-col h-full w-full gap-4'>
+          <h1 className='text-4xl text-black font-semibold'>{memoizedPost.title}</h1>
+          <p className='text-gray-400 text-md'>{`Published on ${memoizedPost.date} by ${memoizedPost.author}`}</p>
+
+          <MDXRemote {...memoizedSource} components={components} />
+        </div>
+      ) : (
+        <div className='flex w-full  items-center justify-center'>
+          <RingLoader size={48} color='#000000' />
+        </div>
+      )}
+    </div>
+  )
+}
 
 export async function getServerSideProps(context: any) {
   const { params } = context
   const postID = params?.postID as string
 
-  const postsCollectionRef = collection(firestore, 'posts')
-  const q = query(postsCollectionRef, where('slug', '==', postID))
-  const querySnapshot = await getDocs(q)
+  const queryClient = new QueryClient()
 
-  let post = null
-
-  if (querySnapshot.size > 0) {
-    const postData = querySnapshot.docs[0].data() as BlogPost
-    post = {
-      ...postData,
-      body: postData.body || '', // Ensure body is a string to avoid serialization issues
-    }
-  } else {
-    console.error(`Post with slug ${postID} not found`)
-  }
-
-  if (!post) {
-    return {
-      notFound: true,
-    }
-  }
-
-  const source = await serialize(post.body)
+  await queryClient.prefetchQuery({
+    queryKey: ['post', postID],
+    queryFn: async () => await getPostByID(postID),
+    staleTime: 1000 * 60 * 10,
+  })
 
   return {
     props: {
-      post: {
-        ...post,
-        date: '10/11/2023',
-      },
-      source,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }
 
-export default Post
+export default function PostsRoute({ dehydratedState }: { dehydratedState: DehydratedState }) {
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Post />
+    </HydrationBoundary>
+  )
+}

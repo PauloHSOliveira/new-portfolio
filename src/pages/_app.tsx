@@ -1,16 +1,33 @@
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { logEvent } from 'firebase/analytics'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify'
 
 import { Layout, SEO } from '@/components'
+import { isDevelopment } from '@/config/contants'
 import { analytics } from '@/config/firebase'
+import { SearchProvider } from '@/providers/SearchProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // With SSR, we usually want to set some default staleTime
+            // above 0 to avoid refetching immediately on the client
+            staleTime: 60 * 1000,
+          },
+        },
+      }),
+  )
+
   const router = useRouter()
 
   useEffect(() => {
@@ -34,10 +51,15 @@ export default function App({ Component, pageProps }: AppProps) {
   const renderComponent = () => getLayout(<Component {...pageProps} />)
 
   return (
-    <>
-      <SEO />
-      <ToastContainer position='top-right' />
-      {renderComponent()}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <SearchProvider>
+        <>
+          <SEO />
+          <ToastContainer position='top-right' />
+          {renderComponent()}
+          <ReactQueryDevtools initialIsOpen={isDevelopment} />
+        </>
+      </SearchProvider>
+    </QueryClientProvider>
   )
 }

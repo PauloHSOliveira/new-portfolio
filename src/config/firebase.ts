@@ -6,13 +6,13 @@ import { connectFunctionsEmulator, getFunctions } from 'firebase/functions'
 import { getEnvs } from './getEnvs'
 
 const firebaseConfig = {
-  apiKey: getEnvs('FIREBASE_API_KEY'),
-  authDomain: getEnvs('FIREBASE_AUTH_DOMAIN'),
-  projectId: getEnvs('FIREBASE_PROJECT_ID'),
-  storageBucket: getEnvs('FIREBASE_STORAGE_BUCKET'),
-  messagingSenderId: getEnvs('FIREBASE_MESSAGING_SENDER_ID'),
-  appId: getEnvs('FIREBASE_APP_ID'),
-  measurementId: getEnvs('FIREBASE_MEASUREMENT_ID'),
+  apiKey: getEnvs<string>('FIREBASE_API_KEY'),
+  authDomain: getEnvs<string>('FIREBASE_AUTH_DOMAIN'),
+  projectId: getEnvs<string>('FIREBASE_PROJECT_ID'),
+  storageBucket: getEnvs<string>('FIREBASE_STORAGE_BUCKET'),
+  messagingSenderId: getEnvs<string>('FIREBASE_MESSAGING_SENDER_ID'),
+  appId: getEnvs<string>('FIREBASE_APP_ID'),
+  measurementId: getEnvs<string>('FIREBASE_MEASUREMENT_ID'),
 }
 
 const app = initializeApp(firebaseConfig)

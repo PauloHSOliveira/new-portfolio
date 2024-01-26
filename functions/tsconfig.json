@@ -7,9 +7,9 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "typeRoots": ["node_modules/@types"],  // <-- here
-    "esModuleInterop": true
+    "typeRoots": ["node_modules/@types"], // <-- here
+    "esModuleInterop": true,
   },
   "compileOnSave": true,
-  "include": ["src"]
+  "include": ["src"],
 }

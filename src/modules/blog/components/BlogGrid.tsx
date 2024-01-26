@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Hit } from '@algolia/client-search'
 import { map } from 'lodash'
 
 import { BlogPost } from '@/types'
@@ -7,7 +8,7 @@ import { BlogPost } from '@/types'
 import BlogCard from './BlogCard'
 
 type BlogPostsType = {
-  posts: BlogPost[]
+  posts: Hit<BlogPost>[]
 }
 
 const BlogGrid: React.FC<BlogPostsType> = ({ posts }) => {

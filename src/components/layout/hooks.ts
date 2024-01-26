@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 import { useIsMobile, useRedirect } from '@/hooks'
 
@@ -7,7 +7,7 @@ const useLayout = () => {
   const { isMobile } = useIsMobile()
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleMenu = useCallback(() => setIsOpen((oldState) => !oldState), [])
+  const handleMenu = () => setIsOpen((oldState) => !oldState)
 
   return { underConstruction, isMobile, isOpen, handleMenu }
 }

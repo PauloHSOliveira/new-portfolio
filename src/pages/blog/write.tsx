@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import 'md-editor-rt/lib/style.css'
@@ -51,7 +51,7 @@ const WritePage: React.FC = () => {
 
     const newPost: BlogPost = {
       title,
-      date: new Date(),
+      date: Timestamp.now(),
       description,
       likes: 0,
       views: 0,

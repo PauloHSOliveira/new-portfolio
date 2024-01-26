@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
 
+import { Timestamp } from 'firebase/firestore'
+
 export type Project = {
   name: string
   image: string
@@ -49,7 +51,22 @@ export type BlogPost = {
   id?: string
   title: string
   description: string
-  date: Date
+  date: Timestamp
+  likes: number
+  views: number
+  slug: string
+  tags: string[]
+  categories: string[]
+  author: string
+  body: string
+  timeToRead: number
+}
+
+export type ReturnPostDate = {
+  id?: string
+  title: string
+  description: string
+  date: string
   likes: number
   views: number
   slug: string
