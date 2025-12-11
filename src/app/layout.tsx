@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { IBM_Plex_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer } from 'react-toastify'
 import { ClientHeader } from '@/components/ClientHeader'
 import { ClientFooter } from '@/components/ClientFooter'
+import { ClientToastContainer } from '@/components/ClientToastContainer'
 
 const ibm = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '700'] })
 
@@ -47,7 +47,7 @@ export default function RootLayout({
           {children}
         </main>
         <ClientFooter />
-        <ToastContainer position="top-right" />
+        <ClientToastContainer />
       </body>
     </html>
   )
