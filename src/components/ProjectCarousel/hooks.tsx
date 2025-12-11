@@ -20,7 +20,7 @@ const useProjectCarousel = () => {
 
   const handleProjectClick = useCallback((projectName: string) => {
     router.push(`/projects/${projectName}`)
-  }, [])
+  }, [router])
 
   const renderProjects = useCallback(() => {
     if (!getProjects) return null
@@ -56,7 +56,7 @@ const useProjectCarousel = () => {
         </div>
       </div>
     ))
-  }, [getProjects])
+  }, [getProjects, handleProjectClick])
 
   return { renderProjects, getProjects, handleProjectClick }
 }
