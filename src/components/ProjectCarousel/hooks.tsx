@@ -1,5 +1,5 @@
 import { useRedirect } from '@/hooks'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo } from 'react'
 import { projects } from './contants'
 import { map } from 'lodash'

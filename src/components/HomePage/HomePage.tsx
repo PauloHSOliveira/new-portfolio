@@ -1,3 +1,5 @@
+'use client'
+
 import React, { memo } from 'react'
 import UnderConstruction from '../UnderContructionPage'
 import TopHomePage from '../TopHomePage'

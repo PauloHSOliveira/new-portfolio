@@ -1,6 +1,8 @@
+'use client'
+
 import { FaArrowRight } from 'react-icons/fa'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const TopHomePage = () => {
   const router = useRouter()

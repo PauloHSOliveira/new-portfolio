@@ -1,3 +1,5 @@
+'use client'
+
 import SkillsList from '../SkillsList'
 import TwoThirdsOneThird from '../TwoThirdsOneThird'
 import Diagram from './Diagram'

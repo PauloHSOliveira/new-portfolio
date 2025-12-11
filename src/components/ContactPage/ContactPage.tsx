@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, useEffect } from 'react'
 import { ContactForm } from '../forms'
 import { useRedirect } from '@/hooks'

@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
 const underConstruction = process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION === 'true'
@@ -8,7 +8,7 @@ const useRedirect = () => {
 
   const redirectHome = useCallback(() => {
     if (underConstruction) router.push('/')
-  }, [underConstruction])
+  }, [underConstruction, router])
 
   return { redirectHome, underConstruction }
 }
