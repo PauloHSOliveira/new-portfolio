@@ -1,3 +1,5 @@
+'use client'
+
 import { RingLoader } from 'react-spinners'
 import useContactForm from './hooks'
 import { memo } from 'react'
