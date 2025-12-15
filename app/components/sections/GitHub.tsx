@@ -130,7 +130,7 @@ const GitHub: React.FC = () => {
     queryKey: ['github-activity', selectedYear],
     queryFn: () =>
       selectedYear === 'last12'
-        ? mainData?.activity
+        ? Promise.resolve(mainData?.activity || [])
         : fetchGitHubActivityForYear(GITHUB_USERNAME, selectedYear as number),
     enabled: !!mainData || selectedYear !== 'last12',
   })
