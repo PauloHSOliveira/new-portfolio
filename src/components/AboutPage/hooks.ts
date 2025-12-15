@@ -6,7 +6,7 @@ import { Skill, Steps } from '@/types'
 const useAboutPage = () => {
   const buildData = useCallback(
     (data: any[]) => map(data, (item) => ({ ...item, id: uniqueId() })),
-    []
+    [],
   )
 
   const getSteps = useMemo(() => buildData(steps), [steps]) as Steps[]

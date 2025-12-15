@@ -14,7 +14,7 @@ const SkillsList = memo(
         </div>
       </div>
     )
-  }
+  },
 )
 
 export default SkillsList

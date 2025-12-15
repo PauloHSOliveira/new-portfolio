@@ -1,14 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const million = require('million/compiler')
+const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  outputFileTracingRoot: path.join(__dirname),
 }
 
-const millionConfig = {
-  auto: true,
-}
-
-module.exports = million.next(nextConfig, millionConfig)
+module.exports = nextConfig

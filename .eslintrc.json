@@ -19,9 +19,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "next",
     "next/core-web-vitals",
@@ -36,7 +34,10 @@
     "react/display-name": "off",
     "@next/next/no-img-element": "off",
     "react/no-unescaped-entities": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ],
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off"

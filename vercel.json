@@ -1,0 +1,15 @@
+{
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "SERVER_GITHUB_TOKEN": "@server_github_token"
+  },
+  "build": {
+    "env": {
+      "SERVER_GITHUB_TOKEN": "@server_github_token"
+    }
+  }
+}

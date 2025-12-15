@@ -15,7 +15,7 @@ const useProjectCarousel = () => {
 
   const getProjects = useMemo(
     () => map(projects.ids, (id) => projects.entities[id]),
-    [projects]
+    [projects],
   )
 
   const handleProjectClick = useCallback((projectName: string) => {

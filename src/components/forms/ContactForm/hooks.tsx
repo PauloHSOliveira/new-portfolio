@@ -27,7 +27,7 @@ const useContactForm = () => {
       await sendContactEmail(data)
       toast.success('Contact message sent successfully')
       reset()
-    } catch (error) {
+    } catch {
       toast.error('Error on send contact message')
     } finally {
       setIsLoading(false)

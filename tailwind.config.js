@@ -1,33 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-
-    // Or if using `src` directory:
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx,mdx}', './src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    extend: {},
-  },
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: [
-      {
-        mytheme: {
-          primary: '#22d3ee',
-          secondary: '#5eead4',
-          accent: '#f3f4f6',
-          neutral: '#ffffff',
-          'gray-900': '#363636',
-          'base-100': '#2D1B69',
-          info: '#53C0F3',
-          success: '#71EAD2',
-          warning: '#F3CC30',
-          error: '#E24056',
+    extend: {
+      colors: {
+        terminal: {
+          green: '#00ff00',
+          bg: '#0a0a0a',
+          dark: '#050505',
+          darker: '#0f0f0f',
+          border: '#1a1a1a',
         },
       },
-    ],
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateY(20px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+    },
   },
+  plugins: [],
 }

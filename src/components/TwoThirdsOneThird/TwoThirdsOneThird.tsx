@@ -22,7 +22,7 @@ const TwoThirdsOneThird = memo(
         <div className="w-full md:w-2/3 text-gray-900">{text}</div>
       </div>
     )
-  }
+  },
 )
 
 export default TwoThirdsOneThird

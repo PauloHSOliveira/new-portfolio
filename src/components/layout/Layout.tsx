@@ -28,7 +28,7 @@ const Layout: FC<LayoutProps> = memo(
         {!underConstruction && containFooterInMobile && !isMobile && <Footer />}
       </>
     )
-  }
+  },
 )
 
 export { Layout }
