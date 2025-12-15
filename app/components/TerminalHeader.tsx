@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 
 const TerminalHeader: React.FC = () => {
   const [telemetry, setTelemetry] = useState({ cpu: 1.2, ram: 42 })

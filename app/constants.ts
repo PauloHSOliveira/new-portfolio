@@ -1,4 +1,4 @@
-import { SkillGroup, Project } from './types'
+import type { Project, SkillGroup } from './types'
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {

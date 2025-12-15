@@ -28,7 +28,7 @@ export async function GET(_request: NextRequest) {
   if (!token) {
     return NextResponse.json(
       { error: 'GitHub token not configured' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
@@ -131,7 +131,7 @@ export async function GET(_request: NextRequest) {
     console.error('GitHub repos API error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch GitHub repositories' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }

@@ -12,14 +12,14 @@ export async function GET(request: NextRequest) {
   if (!token) {
     return NextResponse.json(
       { error: 'GitHub token not configured' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
   if (!fullName) {
     return NextResponse.json(
       { error: 'Missing fullName parameter' },
-      { status: 400 },
+      { status: 400 }
     )
   }
 
@@ -32,13 +32,13 @@ export async function GET(request: NextRequest) {
           Accept: 'application/vnd.github.v3.raw',
         },
         next: { revalidate: 600 }, // Cache for 10 minutes
-      },
+      }
     )
 
     if (!response.ok) {
       return NextResponse.json(
         { content: 'No README available.' },
-        { status: 200 },
+        { status: 200 }
       )
     }
 
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     console.error('GitHub readme API error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch README' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }

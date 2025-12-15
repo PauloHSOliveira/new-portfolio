@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { Section } from '../types'
+import type React from 'react'
+import type { Section } from '../types'
 
 interface NavigationProps {
   currentSection: Section
@@ -25,6 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({
     <nav className="flex flex-wrap gap-6 md:gap-10 mb-10 border-b border-[#1a1a1a] pb-6">
       {links.map((link) => (
         <button
+          type="button"
           key={link.id}
           onClick={() => onSectionChange(link.id)}
           className={`text-base transition-all duration-200 uppercase tracking-widest ${

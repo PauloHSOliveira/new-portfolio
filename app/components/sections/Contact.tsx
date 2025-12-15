@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { Check, Copy, ExternalLink, Github, Linkedin, Mail } from 'lucide-react'
+import type React from 'react'
+import { useState } from 'react'
 import {
   fetchAllGitHubData,
   GITHUB_USERNAME,
 } from '../../services/githubService'
-import { Copy, Check, ExternalLink, Mail, Github, Linkedin } from 'lucide-react'
 
 const Contact: React.FC = () => {
   const [copied, setCopied] = useState(false)
@@ -80,6 +81,7 @@ const Contact: React.FC = () => {
                   </span>
                 </div>
                 <button
+                  type="button"
                   onClick={handleCopyEmail}
                   className="text-[#444] hover:text-[#00ff00] transition-colors"
                   title="Copy email to clipboard"
@@ -179,7 +181,7 @@ const Contact: React.FC = () => {
 
                 <div className="pt-6 border-t border-[#1a1a1a] text-center">
                   <div className="text-[9px] text-[#222] font-black uppercase tracking-widest animate-pulse">
-                    STATUS: OPERATIONAL // SEEKING_COMPLEXITY
+                    {'STATUS: OPERATIONAL // SEEKING_COMPLEXITY'}
                   </div>
                 </div>
               </section>
@@ -189,9 +191,9 @@ const Contact: React.FC = () => {
       </div>
 
       <footer className="text-[#1a1a1a] text-[10px] pt-12 border-t border-[#1a1a1a] flex justify-between items-center uppercase font-bold tracking-[0.3em]">
-        <span>SYNC_TARGET: PAGLUA // MARCAAI // COSMSTACK</span>
+        <span>{'SYNC_TARGET: PAGLUA // MARCAAI // COSMSTACK'}</span>
         <span>
-          NODE_ID: {GITHUB_USERNAME} // {new Date().toLocaleDateString()}
+          NODE_ID: {GITHUB_USERNAME} {'// '}{new Date().toLocaleDateString()}
         </span>
       </footer>
     </div>

@@ -15,14 +15,14 @@ export async function GET(request: NextRequest) {
   if (!token) {
     return NextResponse.json(
       { error: 'GitHub token not configured' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
   if (!from || !to) {
     return NextResponse.json(
       { error: 'Missing from or to parameters' },
-      { status: 400 },
+      { status: 400 }
     )
   }
 
@@ -76,7 +76,7 @@ export async function GET(request: NextRequest) {
     console.error('GitHub contributions API error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch GitHub contributions' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }

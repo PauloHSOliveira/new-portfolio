@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
+import type React from 'react'
 
 const About: React.FC = () => {
   return (
     <article
       className="space-y-12 text-base leading-relaxed max-w-4xl animate-fadeIn"
-      role="main"
     >
       <header className="border-l-4 border-[#00ff00] pl-8 py-4 bg-gradient-to-r from-[#00ff00]/5 to-transparent">
         <h1 className="text-5xl font-bold mb-2 uppercase tracking-tighter">
@@ -55,7 +54,7 @@ const About: React.FC = () => {
                 focus: 'AI Trademark Systems',
               },
             ].map((item, i) => (
-              <li key={i} className="group cursor-default">
+              <li key={item.role} className="group cursor-default">
                 <div className="flex items-center gap-4 text-white group-hover:text-[#00ff00] transition-colors">
                   <span className="text-[#00ff00] text-[10px] font-black">{`0${i + 1}`}</span>
                   <span className="text-lg font-bold uppercase tracking-tight">
@@ -63,7 +62,7 @@ const About: React.FC = () => {
                   </span>
                 </div>
                 <div className="text-[#444] text-xs uppercase tracking-widest ml-7 font-bold">
-                  @ {item.org} // focus: {item.focus}
+                 {`@ ${item.org} // focus: ${item.focus}`}
                 </div>
               </li>
             ))}
@@ -98,6 +97,7 @@ const About: React.FC = () => {
       <section className="space-y-6 bg-[#0a0a0a] border border-[#1a1a1a] p-8 rounded-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 p-3 opacity-10">
           <svg
+            aria-hidden="true"
             className="w-16 h-16 text-[#00ff00]"
             fill="currentColor"
             viewBox="0 0 24 24"
@@ -117,7 +117,7 @@ const About: React.FC = () => {
       </section>
 
       <div className="pt-8 flex items-center gap-6">
-        <button className="text-[#00ff00] font-black text-xs uppercase tracking-[0.3em] border border-[#00ff00]/30 px-6 py-3 hover:bg-[#00ff00] hover:text-[#0a0a0a] transition-all">
+        <button type="button" className="text-[#00ff00] font-black text-xs uppercase tracking-[0.3em] border border-[#00ff00]/30 px-6 py-3 hover:bg-[#00ff00] hover:text-[#0a0a0a] transition-all">
           {`> RUN_SYSTEM_DIAGNOSTICS.SH`}
         </button>
         <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>

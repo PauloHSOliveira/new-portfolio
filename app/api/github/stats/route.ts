@@ -12,7 +12,7 @@ export async function GET(_request: NextRequest) {
   if (!token) {
     return NextResponse.json(
       { error: 'GitHub token not configured' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
@@ -52,7 +52,7 @@ export async function GET(_request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { error: 'GitHub user not found' },
-        { status: 404 },
+        { status: 404 }
       )
     }
 
@@ -77,7 +77,7 @@ export async function GET(_request: NextRequest) {
     console.error('GitHub stats API error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch GitHub stats' },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }

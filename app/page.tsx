@@ -1,16 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import TerminalHeader from './components/TerminalHeader'
-import Navigation from './components/Navigation'
+import { useEffect, useState } from 'react'
 import BootSequence from './components/BootSequence'
+import Navigation from './components/Navigation'
 import About from './components/sections/About'
-import Skills from './components/sections/Skills'
-import Projects from './components/sections/Projects'
-import Writing from './components/sections/Writing'
 import Contact from './components/sections/Contact'
 import GitHub from './components/sections/GitHub'
-import { Section } from './types'
+import Projects from './components/sections/Projects'
+import Skills from './components/sections/Skills'
+import Writing from './components/sections/Writing'
+import TerminalHeader from './components/TerminalHeader'
+import type { Section } from './types'
 
 export default function Home() {
   const [isBooting, setIsBooting] = useState(true)
@@ -97,7 +97,7 @@ export default function Home() {
       }, 40)
       return () => clearInterval(interval)
     }
-  }, [prompt, isBooting])
+  }, [isBooting])
 
   const renderSection = () => {
     switch (currentSection) {
@@ -133,18 +133,17 @@ export default function Home() {
         className="absolute top-10 left-10 text-[10px] text-[#1a1a1a] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
         aria-hidden="true"
       >
-        system_architecture_v2.5 // PHOLIVEIRA
+        {'system_architecture_v2.5 // PHOLIVEIRA'}
       </div>
       <div
         className="absolute bottom-10 right-10 text-[10px] text-[#1a1a1a] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
         aria-hidden="true"
       >
-        node_status: operational // latency: 12ms
+        {'node_status: operational // latency: 12ms'}
       </div>
 
-      <div
+      <section
         className="w-full max-w-7xl h-[90vh] bg-[#0a0a0a]/95 backdrop-blur-md border border-[#1a1a1a] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col animate-fadeIn overflow-hidden relative"
-        role="region"
         aria-label="Terminal Interface"
       >
         <TerminalHeader />
@@ -179,14 +178,14 @@ export default function Home() {
               © 2025 Paulo Oliveira — L6 Software Engineer & Architect
             </span>
             <span
+              aria-hidden="true"
               className="opacity-50"
-              aria-label="System encoding UTF-8, Connection status Connected"
             >
-              UTF-8 // [CONNECTED]
+              {'UTF-8 // [CONNECTED]'}
             </span>
           </footer>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

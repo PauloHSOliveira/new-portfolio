@@ -21,7 +21,7 @@
   }
 
   body {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     background-color: #050505;
     background-image:
       linear-gradient(var(--grid-color) 1px, transparent 1px),
@@ -183,7 +183,7 @@
 }
 
 .article-content pre {
-  background: #0f0f0f !important;
+  background: #0f0f0f;
   border: 1px solid #1a1a1a;
   padding: 1.5rem;
   border-radius: 4px;
@@ -192,7 +192,7 @@
 }
 
 .article-content code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 15px;
 }
 
@@ -213,7 +213,7 @@
 }
 
 .article-content ul li::before {
-  content: '■';
+  content: "■";
   color: var(--terminal-green);
   font-size: 10px;
   margin-right: 1rem;
@@ -231,6 +231,6 @@
 }
 
 .hljs {
-  background: transparent !important;
-  padding: 0 !important;
+  background: transparent;
+  padding: 0;
 }

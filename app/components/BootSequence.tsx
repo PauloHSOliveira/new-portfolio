@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 
 const BOOT_LOGS = [
   'INITIALIZING PH_OS v2.5.0-STABLE...',
@@ -31,7 +32,7 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
           setLogs((prev) => [...prev, BOOT_LOGS[currentIndex]])
           setCurrentIndex((prev) => prev + 1)
         },
-        currentIndex === BOOT_LOGS.length - 1 ? 1000 : 150,
+        currentIndex === BOOT_LOGS.length - 1 ? 1000 : 150
       )
       return () => clearTimeout(timeout)
     } else {
@@ -48,7 +49,7 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
       >
         <div className="space-y-1">
           {logs.map((log, i) => (
-            <div key={i} className="text-sm md:text-base flex gap-4">
+            <div key={log} className="text-sm md:text-base flex gap-4">
               <span className="opacity-30">
                 [{new Date().toLocaleTimeString('en-US', { hour12: false })}]
               </span>

@@ -1,19 +1,20 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
-import { Article } from '../../types'
-import { marked } from 'marked'
 import hljs from 'highlight.js'
 import {
-  Search,
+  ArrowRight,
+  Bookmark,
+  Calendar,
   ChevronLeft,
   Clock,
-  Calendar,
   Hash,
-  ArrowRight,
+  Search,
   Tag,
-  Bookmark,
 } from 'lucide-react'
+import { marked } from 'marked'
+import type React from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import type { Article } from '../../types'
 
 const ARTICLES: Article[] = [
   {
@@ -47,7 +48,7 @@ I am always open to discussing distributed systems, payment rails, or any challe
 
 marked.use({
   renderer: {
-    code(tokenOrCode: any, lang?: string) {
+    code(tokenOrCode: string | { text: string; lang: string }, lang?: string): string {
       const codeStr =
         typeof tokenOrCode === 'string' ? tokenOrCode : tokenOrCode.text
       const language = typeof tokenOrCode === 'string' ? lang : tokenOrCode.lang
@@ -75,7 +76,11 @@ const Writing: React.FC = () => {
 
   const allTags = useMemo(() => {
     const tags = new Set<string>()
-    ARTICLES.forEach((art) => art.tags.forEach((tag) => tags.add(tag)))
+    ARTICLES.forEach((art) => {
+      art.tags.forEach((tag) => {
+        tags.add(tag)
+      })
+    })
     return Array.from(tags).sort()
   }, [])
 
@@ -94,6 +99,7 @@ const Writing: React.FC = () => {
     return (
       <div className="space-y-8 animate-fadeIn">
         <button
+          type="button"
           onClick={() => setSelectedArticle(null)}
           className="text-[#666] hover:text-[#00ff00] text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 group transition-all font-bold"
         >
@@ -131,6 +137,7 @@ const Writing: React.FC = () => {
 
           <div
             className="article-content text-[15px] leading-relaxed text-[#ccc] font-mono selection:bg-[#00ff00] selection:text-[#0a0a0a]"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <ok>
             dangerouslySetInnerHTML={{
               __html: marked.parse(selectedArticle.content) as string,
             }}
@@ -145,6 +152,7 @@ const Writing: React.FC = () => {
               <p>ENCRYPTION: AES-256-GCM verified.</p>
             </div>
             <button
+              type="button"
               onClick={() => setSelectedArticle(null)}
               className="text-[#00ff00] text-[10px] uppercase font-bold tracking-widest border border-[#00ff00]/30 w-fit px-6 py-3 hover:bg-[#00ff00] hover:text-[#0a0a0a] transition-all flex items-center gap-2 group"
             >
@@ -192,6 +200,7 @@ const Writing: React.FC = () => {
             </div>
             {allTags.map((tag) => (
               <button
+                type="button"
                 key={tag}
                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
                 className={`text-[9px] px-2 py-1 uppercase font-bold tracking-tighter border transition-all ${
@@ -211,6 +220,7 @@ const Writing: React.FC = () => {
         {filteredArticles.length > 0 ? (
           filteredArticles.map((art) => (
             <button
+              type="button"
               key={art.slug}
               onClick={() => setSelectedArticle(art)}
               className="w-full text-left group border border-[#1a1a1a] bg-[#0a0a0a] hover:bg-[#0f0f0f] hover:border-[#00ff00] p-8 transition-all duration-300 rounded-sm relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8"

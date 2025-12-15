@@ -1,27 +1,29 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import {
+  Activity,
+  Box,
+  ChevronLeft,
+  ExternalLink,
+  GitFork,
+  History,
+  Layers,
+  Share2,
+  Star,
+  Terminal,
+} from 'lucide-react'
+import { marked } from 'marked'
+import type React from 'react'
+import { useMemo, useState } from 'react'
+import {
   fetchAllGitHubData,
+  fetchGitHubActivityForYear,
   fetchRepoReadme,
   GITHUB_USERNAME,
-  fetchGitHubActivityForYear,
 } from '../../services/githubService'
 import type { GitHubRepo } from '../../types'
-import { marked } from 'marked'
-import {
-  Star,
-  GitFork,
-  Activity,
-  History,
-  Terminal,
-  ExternalLink,
-  ChevronLeft,
-  Layers,
-  Box,
-  Share2,
-} from 'lucide-react'
+import Image from 'next/image'
 
 const PINNED_NAMES = [
   'paglua',
@@ -81,7 +83,7 @@ const TechIcon = ({
       className={`${className} flex items-center justify-center shrink-0`}
       aria-hidden="true"
     >
-      <img
+      <Image
         src={`https://cdn.simpleicons.org/${slug}/${color}`}
         alt={`${name} icon`}
         loading="lazy"
@@ -135,7 +137,7 @@ const GitHub: React.FC = () => {
 
   const { data: readmeContent, isLoading: isLoadingReadme } = useQuery({
     queryKey: ['github-readme', selectedRepo?.full_name],
-    queryFn: () => fetchRepoReadme(selectedRepo!.full_name),
+    queryFn: () => fetchRepoReadme(selectedRepo?.full_name || ''),
     enabled: !!selectedRepo,
   })
 
@@ -161,15 +163,15 @@ const GitHub: React.FC = () => {
       r.full_name.toLowerCase().startsWith('paulohsoliveira/')
     const isPinned = (repo: GitHubRepo) =>
       PINNED_NAMES.some(
-        (pinned) => repo.name.toLowerCase() === pinned.toLowerCase(),
+        (pinned) => repo.name.toLowerCase() === pinned.toLowerCase()
       )
 
     const pinned = publicRepos.filter(isPinned)
     const personal = publicRepos.filter(
-      (r) => isPersonalOwner(r) && !r.is_fork && !isPinned(r),
+      (r) => isPersonalOwner(r) && !r.is_fork && !isPinned(r)
     )
     const cosmstack = publicRepos.filter(
-      (r) => isCosmStack(r) && !r.is_fork && !isPinned(r),
+      (r) => isCosmStack(r) && !r.is_fork && !isPinned(r)
     )
     const forked = publicRepos.filter((r) => r.is_fork)
 
@@ -181,6 +183,7 @@ const GitHub: React.FC = () => {
     featured = false,
   }) => (
     <button
+      type="button"
       onClick={() => setSelectedRepo(repo)}
       aria-label={`View detailed statistics for repository ${repo.name}`}
       className={`text-left bg-[#0f0f0f] border border-[#1a1a1a] p-5 transition-all group relative overflow-hidden h-full flex flex-col justify-between hover:border-[#00ff00] hover:bg-[#0c0c0c] ${featured ? 'border-t-2 border-t-[#00ff00]/60 shadow-[0_4px_20px_rgba(0,255,0,0.05)]' : ''} z-10`}
@@ -205,7 +208,7 @@ const GitHub: React.FC = () => {
         <p className="text-[10px] text-[#666] line-clamp-2 leading-relaxed min-h-[30px] overflow-hidden">
           {repo.description || 'System protocol description missing.'}
         </p>
-        <div className="flex flex-wrap gap-1.5" aria-label="Used technologies">
+        <div className="flex flex-wrap gap-1.5">
           {repo.language && <TechBadge name={repo.language} />}
           {repo.topics.slice(0, 1).map((t) => (
             <TechBadge key={t} name={t} isTopic />
@@ -216,14 +219,12 @@ const GitHub: React.FC = () => {
         <div className="flex items-center gap-3">
           <span
             className="flex items-center gap-1"
-            aria-label={`${repo.stars} stars`}
           >
             <Star size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
             {repo.stars}
           </span>
           <span
             className="flex items-center gap-1"
-            aria-label={`${repo.forks} forks`}
           >
             <GitFork size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
             {repo.forks}
@@ -231,7 +232,6 @@ const GitHub: React.FC = () => {
         </div>
         <span
           className="text-[#222] group-hover:text-[#444] transition-colors font-mono"
-          aria-label={`Last updated on ${new Date(repo.pushed_at).toLocaleDateString()}`}
         >
           {new Date(repo.pushed_at).toLocaleDateString()}
         </span>
@@ -254,6 +254,7 @@ const GitHub: React.FC = () => {
     return (
       <div className="space-y-8 animate-fadeIn font-mono relative z-20">
         <button
+          type="button"
           onClick={() => setSelectedRepo(null)}
           className="text-[#666] hover:text-[#00ff00] text-sm font-bold uppercase tracking-widest flex items-center gap-2 group"
           aria-label="Return to repository matrix"
@@ -295,9 +296,10 @@ const GitHub: React.FC = () => {
         ) : (
           <div
             className="article-content"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <ok>
             dangerouslySetInnerHTML={{
               __html: marked.parse(
-                readmeContent || 'No README found.',
+                readmeContent || 'No README found.'
               ) as string,
             }}
           />
@@ -332,7 +334,7 @@ const GitHub: React.FC = () => {
           },
           {
             label: 'Uptime_Streak',
-            value: mainData?.stats?.streak + ' Days',
+            value: `${mainData?.stats?.streak} Days`,
             color: 'text-yellow-400',
             icon: History,
           },
@@ -369,7 +371,7 @@ const GitHub: React.FC = () => {
               <Activity size={14} aria-hidden="true" /> CONTRIBUTION_MATRIX
             </h3>
             <p className="text-[8px] text-[#333] font-bold uppercase">
-              ARCHIVE_READY // MODE: {selectedYear}
+             {'ARCHIVE_READY // MODE: '}{selectedYear}
             </p>
           </div>
           <div
@@ -377,6 +379,7 @@ const GitHub: React.FC = () => {
             role="tablist"
           >
             <button
+              type="button"
               role="tab"
               aria-selected={selectedYear === 'last12'}
               onClick={() => setSelectedYear('last12')}
@@ -386,6 +389,7 @@ const GitHub: React.FC = () => {
             </button>
             {yearsAvailable.map((year) => (
               <button
+                type="button"
                 role="tab"
                 aria-selected={selectedYear === year}
                 key={year}
@@ -403,12 +407,12 @@ const GitHub: React.FC = () => {
         >
           <div className="flex gap-[3px] overflow-x-auto pb-4 custom-scrollbar">
             {Array.from({ length: 53 }).map((_, weekIdx) => (
-              <div key={weekIdx} className="flex flex-col gap-[3px]">
+              <div key={weekIdx.toString()} className="flex flex-col gap-[3px]">
                 {Array.from({ length: 7 }).map((_, dayIdx) => {
                   const day = yearlyActivity?.[weekIdx * 7 + dayIdx]
                   return (
                     <div
-                      key={dayIdx}
+                      key={dayIdx.toString()}
                       className="w-[11px] h-[11px] rounded-[1px] relative cursor-crosshair group/tip hover:z-50"
                       style={{ backgroundColor: day?.color || '#111' }}
                     >
@@ -416,7 +420,7 @@ const GitHub: React.FC = () => {
                         className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#00ff00] text-[#0a0a0a] text-[8px] p-2 whitespace-nowrap opacity-0 group-hover/tip:opacity-100 pointer-events-none font-bold z-[100] border border-white/10"
                         role="tooltip"
                       >
-                        {day?.contributionCount} commits // {day?.date}
+                        {`${day?.contributionCount} commits // ${day?.date}`}
                       </div>
                     </div>
                   )

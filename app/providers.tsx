@@ -16,7 +16,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             structuralSharing: true, // Prevent unnecessary re-renders
           },
         },
-      }),
+      })
   )
 
   return (

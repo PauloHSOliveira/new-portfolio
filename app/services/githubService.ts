@@ -1,6 +1,6 @@
 'use client'
 
-import type { GitHubStats, GitHubRepo, ContributionDay } from '../types'
+import type { ContributionDay, GitHubRepo, GitHubStats } from '../types'
 
 interface ContributionWeek {
   contributionDays: Array<{
@@ -32,7 +32,7 @@ export const ORG_NAMES = ['CosmStack']
  */
 const fetchLifetimeContributionStats = async (
   _username: string,
-  createdAt: string,
+  createdAt: string
 ): Promise<{
   stats: Partial<GitHubStats>
   currentYearActivity: ContributionDay[]
@@ -41,7 +41,7 @@ const fetchLifetimeContributionStats = async (
   const currentYear = new Date().getFullYear()
   const years = Array.from(
     { length: currentYear - startYear + 1 },
-    (_, i) => startYear + i,
+    (_, i) => startYear + i
   )
 
   const fetchYearStats = async (year: number) => {
@@ -52,7 +52,7 @@ const fetchLifetimeContributionStats = async (
         : `${year}-12-31T23:59:59Z`
 
     const response = await fetch(
-      `/api/github/contributions?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`,
+      `/api/github/contributions?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`
     )
 
     if (!response.ok) return null
@@ -84,7 +84,7 @@ const fetchLifetimeContributionStats = async (
         w.contributionDays.map((d) => ({
           date: d.date,
           count: d.contributionCount,
-        })),
+        }))
       ) || []
     allDays = allDays.concat(days)
 
@@ -105,7 +105,7 @@ const fetchLifetimeContributionStats = async (
                     : day.contributionCount < 20
                       ? '#26a641'
                       : '#39d353',
-          })),
+          }))
       )
     }
   })
@@ -139,7 +139,7 @@ const fetchLifetimeContributionStats = async (
 }
 
 export const fetchGitHubBaseStats = async (
-  _username: string,
+  _username: string
 ): Promise<GitHubStats> => {
   const response = await fetch('/api/github/stats')
 
@@ -170,13 +170,13 @@ export const fetchGitHubBaseStats = async (
 
 export const fetchGitHubActivityForYear = async (
   _username: string,
-  year: number,
+  year: number
 ): Promise<ContributionDay[]> => {
   const from = `${year}-01-01T00:00:00Z`
   const to = `${year}-12-31T23:59:59Z`
 
   const response = await fetch(
-    `/api/github/contributions?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`,
+    `/api/github/contributions?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`
   )
 
   if (!response.ok) return []
@@ -198,7 +198,7 @@ export const fetchGitHubActivityForYear = async (
               : day.contributionCount < 20
                 ? '#26a641'
                 : '#39d353',
-    })),
+    }))
   )
 }
 
@@ -231,12 +231,12 @@ const fetchAllGitHubReposViaGraphQL = async (): Promise<GitHubRepo[]> => {
 }
 
 export const fetchGitHubStats = async (
-  username: string,
+  username: string
 ): Promise<GitHubStats> => await fetchGitHubBaseStats(username)
 
 export const fetchRepoReadme = async (fullName: string): Promise<string> => {
   const response = await fetch(
-    `/api/github/readme?fullName=${encodeURIComponent(fullName)}`,
+    `/api/github/readme?fullName=${encodeURIComponent(fullName)}`
   )
 
   if (!response.ok) return 'No README available.'

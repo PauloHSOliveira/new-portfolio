@@ -1,25 +1,26 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { PERSONAL_PROJECTS } from '../../constants'
-import { Project } from '../../types'
-import { marked } from 'marked'
 import hljs from 'highlight.js'
 import {
-  ChevronLeft,
-  ArrowRight,
   Activity,
+  ArrowRight,
+  ChevronLeft,
   Cpu,
-  Eye,
-  User,
   DollarSign,
-  Terminal as TerminalIcon,
+  Eye,
   Lock,
+  Terminal as TerminalIcon,
+  User,
 } from 'lucide-react'
+import { marked } from 'marked'
+import type React from 'react'
+import { useEffect, useState } from 'react'
+import { PERSONAL_PROJECTS } from '../../constants'
+import type { Project } from '../../types'
 
 marked.use({
   renderer: {
-    code(tokenOrCode: any, lang?: string) {
+    code(tokenOrCode: string | { text: string; lang: string }, lang?: string): string {
       const codeStr =
         typeof tokenOrCode === 'string' ? tokenOrCode : tokenOrCode.text
       const language = typeof tokenOrCode === 'string' ? lang : tokenOrCode.lang
@@ -35,7 +36,6 @@ const ProgressMeter = () => {
   return (
     <div
       className="space-y-4 bg-[#0a0a0a] border border-[#1a1a1a] p-5 font-mono"
-      aria-label="Project build progress"
     >
       <div className="flex justify-between items-end mb-1">
         <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.3em] flex items-center gap-2">
@@ -48,7 +48,6 @@ const ProgressMeter = () => {
         </div>
         <div
           className="text-[16px] text-[#444] font-bold tabular-nums"
-          aria-label="0 percent complete"
         >
           0%
         </div>
@@ -88,6 +87,7 @@ const Projects: React.FC = () => {
     return (
       <div className="space-y-8 animate-fadeIn font-mono relative z-20">
         <button
+          type="button"
           onClick={() => setSelectedProject(null)}
           className="text-[#666] hover:text-[#00ff00] text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 group transition-all font-bold"
           aria-label="Back to project grid"
@@ -106,7 +106,6 @@ const Projects: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <span
                     className="text-[9px] px-2 py-0.5 border border-[#ff3e3e]/40 text-[#ff3e3e] font-black uppercase tracking-widest flex items-center gap-1"
-                    aria-label="Status Locked"
                   >
                     <Lock size={10} aria-hidden="true" /> LOCKED
                   </span>
@@ -122,6 +121,7 @@ const Projects: React.FC = () => {
 
             <div
               className="article-content"
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: <ok>
               dangerouslySetInnerHTML={{
                 __html: marked.parse(selectedProject.content) as string,
               }}
@@ -134,7 +134,6 @@ const Projects: React.FC = () => {
             {selectedProject.metrics && (
               <div
                 className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 space-y-6"
-                aria-label="Project metrics"
               >
                 <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.4em] border-b border-[#1a1a1a] pb-4">
                   SYSTEM_METRICS
@@ -197,6 +196,7 @@ const Projects: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {PERSONAL_PROJECTS.map((project) => (
           <button
+            type="button"
             key={project.slug}
             onClick={() => setSelectedProject(project)}
             className="text-left group bg-[#0f0f0f] border border-[#1a1a1a] p-8 hover:border-[#00ff00] transition-all relative overflow-hidden flex flex-col justify-between h-full min-h-[240px]"
