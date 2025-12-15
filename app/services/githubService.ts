@@ -1,5 +1,3 @@
-'use client'
-
 import type { ContributionDay, GitHubRepo, GitHubStats } from '../types'
 
 interface ContributionWeek {

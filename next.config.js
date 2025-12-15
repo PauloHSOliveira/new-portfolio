@@ -1,6 +1,15 @@
 const path = require('node:path')
 
-/** @type {import('next').NextConfig} */
+/**
+ * Next.js Configuration
+ *
+ * Environment Variables:
+ * - SERVER_GITHUB_TOKEN: GitHub personal access token for API calls (server-side only)
+ *   Set this in Vercel Dashboard: Settings > Environment Variables
+ *   Available automatically in API routes via process.env.SERVER_GITHUB_TOKEN
+ *
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: path.join(__dirname),
