@@ -47,6 +47,8 @@ const TechIcon = ({
     ts: 'typescript',
     javascript: 'javascript',
     js: 'javascript',
+    html: 'html5',
+    html5: 'html5',
     'node.js': 'nodedotjs',
     node: 'nodedotjs',
     react: 'react',
@@ -86,6 +88,9 @@ const TechIcon = ({
       <Image
         src={`https://cdn.simpleicons.org/${slug}/${color}`}
         alt={`${name} icon`}
+        width={24}
+        height={24}
+        unoptimized
         loading="lazy"
         className="w-full h-full object-contain"
         style={{ filter: 'drop-shadow(0 0 2px rgba(0,255,0,0.1))' }}
