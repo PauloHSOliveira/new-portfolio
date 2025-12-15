@@ -48,7 +48,10 @@ I am always open to discussing distributed systems, payment rails, or any challe
 
 marked.use({
   renderer: {
-    code(tokenOrCode: string | { text: string; lang: string }, lang?: string): string {
+    code(
+      tokenOrCode: string | { text: string; lang: string },
+      lang?: string
+    ): string {
       const codeStr =
         typeof tokenOrCode === 'string' ? tokenOrCode : tokenOrCode.text
       const language = typeof tokenOrCode === 'string' ? lang : tokenOrCode.lang

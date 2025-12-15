@@ -4,9 +4,7 @@ import type React from 'react'
 
 const About: React.FC = () => {
   return (
-    <article
-      className="space-y-12 text-base leading-relaxed max-w-4xl animate-fadeIn"
-    >
+    <article className="space-y-12 text-base leading-relaxed max-w-4xl animate-fadeIn">
       <header className="border-l-4 border-[#00ff00] pl-8 py-4 bg-gradient-to-r from-[#00ff00]/5 to-transparent">
         <h1 className="text-5xl font-bold mb-2 uppercase tracking-tighter">
           Paulo Oliveira
@@ -62,7 +60,7 @@ const About: React.FC = () => {
                   </span>
                 </div>
                 <div className="text-[#444] text-xs uppercase tracking-widest ml-7 font-bold">
-                 {`@ ${item.org} // focus: ${item.focus}`}
+                  {`@ ${item.org} // focus: ${item.focus}`}
                 </div>
               </li>
             ))}
@@ -117,7 +115,10 @@ const About: React.FC = () => {
       </section>
 
       <div className="pt-8 flex items-center gap-6">
-        <button type="button" className="text-[#00ff00] font-black text-xs uppercase tracking-[0.3em] border border-[#00ff00]/30 px-6 py-3 hover:bg-[#00ff00] hover:text-[#0a0a0a] transition-all">
+        <button
+          type="button"
+          className="text-[#00ff00] font-black text-xs uppercase tracking-[0.3em] border border-[#00ff00]/30 px-6 py-3 hover:bg-[#00ff00] hover:text-[#0a0a0a] transition-all"
+        >
           {`> RUN_SYSTEM_DIAGNOSTICS.SH`}
         </button>
         <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>

@@ -14,6 +14,7 @@ import {
   Terminal,
 } from 'lucide-react'
 import { marked } from 'marked'
+import Image from 'next/image'
 import type React from 'react'
 import { useMemo, useState } from 'react'
 import {
@@ -23,7 +24,6 @@ import {
   GITHUB_USERNAME,
 } from '../../services/githubService'
 import type { GitHubRepo } from '../../types'
-import Image from 'next/image'
 
 const PINNED_NAMES = [
   'paglua',
@@ -217,22 +217,16 @@ const GitHub: React.FC = () => {
       </div>
       <div className="pt-4 border-t border-[#1a1a1a] mt-4 flex items-center justify-between text-[8px] text-[#444] font-bold uppercase relative z-20">
         <div className="flex items-center gap-3">
-          <span
-            className="flex items-center gap-1"
-          >
+          <span className="flex items-center gap-1">
             <Star size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
             {repo.stars}
           </span>
-          <span
-            className="flex items-center gap-1"
-          >
+          <span className="flex items-center gap-1">
             <GitFork size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
             {repo.forks}
           </span>
         </div>
-        <span
-          className="text-[#222] group-hover:text-[#444] transition-colors font-mono"
-        >
+        <span className="text-[#222] group-hover:text-[#444] transition-colors font-mono">
           {new Date(repo.pushed_at).toLocaleDateString()}
         </span>
       </div>
@@ -371,7 +365,8 @@ const GitHub: React.FC = () => {
               <Activity size={14} aria-hidden="true" /> CONTRIBUTION_MATRIX
             </h3>
             <p className="text-[8px] text-[#333] font-bold uppercase">
-             {'ARCHIVE_READY // MODE: '}{selectedYear}
+              {'ARCHIVE_READY // MODE: '}
+              {selectedYear}
             </p>
           </div>
           <div

@@ -193,7 +193,8 @@ const Contact: React.FC = () => {
       <footer className="text-[#1a1a1a] text-[10px] pt-12 border-t border-[#1a1a1a] flex justify-between items-center uppercase font-bold tracking-[0.3em]">
         <span>{'SYNC_TARGET: PAGLUA // MARCAAI // COSMSTACK'}</span>
         <span>
-          NODE_ID: {GITHUB_USERNAME} {'// '}{new Date().toLocaleDateString()}
+          NODE_ID: {GITHUB_USERNAME} {'// '}
+          {new Date().toLocaleDateString()}
         </span>
       </footer>
     </div>

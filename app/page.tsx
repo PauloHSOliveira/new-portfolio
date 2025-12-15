@@ -177,10 +177,7 @@ export default function Home() {
             <span>
               © 2025 Paulo Oliveira — L6 Software Engineer & Architect
             </span>
-            <span
-              aria-hidden="true"
-              className="opacity-50"
-            >
+            <span aria-hidden="true" className="opacity-50">
               {'UTF-8 // [CONNECTED]'}
             </span>
           </footer>

@@ -20,7 +20,10 @@ import type { Project } from '../../types'
 
 marked.use({
   renderer: {
-    code(tokenOrCode: string | { text: string; lang: string }, lang?: string): string {
+    code(
+      tokenOrCode: string | { text: string; lang: string },
+      lang?: string
+    ): string {
       const codeStr =
         typeof tokenOrCode === 'string' ? tokenOrCode : tokenOrCode.text
       const language = typeof tokenOrCode === 'string' ? lang : tokenOrCode.lang
@@ -34,9 +37,7 @@ marked.use({
 
 const ProgressMeter = () => {
   return (
-    <div
-      className="space-y-4 bg-[#0a0a0a] border border-[#1a1a1a] p-5 font-mono"
-    >
+    <div className="space-y-4 bg-[#0a0a0a] border border-[#1a1a1a] p-5 font-mono">
       <div className="flex justify-between items-end mb-1">
         <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.3em] flex items-center gap-2">
           <TerminalIcon
@@ -46,11 +47,7 @@ const ProgressMeter = () => {
           />{' '}
           SYSTEM_BUILD_PROGRESS
         </div>
-        <div
-          className="text-[16px] text-[#444] font-bold tabular-nums"
-        >
-          0%
-        </div>
+        <div className="text-[16px] text-[#444] font-bold tabular-nums">0%</div>
       </div>
       <div className="h-2 w-full bg-[#111] overflow-hidden flex p-[1px]">
         <div
@@ -104,9 +101,7 @@ const Projects: React.FC = () => {
             <header className="border-b border-[#1a1a1a] pb-10 space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <span
-                    className="text-[9px] px-2 py-0.5 border border-[#ff3e3e]/40 text-[#ff3e3e] font-black uppercase tracking-widest flex items-center gap-1"
-                  >
+                  <span className="text-[9px] px-2 py-0.5 border border-[#ff3e3e]/40 text-[#ff3e3e] font-black uppercase tracking-widest flex items-center gap-1">
                     <Lock size={10} aria-hidden="true" /> LOCKED
                   </span>
                   <span className="text-[#333] text-[9px] font-black uppercase tracking-widest">
@@ -132,9 +127,7 @@ const Projects: React.FC = () => {
             <ProgressMeter />
 
             {selectedProject.metrics && (
-              <div
-                className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 space-y-6"
-              >
+              <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 space-y-6">
                 <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.4em] border-b border-[#1a1a1a] pb-4">
                   SYSTEM_METRICS
                 </div>
