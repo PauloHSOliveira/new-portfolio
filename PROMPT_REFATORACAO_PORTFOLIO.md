@@ -64,10 +64,12 @@ pnpm                 // Package manager
 ### UI & Styling
 ```typescript
 Tailwind CSS 3.4+    // Utility-first CSS
-shadcn/ui            // Component library (copy-paste)
-Radix UI             // Accessible primitives
-Lucide React         // Icons
+Custom Components    // Build unique design system (OR)
+Radix UI             // Headless accessible primitives (OR)
+shadcn/ui            // Starting point (heavily customize)
+Phosphor Icons       // Unique icon library (already installed)
 next-themes          // Theme management
+Framer Motion        // Animations for unique interactions
 ```
 
 ### State Management
@@ -304,17 +306,51 @@ new-portfolio/
 - [ ] Configure Turbo (already setup)
 - [ ] Setup environment variables template
 
-#### 1.3 Tailwind & UI Setup
+#### 1.3 Tailwind & Creative UI Setup
 - [ ] Install Tailwind CSS (already installed)
-- [ ] Initialize shadcn/ui
+- [ ] **Choose your UI approach** (see LIBRARIES_COMPLETE_LIST_PART1.md):
+  - **Option A:** Build custom components (most unique) ⭐
+  - **Option B:** Use Radix UI headless components + custom styling
+  - **Option C:** Use shadcn/ui as base, heavily customize
+- [ ] Configure Tailwind theme for YOUR unique brand
+  ```javascript
+  // tailwind.config.js - Make it YOURS
+  module.exports = {
+    theme: {
+      extend: {
+        colors: {
+          // Your unique color palette
+          'brand-primary': '#...',
+          'brand-accent': '#...',
+        },
+        fontFamily: {
+          // Your unique fonts
+          display: ['Your Display Font', 'sans-serif'],
+          body: ['Your Body Font', 'sans-serif'],
+        },
+        animation: {
+          // Your custom animations
+          'float': 'float 3s ease-in-out infinite',
+          'glow': 'glow 2s ease-in-out infinite alternate',
+        }
+      }
+    }
+  }
+  ```
+- [ ] Add custom CSS variables for theming
+- [ ] **If using shadcn/ui:** Install as starting point, plan heavy customization
   ```bash
   pnpx shadcn-ui@latest init
-  ```
-- [ ] Configure Tailwind theme (colors, fonts, spacing)
-- [ ] Add custom CSS variables for theming
-- [ ] Install base shadcn components
-  ```bash
   pnpx shadcn-ui@latest add button card input label
+  # Remember: These need heavy customization for uniqueness!
+  ```
+- [ ] **If using Radix UI:** Install headless components
+  ```bash
+  pnpm add @radix-ui/react-dialog @radix-ui/react-dropdown-menu
+  ```
+- [ ] Install animation library for unique interactions
+  ```bash
+  pnpm add framer-motion
   ```
 
 #### 1.4 Theme System
@@ -355,33 +391,50 @@ new-portfolio/
 
 ---
 
-## 📅 Phase 2: UI Component Library (Week 2)
+## 📅 Phase 2: Creative UI Component Library (Week 2)
 
 **Duration:** 3-4 days | **Effort:** 8-12 hours
 
 ### Objectives
-- Build core UI component library
-- Implement design system
-- Create reusable patterns
+- Build UNIQUE, creative UI component library
+- Implement YOUR distinctive design system
+- Create memorable, non-generic patterns
 
 ### Checklist
 
-#### 2.1 shadcn/ui Components
-- [ ] Install essential components
+#### 2.1 Design Your Unique Components
+- [ ] **Define your visual identity**
+  - Unique color palette
+  - Custom typography system
+  - Signature animations/transitions
+  - Distinctive interaction patterns
+- [ ] **Create custom base components** (if building from scratch)
+  - Button with unique style (gradients, shadows, animations)
+  - Card with creative layout
+  - Input with distinctive design
+  - Navigation with unique interactions
+- [ ] **OR customize library components heavily** (if using shadcn/Radix)
   ```bash
+  # If using shadcn as starting point (customize heavily!)
   pnpx shadcn-ui@latest add button card input label \
     textarea select checkbox radio-group \
     dropdown-menu dialog alert toast \
     separator skeleton badge
   ```
+- [ ] **Add distinctive styling to EVERY component**
+  - Custom animations (Framer Motion)
+  - Unique hover effects
+  - Creative transitions
+  - Brand-specific colors and effects
 - [ ] Test each component in isolation
-- [ ] Verify dark mode support
+- [ ] Verify dark mode support with YOUR theme
 
-#### 2.2 Custom Components
-- [ ] Create `Hero` component
-  - Gradient background
-  - CTA buttons
-  - Animation on load
+#### 2.2 Signature Custom Components
+- [ ] Create `Hero` component with UNIQUE design
+  - Creative background (not just gradient - particles, patterns, animations)
+  - Unique CTA buttons (animated, interactive)
+  - Eye-catching entrance animation
+  - Signature visual element
 - [ ] Create `Section` wrapper component
   - Consistent spacing
   - Optional background

@@ -27,8 +27,10 @@ This is your **complete documentation package** for refactoring a modern full-st
 # 1. Install core dependencies
 pnpm add next@latest react@latest react-dom@latest typescript@latest
 
-# 2. Setup shadcn/ui
-pnpx shadcn-ui@latest init
+# 2. Choose your UI approach (see LIBRARIES_COMPLETE_LIST_PART1.md)
+# Option A: Custom from scratch (most unique/creative)
+# Option B: Headless UI (Radix/Headless UI) + custom styling
+# Option C: shadcn/ui as base, heavily customize for uniqueness
 
 # 3. Start dev server
 pnpm dev

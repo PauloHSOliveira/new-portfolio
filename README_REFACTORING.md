@@ -109,29 +109,55 @@ SENTRY_AUTH_TOKEN=your_auth_token
 3. Create new project (Next.js)
 4. Copy DSN from project settings
 
-### Step 2: Initialize shadcn/ui
+### Step 2: Choose Your UI Approach
 
+**Important:** This portfolio needs a UNIQUE, creative design system.
+
+#### Option A: Custom Components (Most Unique) ⭐
 ```bash
-# Initialize shadcn/ui
+# Just Tailwind + your creativity
+# No additional UI library needed
+# Build every component with your unique style
+```
+
+#### Option B: Radix UI Headless (Creative + Accessible)
+```bash
+# Install headless components, style completely custom
+pnpm add @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-select
+
+# Add animation library
+pnpm add framer-motion
+```
+
+#### Option C: shadcn/ui Starting Point (Heavy Customization Required)
+```bash
+# Initialize shadcn/ui (if using as base - NOT recommended for unique design)
 pnpx shadcn-ui@latest init
 
 # When prompted:
 # ✔ Would you like to use TypeScript? Yes
-# ✔ Which style would you like to use? Default
-# ✔ Which color would you like to use as base color? Slate
+# ✔ Which style would you like to use? Default (WILL customize heavily)
+# ✔ Which color would you like to use as base color? Your brand color
 # ✔ Where is your global CSS file? app/globals.css
 # ✔ Would you like to use CSS variables for colors? Yes
 # ✔ Where is your tailwind.config.js located? tailwind.config.js
 # ✔ Configure the import alias for components? @/components
 # ✔ Configure the import alias for utils? @/lib/utils
 
-# Install essential components
+# Install essential components (starting point only)
 pnpx shadcn-ui@latest add button card input label textarea
+
+# ⚠️ CRITICAL: You MUST heavily customize these to avoid generic look
 ```
+
+**Recommendation:** Option A or B for truly unique portfolio.
 
 ### Step 3: Install Additional Dependencies
 
 ```bash
+# Animation (for unique interactions)
+pnpm add framer-motion
+
 # State Management
 pnpm add jotai
 
@@ -524,8 +550,21 @@ A: Yes, but it's a key differentiator. Consider implementing later if not now.
 
 ### Technology Choices
 
-**Q: Why shadcn/ui instead of Material-UI or Chakra?**
-A: Ownership and customization. You copy components to your codebase, no package lock-in.
+**Q: Should I use shadcn/ui, custom components, or Radix UI?**
+A: For a UNIQUE, creative portfolio:
+- **Best:** Custom components from scratch (most unique)
+- **Good:** Radix UI headless + your styling (unique + accessible)
+- **Acceptable:** shadcn/ui heavily customized (requires lots of work to avoid generic look)
+
+Choose based on: time available, design skills, and how unique you want the portfolio.
+
+**Q: What about icons - Lucide, Phosphor, or custom?**
+A: For creative/unique portfolio:
+- **Best:** Custom SVG icons designed specifically for your brand
+- **Good:** Phosphor Icons (already installed!) with heavy styling/animations
+- **Acceptable:** Lucide + extensive customization
+
+Avoid using default icon styles - always add unique treatments (gradients, glows, animations).
 
 **Q: Can I use Prisma instead of Drizzle?**
 A: Yes. See `LIBRARIES_COMPLETE_LIST.md` → Database section for comparison.

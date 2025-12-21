@@ -54,17 +54,18 @@ A **comprehensive refactoring** of a personal portfolio website to showcase tech
 #### 1. **Foundation & Architecture**
 - Next.js 15 with App Router
 - TypeScript strict mode configuration
-- Tailwind CSS + shadcn/ui component library
+- Tailwind CSS + Creative UI approach (custom/Radix/shadcn - heavily customized)
 - Modern folder structure (app/, src/, content/)
 - Environment configuration & secrets management
 
-#### 2. **UI/UX Components**
-- Design system with shadcn/ui + Radix UI
+#### 2. **UI/UX Components - Unique & Creative**
+- **UNIQUE design system** (not generic components)
+- Custom components OR Radix UI headless + creative styling
 - Responsive layouts (mobile-first)
-- Dark/light theme toggle
+- Dark/light theme toggle with signature animations
 - Accessible components (WCAG 2.1 AA)
-- Loading states & skeleton screens
-- Error boundaries
+- Creative loading states with animations
+- Error boundaries with unique design
 
 #### 3. **Blog System** ⭐ Priority Feature
 - MDX support for posts with React components
@@ -142,10 +143,12 @@ pnpm                 - Package manager
 ### UI & Styling
 ```
 Tailwind CSS 3.4+    - Utility-first CSS framework
-shadcn/ui            - Re-usable component library
-Radix UI             - Unstyled accessible components
-Lucide React         - Icon library (already installed)
+Custom Components    - Unique design system (OR)
+Radix UI             - Headless accessible components (OR)
+shadcn/ui            - Starting point (heavy customization needed)
+Phosphor Icons       - Icon library (already installed, unique style)
 next-themes          - Theme management (dark/light)
+Framer Motion        - Animations for unique interactions
 ```
 
 ### State Management
