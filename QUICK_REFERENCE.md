@@ -129,6 +129,262 @@ export default function Error({
 }
 ```
 
+### Compound Component Pattern
+
+Compound components allow you to create flexible, composable UI elements with a clean API. Perfect for complex UI components like Terminal, Card, Dialog, etc.
+
+```typescript
+// src/components/ui/Terminal.tsx
+'use client'
+
+import { createContext, useContext, type ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+
+// Context for sharing state between compound components
+interface TerminalContextType {
+  variant?: 'default' | 'error' | 'success'
+}
+
+const TerminalContext = createContext<TerminalContextType>({})
+
+// Root component
+interface TerminalProps {
+  children: ReactNode
+  variant?: 'default' | 'error' | 'success'
+  className?: string
+}
+
+function TerminalRoot({ children, variant = 'default', className }: TerminalProps) {
+  return (
+    <TerminalContext.Provider value={{ variant }}>
+      <div className={cn(
+        'rounded-lg border font-mono text-sm overflow-hidden',
+        'bg-slate-950 border-slate-800',
+        className
+      )}>
+        {children}
+      </div>
+    </TerminalContext.Provider>
+  )
+}
+
+// Header component
+interface TerminalHeaderProps {
+  children: ReactNode
+  className?: string
+}
+
+function TerminalHeader({ children, className }: TerminalHeaderProps) {
+  return (
+    <div className={cn(
+      'flex items-center gap-2 px-4 py-3',
+      'bg-slate-900 border-b border-slate-800',
+      className
+    )}>
+      <div className="flex gap-2">
+        <div className="h-3 w-3 rounded-full bg-red-500" />
+        <div className="h-3 w-3 rounded-full bg-yellow-500" />
+        <div className="h-3 w-3 rounded-full bg-green-500" />
+      </div>
+      <div className="flex-1 text-center text-slate-400">{children}</div>
+    </div>
+  )
+}
+
+// Content component
+interface TerminalContentProps {
+  children: ReactNode
+  className?: string
+}
+
+function TerminalContent({ children, className }: TerminalContentProps) {
+  const { variant } = useContext(TerminalContext)
+  
+  return (
+    <div className={cn(
+      'p-4 text-slate-100',
+      variant === 'error' && 'text-red-400',
+      variant === 'success' && 'text-green-400',
+      className
+    )}>
+      {children}
+    </div>
+  )
+}
+
+// Line component
+interface TerminalLineProps {
+  children: ReactNode
+  prompt?: string
+  className?: string
+}
+
+function TerminalLine({ children, prompt = '$', className }: TerminalLineProps) {
+  return (
+    <div className={cn('flex gap-2', className)}>
+      <span className="text-green-400">{prompt}</span>
+      <span>{children}</span>
+    </div>
+  )
+}
+
+// Export as compound component
+export const Terminal = {
+  Root: TerminalRoot,
+  Header: TerminalHeader,
+  Content: TerminalContent,
+  Line: TerminalLine,
+}
+
+// Alternative: Named exports
+export {
+  TerminalRoot as Container,
+  TerminalHeader as Header,
+  TerminalContent as Content,
+  TerminalLine as Line,
+}
+```
+
+**Usage Example:**
+
+```typescript
+// Using the Terminal compound component
+import { Terminal } from '@/components/ui/Terminal'
+
+export function CodeExample() {
+  return (
+    <Terminal.Root variant="default">
+      <Terminal.Header>bash</Terminal.Header>
+      <Terminal.Content>
+        <Terminal.Line prompt="$">npm install next@latest</Terminal.Line>
+        <Terminal.Line prompt="$">npm run dev</Terminal.Line>
+        <div className="text-slate-400 mt-2">
+          ✓ Ready in 1.2s
+        </div>
+      </Terminal.Content>
+    </Terminal.Root>
+  )
+}
+```
+
+**Another Compound Component Example - Card:**
+
+```typescript
+// src/components/ui/Card.tsx
+import { createContext, useContext, type ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+
+interface CardContextType {
+  variant?: 'default' | 'highlighted' | 'minimal'
+}
+
+const CardContext = createContext<CardContextType>({})
+
+function CardRoot({ 
+  children, 
+  variant = 'default',
+  className 
+}: { 
+  children: ReactNode
+  variant?: 'default' | 'highlighted' | 'minimal'
+  className?: string 
+}) {
+  return (
+    <CardContext.Provider value={{ variant }}>
+      <div className={cn(
+        'rounded-lg border overflow-hidden',
+        variant === 'default' && 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800',
+        variant === 'highlighted' && 'bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 border-purple-200 dark:border-purple-800',
+        variant === 'minimal' && 'bg-transparent border-slate-200 dark:border-slate-800',
+        className
+      )}>
+        {children}
+      </div>
+    </CardContext.Provider>
+  )
+}
+
+function CardHeader({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn('px-6 py-4 border-b border-slate-200 dark:border-slate-800', className)}>
+      {children}
+    </div>
+  )
+}
+
+function CardTitle({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <h3 className={cn('text-xl font-bold', className)}>
+      {children}
+    </h3>
+  )
+}
+
+function CardDescription({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <p className={cn('text-sm text-slate-600 dark:text-slate-400 mt-1', className)}>
+      {children}
+    </p>
+  )
+}
+
+function CardContent({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn('px-6 py-4', className)}>
+      {children}
+    </div>
+  )
+}
+
+function CardFooter({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn('px-6 py-4 border-t border-slate-200 dark:border-slate-800', className)}>
+      {children}
+    </div>
+  )
+}
+
+export const Card = {
+  Root: CardRoot,
+  Header: CardHeader,
+  Title: CardTitle,
+  Description: CardDescription,
+  Content: CardContent,
+  Footer: CardFooter,
+}
+```
+
+**Usage:**
+
+```typescript
+import { Card } from '@/components/ui/Card'
+
+export function ProjectCard() {
+  return (
+    <Card.Root variant="highlighted">
+      <Card.Header>
+        <Card.Title>Project Name</Card.Title>
+        <Card.Description>A brief description of the project</Card.Description>
+      </Card.Header>
+      <Card.Content>
+        <p>Project details and features...</p>
+      </Card.Content>
+      <Card.Footer>
+        <button>View Project</button>
+      </Card.Footer>
+    </Card.Root>
+  )
+}
+```
+
+**Benefits of Compound Components:**
+- Clean, intuitive API (Terminal.Header, Terminal.Content)
+- Flexible composition
+- Shared state via Context
+- Type-safe with TypeScript
+- Easier to customize individual parts
+- Self-documenting code structure
+
 ---
 
 ## 🔄 State Management (Jotai)

@@ -46,7 +46,8 @@
 
 ### React & Next.js
 - **Server Components:** `QUICK_REFERENCE.md` → Component Patterns
-- **Client Components:** `QUICK_REFERENCE.md` → Component Patterns  
+- **Client Components:** `QUICK_REFERENCE.md` → Component Patterns
+- **Compound Components:** `QUICK_REFERENCE.md` → Compound Component Pattern
 - **App Router:** `PROMPT_REFATORACAO_PORTFOLIO.md` → Framework section
 - **Best Practices:** `.cursor/rules.md` → React section
 
@@ -238,6 +239,7 @@
 
 ### C
 - **Components:** `QUICK_REFERENCE.md` → Component Patterns
+- **Compound Components:** `QUICK_REFERENCE.md` → Compound Component Pattern
 - **Contact Form:** `QUICK_REFERENCE.md` → Forms with Validation
 - **Cursor IDE:** `.cursor/rules.md`
 

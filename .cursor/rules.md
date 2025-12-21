@@ -137,6 +137,77 @@ export function PostCard({ post, showExcerpt = true, onLike }: PostCardProps) {
 }
 ```
 
+### Compound Component Pattern
+✅ **GOOD:**
+```typescript
+// Create flexible, composable components
+// src/components/ui/Terminal.tsx
+
+import { createContext, useContext, type ReactNode } from 'react'
+
+interface TerminalContextType {
+  variant?: 'default' | 'error' | 'success'
+}
+
+const TerminalContext = createContext<TerminalContextType>({})
+
+function TerminalRoot({ children, variant = 'default', className }: {
+  children: ReactNode
+  variant?: 'default' | 'error' | 'success'
+  className?: string
+}) {
+  return (
+    <TerminalContext.Provider value={{ variant }}>
+      <div className={`rounded-lg border ${className}`}>
+        {children}
+      </div>
+    </TerminalContext.Provider>
+  )
+}
+
+function TerminalHeader({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 px-4 py-3 bg-slate-900">
+      {children}
+    </div>
+  )
+}
+
+function TerminalContent({ children }: { children: ReactNode }) {
+  const { variant } = useContext(TerminalContext)
+  return <div className={`p-4 ${variant === 'error' ? 'text-red-400' : ''}`}>{children}</div>
+}
+
+export const Terminal = {
+  Root: TerminalRoot,
+  Header: TerminalHeader,
+  Content: TerminalContent,
+}
+
+// Usage:
+<Terminal.Root variant="default">
+  <Terminal.Header>bash</Terminal.Header>
+  <Terminal.Content>
+    <span>$ npm run dev</span>
+  </Terminal.Content>
+</Terminal.Root>
+```
+
+❌ **AVOID:**
+```typescript
+// Don't create monolithic components with too many props
+function Terminal({ 
+  header, 
+  content, 
+  variant, 
+  showHeader, 
+  headerColor,
+  // ... 20 more props
+}) {
+  // Hard to maintain and customize
+}
+```
+
 ---
 
 ## 🎨 Styling Rules

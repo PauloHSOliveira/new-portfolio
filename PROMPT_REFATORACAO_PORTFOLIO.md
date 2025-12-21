@@ -446,6 +446,11 @@ new-portfolio/
   - Project card
   - Blog post card
   - Skill card
+- [ ] **Consider Compound Component Pattern** for complex UI
+  - Terminal (Terminal.Root, Terminal.Header, Terminal.Content)
+  - Card (Card.Root, Card.Header, Card.Content, Card.Footer)
+  - Dialog, Accordion, Tabs, etc.
+  - Benefits: Clean API, flexible composition, shared state
 
 #### 2.3 Loading States
 - [ ] Create skeleton components

@@ -135,6 +135,115 @@ export function ThemeToggle() {
 }
 ```
 
+### Compound Component Pattern
+```typescript
+// src/components/ui/Terminal.tsx
+'use client'
+
+import { createContext, useContext, type ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+
+// Context for shared state
+interface TerminalContextType {
+  variant?: 'default' | 'error' | 'success'
+}
+
+const TerminalContext = createContext<TerminalContextType>({})
+
+// Root component
+function TerminalRoot({ 
+  children, 
+  variant = 'default', 
+  className 
+}: { 
+  children: ReactNode
+  variant?: 'default' | 'error' | 'success'
+  className?: string 
+}) {
+  return (
+    <TerminalContext.Provider value={{ variant }}>
+      <div className={cn(
+        'rounded-lg border font-mono text-sm overflow-hidden',
+        'bg-slate-950 border-slate-800',
+        className
+      )}>
+        {children}
+      </div>
+    </TerminalContext.Provider>
+  )
+}
+
+// Sub-components
+function TerminalHeader({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn(
+      'flex items-center gap-2 px-4 py-3',
+      'bg-slate-900 border-b border-slate-800',
+      className
+    )}>
+      <div className="flex gap-2">
+        <div className="h-3 w-3 rounded-full bg-red-500" />
+        <div className="h-3 w-3 rounded-full bg-yellow-500" />
+        <div className="h-3 w-3 rounded-full bg-green-500" />
+      </div>
+      <div className="flex-1 text-center text-slate-400">{children}</div>
+    </div>
+  )
+}
+
+function TerminalContent({ children, className }: { children: ReactNode; className?: string }) {
+  const { variant } = useContext(TerminalContext)
+  
+  return (
+    <div className={cn(
+      'p-4 text-slate-100',
+      variant === 'error' && 'text-red-400',
+      variant === 'success' && 'text-green-400',
+      className
+    )}>
+      {children}
+    </div>
+  )
+}
+
+function TerminalLine({ 
+  children, 
+  prompt = '$' 
+}: { 
+  children: ReactNode
+  prompt?: string 
+}) {
+  return (
+    <div className="flex gap-2">
+      <span className="text-green-400">{prompt}</span>
+      <span>{children}</span>
+    </div>
+  )
+}
+
+// Export as compound component
+export const Terminal = {
+  Root: TerminalRoot,
+  Header: TerminalHeader,
+  Content: TerminalContent,
+  Line: TerminalLine,
+}
+
+// Usage Example:
+function CodeExample() {
+  return (
+    <Terminal.Root variant="default">
+      <Terminal.Header>bash</Terminal.Header>
+      <Terminal.Content>
+        <Terminal.Line>npm install next@latest</Terminal.Line>
+        <Terminal.Line>npm run dev</Terminal.Line>
+        <div className="text-slate-400 mt-2">✓ Ready in 1.2s</div>
+      </Terminal.Content>
+    </Terminal.Root>
+  )
+}
+```
+
 ### Form with Validation
 ```typescript
 // src/components/forms/ContactForm.tsx
