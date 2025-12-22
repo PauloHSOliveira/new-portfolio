@@ -41,6 +41,14 @@ Created complete folder structure as per architecture requirements:
   - `blog/` - Blog posts in MDX format
   - `projects/` - Project descriptions in MDX format
 
+- **.env.example** - Environment variables template file with configuration for:
+  - GitHub API token
+  - Email service (Resend)
+  - Analytics (PostHog, Sentry)
+  - Site URL and other settings
+
+- **src/__path-alias-test.tsx** - Path alias verification test file (can be removed in future phases)
+
 - **app/** - Next.js App Router directory structure
   - `(home)/` - Home route group
   - `(content)/` - Content route group
@@ -111,6 +119,8 @@ The main changes were:
 2. Adding path aliases to tsconfig.json for the new src/ directory structure
 3. Documenting the App Router configuration in next.config.js
 4. Creating this CHANGELOG.md to document all changes
+5. Creating .env.example template for environment variables
+6. Creating path alias test file to verify configuration
 
 ### Future Phases
 
