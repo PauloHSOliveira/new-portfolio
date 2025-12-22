@@ -3,6 +3,40 @@
 @tailwind utilities;
 
 :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
   /* Primary terminal colors - Dark Mode (Default) */
   --terminal-green: #00ff00;
   --terminal-green-bright: #33ff33;
@@ -47,34 +81,34 @@
 
 .light {
   /* Primary terminal colors - Light Mode */
-  --terminal-green: #00cc00;
-  --terminal-green-bright: #00aa00;
-  --terminal-green-dim: #008800;
-  --terminal-green-glow: rgba(0, 204, 0, 0.3);
+  --terminal-green: var(--color-teal-500);
+  --terminal-green-bright: var(--color-teal-400);
+  --terminal-green-dim: var(--color-teal-600);
+  --terminal-green-glow: rgba(33, 128, 141, 0.3);
   
   /* Background colors - Light Mode */
-  --terminal-bg: #f5f5f5;
-  --terminal-bg-dark: #ffffff;
-  --terminal-bg-darker: #fafafa;
-  --terminal-bg-light: #efefef;
-  --terminal-bg-lighter: #e5e5e5;
+  --terminal-bg: var(--color-cream-50);
+  --terminal-bg-dark: var(--color-cream-100);
+  --terminal-bg-darker: var(--color-white);
+  --terminal-bg-light: var(--color-gray-200);
+  --terminal-bg-lighter: var(--color-gray-300);
   
   /* Border colors - Light Mode */
-  --terminal-border: #e0e0e0;
-  --terminal-border-light: #d0d0d0;
-  --terminal-border-bright: #c0c0c0;
+  --terminal-border: var(--color-gray-300);
+  --terminal-border-light: var(--color-gray-400);
+  --terminal-border-bright: var(--color-slate-500);
   
   /* Text colors - Light Mode */
-  --terminal-text-primary: #1a1a1a;
-  --terminal-text-secondary: #333333;
-  --terminal-text-tertiary: #666666;
-  --terminal-text-dim: #999999;
+  --terminal-text-primary: var(--color-charcoal-700);
+  --terminal-text-secondary: var(--color-slate-500);
+  --terminal-text-tertiary: var(--color-gray-400);
+  --terminal-text-dim: var(--color-gray-300);
   
   /* Effects - Light Mode */
-  --grid-color: rgba(0, 204, 0, 0.02);
-  --scanline-color: rgba(0, 204, 0, 0.02);
-  --glow-shadow: 0 0 15px rgba(0, 204, 0, 0.2);
-  --glow-shadow-strong: 0 0 20px rgba(0, 204, 0, 0.3);
+  --grid-color: rgba(33, 128, 141, 0.02);
+  --scanline-color: rgba(33, 128, 141, 0.02);
+  --glow-shadow: 0 0 15px rgba(33, 128, 141, 0.2);
+  --glow-shadow-strong: 0 0 20px rgba(33, 128, 141, 0.3);
 }
 
 @layer base {

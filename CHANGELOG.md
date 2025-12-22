@@ -40,16 +40,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **CSS Variables for Theming** (`app/globals.css`)
   - Comprehensive CSS variable system for both themes
+  - Added primitive color tokens for light mode design system
   - **Dark Mode (Default):**
     - Terminal green: `#00ff00` (bright CRT green)
     - Backgrounds: `#050505`, `#0a0a0a`, `#0f0f0f`, `#1a1a1a`
     - Text: `#ffffff`, `#cccccc`, `#888888`, `#444444`
     - Subtle grid and scanline effects
-  - **Light Mode (.light):**
-    - Adjusted green: `#00cc00` (darker for better contrast)
-    - Backgrounds: `#ffffff`, `#f5f5f5`, `#efefef`, `#e5e5e5`
-    - Text: `#1a1a1a`, `#333333`, `#666666`, `#999999`
-    - Lighter grid and glow effects
+  - **Light Mode (.light) - Updated Color Palette:**
+    - Primary accent: Teal color palette (`#21808d` teal-500, `#2da6b2` teal-400, `#1d7480` teal-600)
+    - Backgrounds: Cream and gray (`#fcfcf9` cream-50, `#fffffe` cream-100, `#f5f5f5` gray-200)
+    - Text: Charcoal and slate (`#1f2121` charcoal-700, `#626c71` slate-500, `#777c7c` gray-400)
+    - Borders: Gray shades (`#a7a9a9` gray-300, `#777c7c` gray-400, `#626c71` slate-500)
+    - Includes RGB versions for opacity control
+    - Professional color system with excellent contrast ratios
   - All colors maintain excellent contrast ratios for accessibility
   - Body background and text colors use CSS variables for automatic theme switching
 
@@ -64,6 +67,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **biome.json**
   - Fixed schema version from 2.3.10 to 2.3.8 to match CLI version
   - Resolves configuration schema warning
+
+- **Light Mode Color Palette** (`app/globals.css`)
+  - Updated from simple gray/green palette to professional teal-based design system
+  - Replaced basic hex colors with semantic color tokens
+  - New palette includes:
+    - Primitive color tokens (cream, gray, teal, charcoal, slate, red, orange)
+    - RGB versions for opacity control
+    - Semantic mappings to terminal variables
+  - Maintains excellent contrast ratios for accessibility (WCAG AA compliant)
+  - Professional appearance suitable for portfolio presentation
 
 #### Success Criteria Met
 
