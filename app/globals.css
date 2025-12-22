@@ -3,65 +3,27 @@
 @tailwind utilities;
 
 :root {
-  /* Primitive Color Tokens */
-  --color-white: rgba(255, 255, 255, 1);
-  --color-black: rgba(0, 0, 0, 1);
-  --color-cream-50: rgba(252, 252, 249, 1);
-  --color-cream-100: rgba(255, 255, 253, 1);
-  --color-gray-200: rgba(245, 245, 245, 1);
-  --color-gray-300: rgba(167, 169, 169, 1);
-  --color-gray-400: rgba(119, 124, 124, 1);
-  --color-slate-500: rgba(98, 108, 113, 1);
-  --color-brown-600: rgba(94, 82, 64, 1);
-  --color-charcoal-700: rgba(31, 33, 33, 1);
-  --color-charcoal-800: rgba(38, 40, 40, 1);
-  --color-slate-900: rgba(19, 52, 59, 1);
-  --color-teal-300: rgba(50, 184, 198, 1);
-  --color-teal-400: rgba(45, 166, 178, 1);
-  --color-teal-500: rgba(33, 128, 141, 1);
-  --color-teal-600: rgba(29, 116, 128, 1);
-  --color-teal-700: rgba(26, 104, 115, 1);
-  --color-teal-800: rgba(41, 150, 161, 1);
-  --color-red-400: rgba(255, 84, 89, 1);
-  --color-red-500: rgba(192, 21, 47, 1);
-  --color-orange-400: rgba(230, 129, 97, 1);
-  --color-orange-500: rgba(168, 75, 47, 1);
-
-  /* RGB versions for opacity control */
-  --color-brown-600-rgb: 94, 82, 64;
-  --color-teal-500-rgb: 33, 128, 141;
-  --color-slate-900-rgb: 19, 52, 59;
-  --color-slate-500-rgb: 98, 108, 113;
-  --color-red-500-rgb: 192, 21, 47;
-  --color-red-400-rgb: 255, 84, 89;
-  --color-orange-500-rgb: 168, 75, 47;
-  --color-orange-400-rgb: 230, 129, 97;
-
-  /* Primary terminal colors - Dark Mode (Default) */
+  /* Default Theme: Matrix Green (Original) */
   --terminal-green: #00ff00;
   --terminal-green-bright: #33ff33;
   --terminal-green-dim: #00cc00;
   --terminal-green-glow: rgba(0, 255, 0, 0.5);
   
-  /* Background colors - Dark Mode */
   --terminal-bg: #0a0a0a;
   --terminal-bg-dark: #050505;
   --terminal-bg-darker: #000000;
   --terminal-bg-light: #0f0f0f;
   --terminal-bg-lighter: #1a1a1a;
   
-  /* Border colors - Dark Mode */
   --terminal-border: #1a1a1a;
   --terminal-border-light: #2a2a2a;
   --terminal-border-bright: #333333;
   
-  /* Text colors - Dark Mode */
   --terminal-text-primary: #ffffff;
   --terminal-text-secondary: #cccccc;
   --terminal-text-tertiary: #888888;
   --terminal-text-dim: #444444;
   
-  /* Effects - Dark Mode */
   --grid-color: rgba(0, 255, 0, 0.03);
   --scanline-color: rgba(0, 255, 0, 0.03);
   --glow-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
@@ -79,36 +41,200 @@
   --terminal-transition-slow: 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.light {
-  /* Primary terminal colors - Light Mode */
-  --terminal-green: var(--color-teal-500);
-  --terminal-green-bright: var(--color-teal-400);
-  --terminal-green-dim: var(--color-teal-600);
-  --terminal-green-glow: rgba(33, 128, 141, 0.3);
+/* Theme: Dracula */
+[data-theme="dracula"] {
+  --terminal-green: #50fa7b;
+  --terminal-green-bright: #69ff94;
+  --terminal-green-dim: #3cd466;
+  --terminal-green-glow: rgba(80, 250, 123, 0.5);
   
-  /* Background colors - Light Mode */
-  --terminal-bg: var(--color-cream-50);
-  --terminal-bg-dark: var(--color-cream-100);
-  --terminal-bg-darker: var(--color-white);
-  --terminal-bg-light: var(--color-gray-200);
-  --terminal-bg-lighter: var(--color-gray-300);
+  --terminal-bg: #282a36;
+  --terminal-bg-dark: #1e1f29;
+  --terminal-bg-darker: #191a21;
+  --terminal-bg-light: #343746;
+  --terminal-bg-lighter: #44475a;
   
-  /* Border colors - Light Mode */
-  --terminal-border: var(--color-gray-300);
-  --terminal-border-light: var(--color-gray-400);
-  --terminal-border-bright: var(--color-slate-500);
+  --terminal-border: #44475a;
+  --terminal-border-light: #6272a4;
+  --terminal-border-bright: #7882b4;
   
-  /* Text colors - Light Mode */
-  --terminal-text-primary: var(--color-charcoal-700);
-  --terminal-text-secondary: var(--color-slate-500);
-  --terminal-text-tertiary: var(--color-gray-400);
-  --terminal-text-dim: var(--color-gray-300);
+  --terminal-text-primary: #f8f8f2;
+  --terminal-text-secondary: #e6e6e0;
+  --terminal-text-tertiary: #b8b8b0;
+  --terminal-text-dim: #6272a4;
   
-  /* Effects - Light Mode */
-  --grid-color: rgba(33, 128, 141, 0.02);
-  --scanline-color: rgba(33, 128, 141, 0.02);
-  --glow-shadow: 0 0 15px rgba(33, 128, 141, 0.2);
-  --glow-shadow-strong: 0 0 20px rgba(33, 128, 141, 0.3);
+  --grid-color: rgba(80, 250, 123, 0.02);
+  --scanline-color: rgba(80, 250, 123, 0.02);
+  --glow-shadow: 0 0 20px rgba(80, 250, 123, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(80, 250, 123, 0.5);
+}
+
+/* Theme: Monokai */
+[data-theme="monokai"] {
+  --terminal-green: #a6e22e;
+  --terminal-green-bright: #b9f03e;
+  --terminal-green-dim: #8fd01e;
+  --terminal-green-glow: rgba(166, 226, 46, 0.5);
+  
+  --terminal-bg: #272822;
+  --terminal-bg-dark: #1e1f1c;
+  --terminal-bg-darker: #161712;
+  --terminal-bg-light: #3e3d32;
+  --terminal-bg-lighter: #49483e;
+  
+  --terminal-border: #49483e;
+  --terminal-border-light: #75715e;
+  --terminal-border-bright: #8b877e;
+  
+  --terminal-text-primary: #f8f8f2;
+  --terminal-text-secondary: #cfcfc2;
+  --terminal-text-tertiary: #a8a89d;
+  --terminal-text-dim: #75715e;
+  
+  --grid-color: rgba(166, 226, 46, 0.02);
+  --scanline-color: rgba(166, 226, 46, 0.02);
+  --glow-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(166, 226, 46, 0.5);
+}
+
+/* Theme: Nord */
+[data-theme="nord"] {
+  --terminal-green: #a3be8c;
+  --terminal-green-bright: #b5d9a1;
+  --terminal-green-dim: #8aa375;
+  --terminal-green-glow: rgba(163, 190, 140, 0.5);
+  
+  --terminal-bg: #2e3440;
+  --terminal-bg-dark: #242933;
+  --terminal-bg-darker: #1a1d26;
+  --terminal-bg-light: #3b4252;
+  --terminal-bg-lighter: #434c5e;
+  
+  --terminal-border: #434c5e;
+  --terminal-border-light: #4c566a;
+  --terminal-border-bright: #5e6b82;
+  
+  --terminal-text-primary: #eceff4;
+  --terminal-text-secondary: #d8dee9;
+  --terminal-text-tertiary: #a0a8ba;
+  --terminal-text-dim: #616e88;
+  
+  --grid-color: rgba(163, 190, 140, 0.02);
+  --scanline-color: rgba(163, 190, 140, 0.02);
+  --glow-shadow: 0 0 20px rgba(163, 190, 140, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(163, 190, 140, 0.5);
+}
+
+/* Theme: Solarized Dark */
+[data-theme="solarized-dark"] {
+  --terminal-green: #859900;
+  --terminal-green-bright: #9db000;
+  --terminal-green-dim: #6d8100;
+  --terminal-green-glow: rgba(133, 153, 0, 0.5);
+  
+  --terminal-bg: #002b36;
+  --terminal-bg-dark: #00212b;
+  --terminal-bg-darker: #001820;
+  --terminal-bg-light: #073642;
+  --terminal-bg-lighter: #0e4a5a;
+  
+  --terminal-border: #073642;
+  --terminal-border-light: #586e75;
+  --terminal-border-bright: #657b83;
+  
+  --terminal-text-primary: #fdf6e3;
+  --terminal-text-secondary: #eee8d5;
+  --terminal-text-tertiary: #93a1a1;
+  --terminal-text-dim: #586e75;
+  
+  --grid-color: rgba(133, 153, 0, 0.02);
+  --scanline-color: rgba(133, 153, 0, 0.02);
+  --glow-shadow: 0 0 20px rgba(133, 153, 0, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(133, 153, 0, 0.5);
+}
+
+/* Theme: One Dark */
+[data-theme="one-dark"] {
+  --terminal-green: #98c379;
+  --terminal-green-bright: #a8d989;
+  --terminal-green-dim: #81a865;
+  --terminal-green-glow: rgba(152, 195, 121, 0.5);
+  
+  --terminal-bg: #282c34;
+  --terminal-bg-dark: #21252b;
+  --terminal-bg-darker: #1b1e23;
+  --terminal-bg-light: #2c313a;
+  --terminal-bg-lighter: #3e4451;
+  
+  --terminal-border: #3e4451;
+  --terminal-border-light: #4b5263;
+  --terminal-border-bright: #5c6370;
+  
+  --terminal-text-primary: #abb2bf;
+  --terminal-text-secondary: #9da5b3;
+  --terminal-text-tertiary: #7f8694;
+  --terminal-text-dim: #5c6370;
+  
+  --grid-color: rgba(152, 195, 121, 0.02);
+  --scanline-color: rgba(152, 195, 121, 0.02);
+  --glow-shadow: 0 0 20px rgba(152, 195, 121, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(152, 195, 121, 0.5);
+}
+
+/* Theme: Cyberpunk */
+[data-theme="cyberpunk"] {
+  --terminal-green: #ff00ff;
+  --terminal-green-bright: #ff33ff;
+  --terminal-green-dim: #cc00cc;
+  --terminal-green-glow: rgba(255, 0, 255, 0.5);
+  
+  --terminal-bg: #0a0014;
+  --terminal-bg-dark: #05000a;
+  --terminal-bg-darker: #000000;
+  --terminal-bg-light: #150028;
+  --terminal-bg-lighter: #1f003c;
+  
+  --terminal-border: #1f003c;
+  --terminal-border-light: #3d007d;
+  --terminal-border-bright: #5500aa;
+  
+  --terminal-text-primary: #ff00ff;
+  --terminal-text-secondary: #dd00dd;
+  --terminal-text-tertiary: #aa00aa;
+  --terminal-text-dim: #5500aa;
+  
+  --grid-color: rgba(255, 0, 255, 0.03);
+  --scanline-color: rgba(255, 0, 255, 0.03);
+  --glow-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+  --glow-shadow-strong: 0 0 30px rgba(255, 0, 255, 0.7);
+}
+
+/* Theme: Ocean */
+[data-theme="ocean"] {
+  --terminal-green: #00d4ff;
+  --terminal-green-bright: #33ddff;
+  --terminal-green-dim: #00aacc;
+  --terminal-green-glow: rgba(0, 212, 255, 0.5);
+  
+  --terminal-bg: #001a2e;
+  --terminal-bg-dark: #001420;
+  --terminal-bg-darker: #000a14;
+  --terminal-bg-light: #00243d;
+  --terminal-bg-lighter: #003657;
+  
+  --terminal-border: #003657;
+  --terminal-border-light: #004d7a;
+  --terminal-border-bright: #0066a0;
+  
+  --terminal-text-primary: #e0f7ff;
+  --terminal-text-secondary: #b3e5fc;
+  --terminal-text-tertiary: #81d4fa;
+  --terminal-text-dim: #4fc3f7;
+  
+  --grid-color: rgba(0, 212, 255, 0.03);
+  --scanline-color: rgba(0, 212, 255, 0.03);
+  --glow-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  --glow-shadow-strong: 0 0 30px rgba(0, 212, 255, 0.7);
 }
 
 @layer base {

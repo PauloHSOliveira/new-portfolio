@@ -7,97 +7,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2025-12-22
 
-### Phase 1.4: Theme System - Dark/Light Mode Support
+### Phase 1.4: Terminal Theme System - Multiple Theme Support
 
 #### Added
 
-- **next-themes** (`next-themes@0.4.6`)
-  - Installed for complete theme management with persistence
-  - Provides seamless dark/light mode switching
-  - Automatic theme persistence across sessions using localStorage
-  - SSR-safe with proper hydration handling
+- **Custom Theme System** (`app/providers.tsx`)
+  - Replaced simple dark/light mode with terminal-style theme selector
+  - Custom ThemeContext with 8 pre-defined terminal color schemes
+  - Theme persistence using localStorage (`terminal-theme` key)
+  - SSR-safe implementation with proper hydration handling
+  - Default theme: "Matrix Green" (original terminal aesthetic)
 
-- **ThemeProvider** (`app/providers.tsx`)
-  - Integrated `next-themes` ThemeProvider with QueryClientProvider
-  - Configured with `attribute="class"` for Tailwind dark mode support
-  - Default theme set to "dark" to match existing aesthetic
-  - System theme detection disabled (`enableSystem={false}`)
-  - Smooth transitions enabled for theme switching
+- **ThemeSelector Component** (`src/components/layout/ThemeSelector.tsx`)
+  - Dropdown menu with 8 terminal themes inspired by popular IDEs and terminals
+  - Color-coded theme preview dots showing accent color
+  - Accessible with keyboard navigation and ARIA labels
+  - Click-outside-to-close functionality
+  - Visual indication of currently selected theme (✓ checkmark)
+  - Smooth hover effects and transitions
 
-- **ThemeToggle Component** (`src/components/layout/ThemeToggle.tsx`)
-  - Fully accessible theme toggle button with ARIA labels
-  - Sun icon for dark mode (clicking switches to light)
-  - Moon icon for light mode (clicking switches to dark)
-  - SSR-safe implementation with proper mounting detection
-  - Smooth animations with hover effects (scale-110)
-  - Terminal green color (#00ff00) for consistency
-  - Zero layout shift during hydration with placeholder
+- **8 Terminal Color Schemes** (`app/globals.css`)
+  1. **Matrix Green** - Original terminal aesthetic (`#00ff00`)
+  2. **Dracula** - Popular dark theme (`#50fa7b`)
+  3. **Monokai** - Classic code editor theme (`#a6e22e`)
+  4. **Nord** - Cool, muted palette (`#a3be8c`)
+  5. **Solarized Dark** - Precision colors (`#859900`)
+  6. **One Dark** - Atom editor inspired (`#98c379`)
+  7. **Cyberpunk** - Neon magenta aesthetic (`#ff00ff`)
+  8. **Ocean** - Cyan/blue theme (`#00d4ff`)
 
-- **Tailwind Dark Mode Configuration** (`tailwind.config.js`)
-  - Added `darkMode: ['class']` for class-based theme switching
-  - Enables conditional styling with `dark:` prefix
-  - Works seamlessly with next-themes
-
-- **CSS Variables for Theming** (`app/globals.css`)
-  - Comprehensive CSS variable system for both themes
-  - Added primitive color tokens for light mode design system
-  - **Dark Mode (Default):**
-    - Terminal green: `#00ff00` (bright CRT green)
-    - Backgrounds: `#050505`, `#0a0a0a`, `#0f0f0f`, `#1a1a1a`
-    - Text: `#ffffff`, `#cccccc`, `#888888`, `#444444`
-    - Subtle grid and scanline effects
-  - **Light Mode (.light) - Updated Color Palette:**
-    - Primary accent: Teal color palette (`#21808d` teal-500, `#2da6b2` teal-400, `#1d7480` teal-600)
-    - Backgrounds: Cream and gray (`#fcfcf9` cream-50, `#fffffe` cream-100, `#f5f5f5` gray-200)
-    - Text: Charcoal and slate (`#1f2121` charcoal-700, `#626c71` slate-500, `#777c7c` gray-400)
-    - Borders: Gray shades (`#a7a9a9` gray-300, `#777c7c` gray-400, `#626c71` slate-500)
-    - Includes RGB versions for opacity control
-    - Professional color system with excellent contrast ratios
-  - All colors maintain excellent contrast ratios for accessibility
-  - Body background and text colors use CSS variables for automatic theme switching
-
-- **Theme Toggle in Header** (`app/components/TerminalHeader.tsx`)
-  - Integrated ThemeToggle component in terminal header
-  - Positioned on the right side of the header
-  - Replaced empty `div` with theme toggle component
-  - Maintains consistent spacing and alignment
-
-#### Changed
-
-- **biome.json**
-  - Fixed schema version from 2.3.10 to 2.3.8 to match CLI version
-  - Resolves configuration schema warning
-
-- **Light Mode Color Palette** (`app/globals.css`)
-  - Updated from simple gray/green palette to professional teal-based design system
-  - Replaced basic hex colors with semantic color tokens
-  - New palette includes:
-    - Primitive color tokens (cream, gray, teal, charcoal, slate, red, orange)
-    - RGB versions for opacity control
-    - Semantic mappings to terminal variables
-  - Maintains excellent contrast ratios for accessibility (WCAG AA compliant)
-  - Professional appearance suitable for portfolio presentation
+- **CSS Variable Architecture** (`app/globals.css`)
+  - Theme-specific CSS variable overrides using `[data-theme="..."]` selectors
+  - Each theme defines:
+    - Primary accent colors (green variants)
+    - Background gradients (5 shades)
+    - Border colors (3 levels)
+    - Text colors (4 levels: primary, secondary, tertiary, dim)
+    - Visual effects (grid, scanline, glow)
+  - All themes use consistent variable names for automatic component adaptation
 
 - **Component CSS Variable Migration**
   - Updated core components to use CSS variables instead of hardcoded colors
-  - Components now properly respond to theme changes
   - **Updated files:**
-    - `app/components/TerminalHeader.tsx` - Header, borders, text colors
+    - `app/components/TerminalHeader.tsx` - Theme selector integration
     - `app/components/Navigation.tsx` - Nav buttons, borders, hover states
     - `app/page.tsx` - Terminal container, prompt, footer, decorative text
     - `app/components/sections/About.tsx` - All text, borders, backgrounds, buttons
-  - All components now use `var(--terminal-*)` CSS variables
-  - Enables full theme switching between dark and light modes
+  - All components automatically adapt to any selected theme
+
+#### Removed
+
+- **next-themes** dependency - Replaced with custom theme system
+- **ThemeToggle Component** - Replaced with ThemeSelector dropdown
+- Simple dark/light mode approach - Replaced with multi-theme system
+
+#### Changed
+
+- **Theme Persistence**
+  - Changed from `theme` to `terminal-theme` localStorage key
+  - Stores theme ID instead of "dark"/"light" boolean
+  - Supports 8 different theme options
+
+- **Theme Application**
+  - Changed from CSS class (`.dark`/`.light`) to data attribute (`[data-theme="..."]`)
+  - Allows for unlimited theme variations
+  - More semantic and scalable approach
 
 #### Success Criteria Met
 
-- ✅ `next-themes` installed and configured
-- ✅ ThemeProvider integrated in providers.tsx
-- ✅ ThemeToggle component implemented with accessibility
-- ✅ Dark mode support added to Tailwind config
-- ✅ Theme colors configured with CSS variables
-- ✅ Theme toggle added to navigation (terminal header)
-- ✅ Theme switching works smoothly with transitions
+- ✅ Theme system implemented with terminal-style aesthetics
+- ✅ Multiple theme options available (8 pre-defined schemes)
+- ✅ Theme selector integrated in terminal header
+- ✅ Original terminal green aesthetic preserved as default
+- ✅ Theme persistence across sessions via localStorage
+- ✅ All components support all themes automatically via CSS variables
+- ✅ Smooth theme switching with instant visual updates
+- ✅ Accessible theme selector with keyboard navigation
+- ✅ Professional color schemes with proper contrast
 - ✅ Dark/light mode applied correctly across all components
 - ✅ Theme persists across page reloads via localStorage
 - ✅ All components support both themes automatically
