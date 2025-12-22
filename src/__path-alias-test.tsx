@@ -1,6 +1,6 @@
 /**
  * Path Aliases Test
- * 
+ *
  * This file tests that all path aliases configured in tsconfig.json work correctly.
  * If TypeScript can compile this file without errors, all aliases are working.
  */
@@ -23,7 +23,7 @@
 
 /**
  * Path Alias Configuration Test Results:
- * 
+ *
  * All path aliases are correctly configured in tsconfig.json:
  * ✅ @/components/* → ./src/components/*
  * ✅ @/lib/* → ./src/lib/*
@@ -33,7 +33,7 @@
  * ✅ @/types/* → ./src/types/*
  * ✅ @/config/* → ./src/config/*
  * ✅ @/styles/* → ./src/styles/*
- * 
+ *
  * Note: These imports are commented out because the actual files don't exist yet.
  * They will be created in subsequent phases of the project.
  */
