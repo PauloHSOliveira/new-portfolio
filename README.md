@@ -1,38 +1,169 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio - Paulo H S Oliveira
 
-## Getting Started
+A modern, full-stack portfolio website built with Next.js 16, React 19, and TypeScript, featuring an integrated professional blog.
 
-First, run the development server:
+## 🚀 Quick Start
+
+**New to this project?** Start here: **[START_HERE.md](./START_HERE.md)**
+
+### Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
+
+# Build for production
+pnpm build
+
+# Run production server
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 📚 Documentation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Getting Started
+- **[START_HERE.md](./START_HERE.md)** - Complete entry point and navigation guide
+- **[HOW_TO_CREATE_ISSUES.md](./HOW_TO_CREATE_ISSUES.md)** - Guide for creating GitHub issues from the roadmap
+- **[GITHUB_ISSUES_TO_CREATE.md](./GITHUB_ISSUES_TO_CREATE.md)** - 31 detailed issues for the refactor roadmap
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Planning & Roadmap
+- **[RESUMO_EXECUTIVO.md](./RESUMO_EXECUTIVO.md)** - Executive overview (10 min read)
+- **[PROMPT_REFATORACAO_PORTFOLIO.md](./PROMPT_REFATORACAO_PORTFOLIO.md)** - Complete technical roadmap (15 min read)
+- **[README_REFACTORING.md](./README_REFACTORING.md)** - Implementation guide (12 min read)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Reference
+- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Coding cheat sheet (keep open while coding)
+- **[LIBRARIES_COMPLETE_LIST_PART1.md](./LIBRARIES_COMPLETE_LIST_PART1.md)** - All libraries and stack decisions
+- **[INDEX.md](./INDEX.md)** - Complete navigation index
 
-## Learn More
+### AI Configuration
+- **[.cursor/rules.md](./.cursor/rules.md)** - Cursor IDE rules
+- **[.copilot/instructions.md](./.copilot/instructions.md)** - GitHub Copilot instructions
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Current Stack:**
+- Next.js 16 with App Router
+- React 19
+- TypeScript 5.6+
+- Tailwind CSS 3.4+
+- Biome (linting & formatting)
+- pnpm (package manager)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Planned Additions:** See [PROMPT_REFATORACAO_PORTFOLIO.md](./PROMPT_REFATORACAO_PORTFOLIO.md) for complete stack details.
 
-## Deploy on Vercel
+## 📋 Project Roadmap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project follows a **6-phase refactoring plan** over 6 weeks:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Phase 1: Foundation** (Week 1-2) - Setup, configuration, and layout
+2. **Phase 2: UI Component Library** (Week 2) - Custom components and design system
+3. **Phase 3: State & Forms** (Week 3) - State management and form handling
+4. **Phase 4: Blog Implementation** ⭐ (Week 4) - MDX blog with full features
+5. **Phase 5: Features & Integration** (Week 5) - Email, analytics, monitoring
+6. **Phase 6: Testing & Quality** (Week 6) - Tests, performance, accessibility
+
+**To create GitHub issues for this roadmap:** See [HOW_TO_CREATE_ISSUES.md](./HOW_TO_CREATE_ISSUES.md)
+
+## 🎯 Features
+
+### Current
+- ✅ Next.js 16 with App Router
+- ✅ TypeScript support
+- ✅ Tailwind CSS styling
+- ✅ Biome linting and formatting
+
+### Planned (See Roadmap)
+- 🔲 Integrated MDX blog
+- 🔲 Contact form with email integration
+- 🔲 Analytics (PostHog + Vercel)
+- 🔲 Dark/light theme
+- 🔲 SEO optimization
+- 🔲 Full test coverage
+
+## 🧪 Development
+
+### Available Scripts
+
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run Biome linter
+pnpm lint:fix     # Fix linting issues
+pnpm format       # Format code with Biome
+pnpm type-check   # Run TypeScript type checking
+pnpm clean        # Clean build artifacts
+```
+
+### Code Quality
+
+This project uses:
+- **Biome** for linting and formatting
+- **TypeScript** in strict mode
+- **Turbo** for build optimization
+
+## 📦 Project Structure
+
+```
+new-portfolio/
+├── app/                    # Next.js App Router
+├── src/                    # Source code (future)
+│   ├── components/         # React components
+│   ├── lib/               # Utilities
+│   ├── hooks/             # Custom hooks
+│   └── types/             # TypeScript types
+├── content/               # MDX content (future)
+├── public/                # Static assets
+└── docs/                  # Documentation
+```
+
+**Note:** See [PROMPT_REFATORACAO_PORTFOLIO.md](./PROMPT_REFATORACAO_PORTFOLIO.md) for complete folder structure.
+
+## 🚀 Deployment
+
+This project is configured for deployment on [Vercel](https://vercel.com):
+
+1. Connect repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to main
+
+See [PROMPT_REFATORACAO_PORTFOLIO.md](./PROMPT_REFATORACAO_PORTFOLIO.md) - Deployment Checklist for details.
+
+## 📖 Learning Resources
+
+### Next.js
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+### This Project
+- Start with [START_HERE.md](./START_HERE.md)
+- Follow the [complete roadmap](./PROMPT_REFATORACAO_PORTFOLIO.md)
+- Use [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) while coding
+
+## 🤝 Contributing
+
+This is a personal portfolio project. If you're interested in the structure and documentation approach:
+
+1. Read [START_HERE.md](./START_HERE.md)
+2. Review the [roadmap](./PROMPT_REFATORACAO_PORTFOLIO.md)
+3. Check the [issues](./GITHUB_ISSUES_TO_CREATE.md) for the refactoring plan
+
+## 📄 License
+
+This is a personal portfolio project.
+
+## 👤 Author
+
+**Paulo H S Oliveira**
+- GitHub: [@PauloHSOliveira](https://github.com/PauloHSOliveira)
+
+---
+
+**Ready to start?** Read [START_HERE.md](./START_HERE.md) for a complete guide! 🚀
