@@ -2,6 +2,7 @@
 
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import ThemeToggle from '@/components/layout/ThemeToggle'
 
 const TerminalHeader: React.FC = () => {
   const [telemetry, setTelemetry] = useState({ cpu: 1.2, ram: 42 })
@@ -42,7 +43,9 @@ const TerminalHeader: React.FC = () => {
           </span>
         </div>
       </div>
-      <div className="w-4"></div>
+      <div className="flex items-center">
+        <ThemeToggle />
+      </div>
     </div>
   )
 }

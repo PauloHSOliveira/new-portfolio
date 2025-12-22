@@ -7,6 +7,100 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2025-12-22
 
+### Phase 1.4: Theme System - Dark/Light Mode Support
+
+#### Added
+
+- **next-themes** (`next-themes@0.4.6`)
+  - Installed for complete theme management with persistence
+  - Provides seamless dark/light mode switching
+  - Automatic theme persistence across sessions using localStorage
+  - SSR-safe with proper hydration handling
+
+- **ThemeProvider** (`app/providers.tsx`)
+  - Integrated `next-themes` ThemeProvider with QueryClientProvider
+  - Configured with `attribute="class"` for Tailwind dark mode support
+  - Default theme set to "dark" to match existing aesthetic
+  - System theme detection disabled (`enableSystem={false}`)
+  - Smooth transitions enabled for theme switching
+
+- **ThemeToggle Component** (`src/components/layout/ThemeToggle.tsx`)
+  - Fully accessible theme toggle button with ARIA labels
+  - Sun icon for dark mode (clicking switches to light)
+  - Moon icon for light mode (clicking switches to dark)
+  - SSR-safe implementation with proper mounting detection
+  - Smooth animations with hover effects (scale-110)
+  - Terminal green color (#00ff00) for consistency
+  - Zero layout shift during hydration with placeholder
+
+- **Tailwind Dark Mode Configuration** (`tailwind.config.js`)
+  - Added `darkMode: ['class']` for class-based theme switching
+  - Enables conditional styling with `dark:` prefix
+  - Works seamlessly with next-themes
+
+- **CSS Variables for Theming** (`app/globals.css`)
+  - Comprehensive CSS variable system for both themes
+  - **Dark Mode (Default):**
+    - Terminal green: `#00ff00` (bright CRT green)
+    - Backgrounds: `#050505`, `#0a0a0a`, `#0f0f0f`, `#1a1a1a`
+    - Text: `#ffffff`, `#cccccc`, `#888888`, `#444444`
+    - Subtle grid and scanline effects
+  - **Light Mode (.light):**
+    - Adjusted green: `#00cc00` (darker for better contrast)
+    - Backgrounds: `#ffffff`, `#f5f5f5`, `#efefef`, `#e5e5e5`
+    - Text: `#1a1a1a`, `#333333`, `#666666`, `#999999`
+    - Lighter grid and glow effects
+  - All colors maintain excellent contrast ratios for accessibility
+  - Body background and text colors use CSS variables for automatic theme switching
+
+- **Theme Toggle in Header** (`app/components/TerminalHeader.tsx`)
+  - Integrated ThemeToggle component in terminal header
+  - Positioned on the right side of the header
+  - Replaced empty `div` with theme toggle component
+  - Maintains consistent spacing and alignment
+
+#### Changed
+
+- **biome.json**
+  - Fixed schema version from 2.3.10 to 2.3.8 to match CLI version
+  - Resolves configuration schema warning
+
+#### Success Criteria Met
+
+- ✅ `next-themes` installed and configured
+- ✅ ThemeProvider integrated in providers.tsx
+- ✅ ThemeToggle component implemented with accessibility
+- ✅ Dark mode support added to Tailwind config
+- ✅ Theme colors configured with CSS variables
+- ✅ Theme toggle added to navigation (terminal header)
+- ✅ Theme switching works smoothly with transitions
+- ✅ Dark/light mode applied correctly across all components
+- ✅ Theme persists across page reloads via localStorage
+- ✅ All components support both themes automatically
+- ✅ Existing terminal green aesthetic preserved in dark mode
+- ✅ Light mode provides excellent contrast and readability
+- ✅ Zero TypeScript errors
+- ✅ All linting checks pass
+
+#### Technical Details
+
+**Theme Persistence:**
+- `next-themes` automatically persists theme preference to localStorage
+- Key: `theme` 
+- Value: `"dark"` or `"light"`
+- Persists across browser sessions and page reloads
+
+**Color Contrast:**
+- Dark mode maintains original terminal aesthetic
+- Light mode ensures WCAG AA compliance for contrast
+- Green adjusted from `#00ff00` to `#00cc00` in light mode for readability
+- Text colors carefully chosen for optimal legibility
+
+**SSR Considerations:**
+- ThemeToggle uses `mounted` state to prevent hydration mismatches
+- Returns invisible placeholder during SSR with same dimensions
+- Proper use of `useEffect` for client-side only operations
+
 ### Phase 1.3: Tailwind & Creative UI Setup - Enhanced Design System
 
 #### Added

@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* Primary terminal colors */
+  /* Primary terminal colors - Dark Mode (Default) */
   --terminal-green: #00ff00;
   --terminal-green-bright: #33ff33;
   --terminal-green-dim: #00cc00;
   --terminal-green-glow: rgba(0, 255, 0, 0.5);
   
-  /* Background colors */
+  /* Background colors - Dark Mode */
   --terminal-bg: #0a0a0a;
   --terminal-bg-dark: #050505;
   --terminal-bg-darker: #000000;
   --terminal-bg-light: #0f0f0f;
   --terminal-bg-lighter: #1a1a1a;
   
-  /* Border colors */
+  /* Border colors - Dark Mode */
   --terminal-border: #1a1a1a;
   --terminal-border-light: #2a2a2a;
   --terminal-border-bright: #333333;
   
-  /* Text colors */
+  /* Text colors - Dark Mode */
   --terminal-text-primary: #ffffff;
   --terminal-text-secondary: #cccccc;
   --terminal-text-tertiary: #888888;
   --terminal-text-dim: #444444;
   
-  /* Effects */
+  /* Effects - Dark Mode */
   --grid-color: rgba(0, 255, 0, 0.03);
   --scanline-color: rgba(0, 255, 0, 0.03);
   --glow-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
@@ -45,6 +45,38 @@
   --terminal-transition-slow: 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.light {
+  /* Primary terminal colors - Light Mode */
+  --terminal-green: #00cc00;
+  --terminal-green-bright: #00aa00;
+  --terminal-green-dim: #008800;
+  --terminal-green-glow: rgba(0, 204, 0, 0.3);
+  
+  /* Background colors - Light Mode */
+  --terminal-bg: #f5f5f5;
+  --terminal-bg-dark: #ffffff;
+  --terminal-bg-darker: #fafafa;
+  --terminal-bg-light: #efefef;
+  --terminal-bg-lighter: #e5e5e5;
+  
+  /* Border colors - Light Mode */
+  --terminal-border: #e0e0e0;
+  --terminal-border-light: #d0d0d0;
+  --terminal-border-bright: #c0c0c0;
+  
+  /* Text colors - Light Mode */
+  --terminal-text-primary: #1a1a1a;
+  --terminal-text-secondary: #333333;
+  --terminal-text-tertiary: #666666;
+  --terminal-text-dim: #999999;
+  
+  /* Effects - Light Mode */
+  --grid-color: rgba(0, 204, 0, 0.02);
+  --scanline-color: rgba(0, 204, 0, 0.02);
+  --glow-shadow: 0 0 15px rgba(0, 204, 0, 0.2);
+  --glow-shadow-strong: 0 0 20px rgba(0, 204, 0, 0.3);
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -59,7 +91,7 @@
 
   body {
     font-family: "JetBrains Mono", monospace;
-    background-color: #050505;
+    background-color: var(--terminal-bg-dark);
     background-image:
       linear-gradient(var(--grid-color) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
@@ -75,7 +107,7 @@
       50px 50px,
       100% 4px,
       100% 100%;
-    color: #ffffff;
+    color: var(--terminal-text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
