@@ -1,7 +1,7 @@
 # Terminal Portfolio Design System
 
 **Version:** 1.0  
-**Last Updated:** December 2025  
+**Last Updated:** December 2024  
 **Aesthetic:** Terminal/CRT Retro Computing
 
 ---

@@ -1,6 +1,6 @@
 /**
  * Animation Examples
- * 
+ *
  * Demonstrates usage of the enhanced animation system
  * Both Tailwind CSS animations and Framer Motion examples
  */
@@ -176,10 +176,10 @@ export function FramerMotionExamples() {
       {/* Layout Animation (Expand/Collapse) */}
       <motion.div layout className="bg-terminal-bg-light rounded-terminal">
         <motion.button
-          onClick={() => {}}
+          // This is an example placeholder - in real use, add expand/collapse logic
           className="w-full p-terminal text-left text-terminal-green hover:bg-terminal-bg-lighter transition-colors duration-terminal"
         >
-          Click to Expand (Layout Animation)
+          Example: Layout Animation (add onClick in real implementation)
         </motion.button>
       </motion.div>
     </div>
@@ -237,9 +237,7 @@ export function TerminalWindowExample() {
             {'✓ Framer Motion installed'}
           </div>
           <div className="text-terminal-green">{'✓ Animations loaded'}</div>
-          <div className="text-terminal-green">
-            {'✓ Theme system active'}
-          </div>
+          <div className="text-terminal-green">{'✓ Theme system active'}</div>
           <div className="mt-terminal-md text-terminal-green animate-pulse-glow">
             {'System ready.'}
           </div>

@@ -1,6 +1,6 @@
 /**
  * Example Terminal Button Component
- * 
+ *
  * Demonstrates usage of the enhanced design system with Framer Motion
  * This file serves as a reference for building custom terminal-themed components
  */
@@ -47,11 +47,14 @@ export function TerminalButton({
     ? 'shadow-terminal-glow hover:shadow-terminal-glow-strong'
     : ''
 
+  // Transition duration from design system
+  const transitionDuration = 0.15
+
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: transitionDuration, ease: [0.16, 1, 0.3, 1] }}
       className={`
         ${sizeClasses[size]}
         ${variantClasses[variant]}

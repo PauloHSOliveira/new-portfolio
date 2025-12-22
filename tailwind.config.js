@@ -70,8 +70,20 @@ module.exports = {
           'Courier New',
           'monospace',
         ],
-        display: ['JetBrains Mono', 'monospace'],
-        body: ['JetBrains Mono', 'monospace'],
+        display: [
+          'JetBrains Mono',
+          'Consolas',
+          'Monaco',
+          'Courier New',
+          'monospace',
+        ],
+        body: [
+          'JetBrains Mono',
+          'Consolas',
+          'Monaco',
+          'Courier New',
+          'monospace',
+        ],
       },
       fontSize: {
         'terminal-xs': [
@@ -115,7 +127,7 @@ module.exports = {
         'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'scale-in': 'scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'terminal-glitch':
-          'terminalGlitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+          'terminalGlitch 0.3s cubic-bezier(0.16, 1, 0.3, 1) both',
       },
       keyframes: {
         // Existing
