@@ -176,7 +176,7 @@ export function FramerMotionExamples() {
       {/* Layout Animation (Expand/Collapse) */}
       <motion.div layout className="bg-terminal-bg-light rounded-terminal">
         <motion.button
-          // This is an example placeholder - in real use, add expand/collapse logic
+          // TODO: Add expand/collapse logic in real implementation
           className="w-full p-terminal text-left text-terminal-green hover:bg-terminal-bg-lighter transition-colors duration-terminal"
         >
           Example: Layout Animation (add onClick in real implementation)
