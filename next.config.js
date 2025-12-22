@@ -3,6 +3,10 @@ const path = require('node:path')
 /**
  * Next.js Configuration
  *
+ * App Router: Enabled by default with Next.js 15+
+ * - Uses the app/ directory for routing
+ * - Supports Server Components, Route Groups, and Layouts
+ *
  * Environment Variables:
  * - SERVER_GITHUB_TOKEN: GitHub personal access token for API calls (server-side only)
  *   Set this in Vercel Dashboard: Settings > Environment Variables
