@@ -10,7 +10,6 @@ type Theme =
   | 'nord'
   | 'solarized-dark'
   | 'one-dark'
-  | 'cyberpunk'
   | 'ocean'
 
 interface ThemeContextType {

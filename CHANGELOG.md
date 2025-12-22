@@ -26,15 +26,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Visual indication of currently selected theme (✓ checkmark)
   - Smooth hover effects and transitions
 
-- **8 Terminal Color Schemes** (`app/globals.css`)
+- **7 Minimalist Terminal Color Schemes** (`app/globals.css`)
   1. **Matrix Green** - Original terminal aesthetic (`#00ff00`)
   2. **Dracula** - Popular dark theme (`#50fa7b`)
   3. **Monokai** - Classic code editor theme (`#a6e22e`)
   4. **Nord** - Cool, muted palette (`#a3be8c`)
   5. **Solarized Dark** - Precision colors (`#859900`)
   6. **One Dark** - Atom editor inspired (`#98c379`)
-  7. **Cyberpunk** - Neon magenta aesthetic (`#ff00ff`)
-  8. **Ocean** - Cyan/blue theme (`#00d4ff`)
+  7. **Ocean** - Cyan/blue theme (`#00d4ff`)
 
 - **CSS Variable Architecture** (`app/globals.css`)
   - Theme-specific CSS variable overrides using `[data-theme="..."]` selectors
@@ -66,18 +65,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Theme Persistence**
   - Changed from `theme` to `terminal-theme` localStorage key
   - Stores theme ID instead of "dark"/"light" boolean
-  - Supports 8 different theme options
+  - Supports 7 minimalist theme options
 
 - **Theme Application**
   - Changed from CSS class (`.dark`/`.light`) to data attribute (`[data-theme="..."]`)
   - Allows for unlimited theme variations
   - More semantic and scalable approach
 
+- **Improved Contrast** (Latest update)
+  - Enhanced text contrast in all themes for better readability
+  - Increased brightness of tertiary and dim text colors
+  - Improved border brightness for better visual hierarchy
+  - Removed Cyberpunk theme (non-minimalist)
+  - All themes now maintain excellent WCAG AA contrast ratios
+
 #### Success Criteria Met
 
 - ✅ Theme system implemented with terminal-style aesthetics
-- ✅ Multiple theme options available (8 pre-defined schemes)
+- ✅ Multiple minimalist theme options (7 pre-defined schemes)
 - ✅ Theme selector integrated in terminal header
+- ✅ Original terminal green aesthetic preserved as default
+- ✅ Theme persistence across sessions via localStorage
+- ✅ All components support all themes automatically via CSS variables
+- ✅ Smooth theme switching with instant visual updates
+- ✅ Accessible theme selector with keyboard navigation
+- ✅ Professional minimalist color schemes with proper contrast
+- ✅ Enhanced readability across all themes with improved text colors
 - ✅ Original terminal green aesthetic preserved as default
 - ✅ Theme persistence across sessions via localStorage
 - ✅ All components support all themes automatically via CSS variables

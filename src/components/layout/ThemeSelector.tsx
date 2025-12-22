@@ -10,7 +10,6 @@ const themes = [
   { id: 'nord', name: 'Nord', color: '#a3be8c' },
   { id: 'solarized-dark', name: 'Solarized Dark', color: '#859900' },
   { id: 'one-dark', name: 'One Dark', color: '#98c379' },
-  { id: 'cyberpunk', name: 'Cyberpunk', color: '#ff00ff' },
   { id: 'ocean', name: 'Ocean', color: '#00d4ff' },
 ] as const
 
