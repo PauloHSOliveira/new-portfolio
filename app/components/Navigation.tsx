@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({
   ]
 
   return (
-    <nav className="flex flex-wrap gap-6 md:gap-10 mb-10 border-b border-[#1a1a1a] pb-6">
+    <nav className="flex flex-wrap gap-6 md:gap-10 mb-10 border-b border-[var(--terminal-border)] pb-6">
       {links.map((link) => (
         <button
           type="button"
@@ -30,8 +30,8 @@ const Navigation: React.FC<NavigationProps> = ({
           onClick={() => onSectionChange(link.id)}
           className={`text-base transition-all duration-200 uppercase tracking-widest ${
             currentSection === link.id
-              ? 'text-[#00ff00] font-bold scale-105'
-              : 'text-[#444] hover:text-[#ffffff]'
+              ? 'text-[var(--terminal-green)] font-bold scale-105'
+              : 'text-[var(--terminal-text-dim)] hover:text-[var(--terminal-text-primary)]'
           }`}
         >
           {link.id === currentSection ? `> ${link.label}` : link.label}

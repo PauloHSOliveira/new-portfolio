@@ -130,20 +130,20 @@ export default function Home() {
 
       {/* Background Decor */}
       <div
-        className="absolute top-10 left-10 text-[10px] text-[#1a1a1a] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
+        className="absolute top-10 left-10 text-[10px] text-[var(--terminal-border)] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
         aria-hidden="true"
       >
         {'system_architecture_v2.5 // PHOLIVEIRA'}
       </div>
       <div
-        className="absolute bottom-10 right-10 text-[10px] text-[#1a1a1a] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
+        className="absolute bottom-10 right-10 text-[10px] text-[var(--terminal-border)] font-mono pointer-events-none select-none uppercase tracking-[0.5em] hidden xl:block"
         aria-hidden="true"
       >
         {'node_status: operational // latency: 12ms'}
       </div>
 
       <section
-        className="w-full max-w-7xl h-[90vh] bg-[#0a0a0a]/95 backdrop-blur-md border border-[#1a1a1a] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col animate-fadeIn overflow-hidden relative"
+        className="w-full max-w-7xl h-[90vh] bg-[var(--terminal-bg)]/95 backdrop-blur-md border border-[var(--terminal-border)] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col animate-fadeIn overflow-hidden relative"
         aria-label="Terminal Interface"
       >
         <TerminalHeader />
@@ -157,11 +157,11 @@ export default function Home() {
 
           {/* Mock prompt at top */}
           <div
-            className="mb-8 font-mono text-[#00ff00] text-lg font-bold"
+            className="mb-8 font-mono text-[var(--terminal-green)] text-lg font-bold"
             aria-hidden="true"
           >
             {typedPrompt}
-            <span className="w-3 h-5 bg-[#00ff00] inline-block animate-pulse ml-1 align-middle"></span>
+            <span className="w-3 h-5 bg-[var(--terminal-green)] inline-block animate-pulse ml-1 align-middle"></span>
           </div>
 
           <Navigation
@@ -173,7 +173,7 @@ export default function Home() {
             {renderSection()}
           </main>
 
-          <footer className="text-[11px] text-[#444] mt-auto uppercase tracking-wider font-bold border-t border-[#1a1a1a] pt-8 flex justify-between items-center">
+          <footer className="text-[11px] text-[var(--terminal-text-dim)] mt-auto uppercase tracking-wider font-bold border-t border-[var(--terminal-border)] pt-8 flex justify-between items-center">
             <span>
               © 2025 Paulo Oliveira — L6 Software Engineer & Architect
             </span>
