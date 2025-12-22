@@ -48,8 +48,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.2.3)
       react-icons:
-        specifier: ^4.10.1
-        version: 4.12.0(react@19.2.3)
+        specifier: ^5.5.0
+        version: 5.5.0(react@19.2.3)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -791,8 +791,8 @@ packages:
     peerDependencies:
       react: ^19.0.0
 
-  react-icons@4.12.0:
-    resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
+  react-icons@5.5.0:
+    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
     peerDependencies:
       react: '*'
 
@@ -1500,7 +1500,7 @@ snapshots:
       react: 19.2.3
       scheduler: 0.25.0
 
-  react-icons@4.12.0(react@19.2.3):
+  react-icons@5.5.0(react@19.2.3):
     dependencies:
       react: 19.2.3
 
