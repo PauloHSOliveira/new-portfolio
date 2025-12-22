@@ -62,29 +62,21 @@ module.exports = {
         },
       },
       // Typography system
-      fontFamily: {
-        mono: [
+      fontFamily: (() => {
+        // Define monospace font stack once for consistency
+        const monoFontStack = [
           'JetBrains Mono',
           'Consolas',
           'Monaco',
           'Courier New',
           'monospace',
-        ],
-        display: [
-          'JetBrains Mono',
-          'Consolas',
-          'Monaco',
-          'Courier New',
-          'monospace',
-        ],
-        body: [
-          'JetBrains Mono',
-          'Consolas',
-          'Monaco',
-          'Courier New',
-          'monospace',
-        ],
-      },
+        ]
+        return {
+          mono: monoFontStack,
+          display: monoFontStack,
+          body: monoFontStack,
+        }
+      })(),
       fontSize: {
         'terminal-xs': [
           '0.65rem',

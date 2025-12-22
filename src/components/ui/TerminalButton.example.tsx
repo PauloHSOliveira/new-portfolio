@@ -47,14 +47,19 @@ export function TerminalButton({
     ? 'shadow-terminal-glow hover:shadow-terminal-glow-strong'
     : ''
 
-  // Transition duration from design system
-  const transitionDuration = 0.15
+  // Transition duration from design system (matches Tailwind's duration-terminal: 150ms)
+  const TERMINAL_TRANSITION_DURATION = 0.15
+  // Easing function from design system (matches Tailwind's ease-terminal)
+  const TERMINAL_EASING = [0.16, 1, 0.3, 1] as const
 
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: transitionDuration, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: TERMINAL_TRANSITION_DURATION,
+        ease: TERMINAL_EASING,
+      }}
       className={`
         ${sizeClasses[size]}
         ${variantClasses[variant]}
