@@ -8,13 +8,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
-interface TerminalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface TerminalButtonProps {
   children: ReactNode
   variant?: 'default' | 'primary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   withGlow?: boolean
+  className?: string
+  onClick?: () => void
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
 export function TerminalButton({
@@ -23,7 +27,9 @@ export function TerminalButton({
   size = 'md',
   withGlow = false,
   className = '',
-  ...props
+  onClick,
+  disabled = false,
+  type = 'button',
 }: TerminalButtonProps) {
   // Size classes
   const sizeClasses = {
@@ -77,7 +83,9 @@ export function TerminalButton({
         disabled:cursor-not-allowed
         ${className}
       `}
-      {...props}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
     >
       {children}
     </motion.button>
