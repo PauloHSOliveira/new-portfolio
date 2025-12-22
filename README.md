@@ -6,11 +6,20 @@ A modern, full-stack portfolio website built with Next.js 16, React 19, and Type
 
 **New to this project?** Start here: **[START_HERE.md](./START_HERE.md)**
 
+### Prerequisites
+
+- **Node.js** 18+ (recommended: use the version specified in `.nvmrc`)
+- **pnpm** 10.0.0+ (install with `npm install -g pnpm`)
+
 ### Development
 
 ```bash
 # Install dependencies
 pnpm install
+
+# Setup environment variables (optional for basic development)
+cp .env.example .env.local
+# Edit .env.local with your API keys if needed
 
 # Run development server
 pnpm dev
@@ -104,9 +113,16 @@ pnpm clean        # Clean build artifacts
 ### Code Quality
 
 This project uses:
-- **Biome** for linting and formatting
-- **TypeScript** in strict mode
-- **Turbo** for build optimization
+- **Biome** for linting and formatting (`biome.json`)
+- **TypeScript** in strict mode with comprehensive type checking
+- **Turbo** for build optimization (`turbo.json`)
+
+Run quality checks before committing:
+```bash
+pnpm lint        # Check for linting issues
+pnpm type-check  # Verify TypeScript types
+pnpm format      # Format code automatically
+```
 
 ## 📦 Project Structure
 
