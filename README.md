@@ -8,7 +8,7 @@ A modern, full-stack portfolio website built with Next.js 16, React 19, and Type
 
 ### Prerequisites
 
-- **Node.js** 18+ (recommended: use the version specified in `.nvmrc`)
+- **Node.js** 20+ (recommended: use the version specified in `.nvmrc` - 20.17.0)
 - **pnpm** 10.0.0+ (install with `npm install -g pnpm`)
 
 ### Development
