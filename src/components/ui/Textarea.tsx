@@ -43,7 +43,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const hasError = !!error
     const textareaId =
-      id || `textarea-${Math.random().toString(36).substr(2, 9)}`
+      id || `textarea-${Math.random().toString(36).substring(2, 11)}`
 
     const variantClasses = {
       default: 'bg-terminal-bg-darker',

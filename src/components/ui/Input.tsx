@@ -38,7 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   ref
 ) {
   const hasError = !!error
-  const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`
+  const inputId = id || `input-${Math.random().toString(36).substring(2, 11)}`
 
   const variantClasses = {
     default: 'bg-terminal-bg-darker',

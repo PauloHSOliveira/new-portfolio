@@ -45,7 +45,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     ref
   ) {
     const hasError = !!error
-    const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`
+    const selectId =
+      id || `select-${Math.random().toString(36).substring(2, 11)}`
 
     const variantClasses = {
       default: 'bg-terminal-bg-darker',
