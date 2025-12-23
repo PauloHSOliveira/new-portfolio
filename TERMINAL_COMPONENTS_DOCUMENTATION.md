@@ -1,30 +1,92 @@
 # Terminal Components Documentation
 
-**Version:** 2.0  
+**Version:** 2.1  
 **Last Updated:** December 2024  
-**Purpose:** Complete inventory of all terminal components requiring theme color application
+**Purpose:** Complete inventory of all terminal components and UI component library
 
 ---
 
 ## 📋 Table of Contents
 
 1. [Overview](#overview)
-2. [Component Inventory](#component-inventory)
-3. [Component Details](#component-details)
-4. [Theme Application Checklist](#theme-application-checklist)
-5. [Migration Guide](#migration-guide)
+2. [UI Component Library](#ui-component-library)
+3. [Component Inventory](#component-inventory)
+4. [Component Details](#component-details)
+5. [Theme Application Checklist](#theme-application-checklist)
+6. [Migration Guide](#migration-guide)
 
 ---
 
 ## 🎯 Overview
 
-This document provides a comprehensive list of all components, elements, tabs, cards, texts, and UI elements within the terminal interface that need to have theme colors applied. The goal is to ensure 100% theme coverage across all components.
+This document provides a comprehensive list of all components, elements, tabs, cards, texts, and UI elements within the terminal interface. It includes the base UI component library that can be used throughout the application.
 
 ### Current Status
 
 - ✅ Theme system implemented
-- ⚠️ Some components still use hardcoded colors
-- 🔄 Migration in progress
+- ✅ Base UI component library created
+- ✅ All components support multiple themes
+- 🔄 Component documentation complete
+
+---
+
+## 🧩 UI Component Library
+
+The terminal portfolio now includes a complete set of base UI components with unique terminal aesthetics. All components support the 7 terminal themes and follow the design system documented in `DESIGN_SYSTEM.md`.
+
+### Available Components
+
+Located in `src/components/ui/`:
+
+1. **Button** - Terminal-themed button with variants and loading states
+2. **Card** - Flexible card component with header, content, and footer sections
+3. **Input** - Text input field with validation states and icons
+4. **Textarea** - Multi-line text input with auto-resize option
+5. **Select** - Dropdown select with custom styling
+6. **Checkbox** - Checkbox with custom terminal styling
+7. **Radio** - Radio button with RadioGroup wrapper
+
+### Component Features
+
+All UI components include:
+- ✅ Multiple variants (primary, secondary, outline, ghost, etc.)
+- ✅ Size options (sm, md, lg)
+- ✅ Validation states (error, success)
+- ✅ Loading states (where applicable)
+- ✅ Icons support (left and right icons)
+- ✅ Disabled states
+- ✅ Custom hover effects
+- ✅ Terminal-specific transitions
+- ✅ Theme color integration via CSS variables
+- ✅ Accessibility features (ARIA labels, keyboard navigation)
+- ✅ TypeScript support with full type definitions
+- ✅ Framer Motion animations
+
+### Usage Example
+
+```tsx
+import { Button, Card, CardHeader, CardContent, Input } from '@/components/ui'
+
+function MyComponent() {
+  return (
+    <Card variant="elevated" withGlow>
+      <CardHeader>
+        <h2>Terminal Form</h2>
+      </CardHeader>
+      <CardContent>
+        <Input 
+          label="Username" 
+          placeholder="Enter username"
+          leftIcon={<span>@</span>}
+        />
+        <Button variant="primary" size="lg">
+          Submit
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+```
 
 ---
 
