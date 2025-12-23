@@ -7,13 +7,18 @@
 
 'use client'
 
-import { useThemeAtom, useSidebar, useModal, useSearch } from '@/hooks'
+import {
+  useModal,
+  useSearch,
+  useSidebar,
+  useThemeAtom,
+} from '@/hooks/index'
 
 /**
  * Example 1: Theme Management
  */
 export function ThemeSwitcherExample() {
-  const { theme, setTheme, setThemeWithTransition, isTransitioning } = useThemeAtom()
+  const { theme, setThemeWithTransition, isTransitioning } = useThemeAtom()
 
   const themes = [
     'matrix',
@@ -70,7 +75,9 @@ export function ModalExample() {
     <div>
       <h3>Modal Status: {isOpen ? 'Open' : 'Closed'}</h3>
       {isOpen && <p>Modal Type: {modalType}</p>}
-      {isOpen && modalData && <p>Modal Data: {JSON.stringify(modalData)}</p>}
+      {isOpen && modalData ? (
+        <p>Modal Data: {JSON.stringify(modalData)}</p>
+      ) : null}
       
       <div>
         <button onClick={() => openModal('contact')}>

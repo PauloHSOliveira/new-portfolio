@@ -5,7 +5,7 @@
  * making it easier to import multiple atoms in components.
  *
  * @example
- * import { themeAtom, sidebarOpenAtom } from '@/stores'
+ * import { themeAtom, sidebarOpenAtom } from '@/stores/index'
  */
 
 // Theme atoms and types

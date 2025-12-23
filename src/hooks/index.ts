@@ -5,7 +5,7 @@
  * making it easier to import multiple hooks in components.
  *
  * @example
- * import { useThemeAtom, useSidebar } from '@/hooks'
+ * import { useThemeAtom, useSidebar } from '@/hooks/index'
  */
 
 // Theme hooks
