@@ -14,11 +14,16 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
+  CardSkeleton,
   Checkbox,
+  ImageSkeleton,
   Input,
+  ListSkeleton,
+  LoadingSpinner,
   Radio,
   RadioGroup,
   Select,
+  TextSkeleton,
   Textarea,
 } from './index'
 
@@ -331,6 +336,123 @@ export function ComponentShowcase() {
                 </Button>
               </div>
             </form>
+          </CardContent>
+        </Card>
+
+        {/* Loading States Section */}
+        <Card className="mt-8">
+          <CardHeader>
+            <h2 className="text-terminal-xl text-terminal-green">
+              Loading States & Skeletons
+            </h2>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              {/* Loading Spinner */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Loading Spinner
+                </h3>
+                <div className="flex items-center gap-6">
+                  <LoadingSpinner size="sm" />
+                  <LoadingSpinner size="md" />
+                  <LoadingSpinner size="lg" />
+                </div>
+              </div>
+
+              {/* Text Skeletons */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Text Skeletons
+                </h3>
+                <div className="space-y-4">
+                  <TextSkeleton variant="heading" />
+                  <TextSkeleton variant="paragraph" lines={3} />
+                  <TextSkeleton variant="line" />
+                </div>
+              </div>
+
+              {/* Image Skeletons */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Image Skeletons
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Square
+                    </p>
+                    <ImageSkeleton aspectRatio="square" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Video
+                    </p>
+                    <ImageSkeleton aspectRatio="video" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Wide
+                    </p>
+                    <ImageSkeleton aspectRatio="wide" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Portrait
+                    </p>
+                    <ImageSkeleton aspectRatio="portrait" />
+                  </div>
+                </div>
+              </div>
+
+              {/* List Skeleton */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  List Skeleton
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Without Icons
+                    </p>
+                    <ListSkeleton items={4} />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Icons
+                    </p>
+                    <ListSkeleton items={4} showIcon />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Skeleton */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Card Skeletons
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Basic
+                    </p>
+                    <CardSkeleton />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Header
+                    </p>
+                    <CardSkeleton showHeader />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Header & Footer
+                    </p>
+                    <CardSkeleton showHeader showFooter />
+                  </div>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
