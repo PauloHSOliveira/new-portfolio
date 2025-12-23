@@ -7,19 +7,34 @@
 
 'use client'
 
+import { Code, Database, Globe, Rocket, Server, Sparkles } from 'lucide-react'
 import { useState } from 'react'
+import {
+  BlogCard,
+  Container,
+  Hero,
+  ProjectCard,
+  Section,
+  SkillCard,
+  TestimonialCard,
+} from '@/components/features'
 import {
   Button,
   Card,
   CardContent,
   CardFooter,
   CardHeader,
+  CardSkeleton,
   Checkbox,
+  ImageSkeleton,
   Input,
+  ListSkeleton,
+  LoadingSpinner,
   Radio,
   RadioGroup,
   Select,
   Textarea,
+  TextSkeleton,
 } from './index'
 
 export function ComponentShowcase() {
@@ -333,6 +348,328 @@ export function ComponentShowcase() {
             </form>
           </CardContent>
         </Card>
+
+        {/* Loading States Section */}
+        <Card className="mt-8">
+          <CardHeader>
+            <h2 className="text-terminal-xl text-terminal-green">
+              Loading States & Skeletons
+            </h2>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              {/* Loading Spinner */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Loading Spinner
+                </h3>
+                <div className="flex items-center gap-6">
+                  <LoadingSpinner size="sm" />
+                  <LoadingSpinner size="md" />
+                  <LoadingSpinner size="lg" />
+                </div>
+              </div>
+
+              {/* Text Skeletons */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Text Skeletons
+                </h3>
+                <div className="space-y-4">
+                  <TextSkeleton variant="heading" />
+                  <TextSkeleton variant="paragraph" lines={3} />
+                  <TextSkeleton variant="line" />
+                </div>
+              </div>
+
+              {/* Image Skeletons */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Image Skeletons
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Square
+                    </p>
+                    <ImageSkeleton aspectRatio="square" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Video
+                    </p>
+                    <ImageSkeleton aspectRatio="video" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Wide
+                    </p>
+                    <ImageSkeleton aspectRatio="wide" />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Portrait
+                    </p>
+                    <ImageSkeleton aspectRatio="portrait" />
+                  </div>
+                </div>
+              </div>
+
+              {/* List Skeleton */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  List Skeleton
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Without Icons
+                    </p>
+                    <ListSkeleton items={4} />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Icons
+                    </p>
+                    <ListSkeleton items={4} showIcon />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Skeleton */}
+              <div>
+                <h3 className="text-terminal-sm text-terminal-text-secondary mb-4 uppercase">
+                  Card Skeletons
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      Basic
+                    </p>
+                    <CardSkeleton />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Header
+                    </p>
+                    <CardSkeleton showHeader />
+                  </div>
+                  <div>
+                    <p className="text-terminal-xs text-terminal-text-tertiary mb-2">
+                      With Header & Footer
+                    </p>
+                    <CardSkeleton showHeader showFooter />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Feature Components Section */}
+        <div className="mt-16 pt-16 border-t border-terminal-border">
+          <h1 className="text-terminal-2xl text-terminal-green mb-8">
+            Feature Components Showcase
+          </h1>
+
+          {/* Hero Component */}
+          <div className="mb-12">
+            <h2 className="text-terminal-xl text-terminal-green mb-4">
+              Hero Component
+            </h2>
+            <Hero
+              title="Build. Ship. Scale."
+              subtitle="Terminal Portfolio v2.3"
+              description="Crafting innovative solutions with modern technologies. Specialized in distributed systems, AI integration, and high-performance architectures."
+              primaryCTA={{
+                label: 'View Projects',
+                onClick: () => console.log('Primary CTA clicked'),
+              }}
+              secondaryCTA={{
+                label: 'Get in Touch',
+                onClick: () => console.log('Secondary CTA clicked'),
+              }}
+            >
+              <div className="flex gap-4 justify-center text-terminal-text-dim text-terminal-sm flex-wrap">
+                <span>6+ Years Experience</span>
+                <span>•</span>
+                <span>15+ Projects Delivered</span>
+                <span>•</span>
+                <span>100% Client Satisfaction</span>
+              </div>
+            </Hero>
+          </div>
+
+          {/* Section & Container Components */}
+          <Section variant="bordered" spacing="lg" className="mb-12">
+            <Container size="lg">
+              <h2 className="text-terminal-xl text-terminal-green mb-4">
+                Section & Container Components
+              </h2>
+              <p className="text-terminal-text-secondary">
+                This content is wrapped in a Section (bordered variant) and
+                Container (lg size) component. Sections provide consistent
+                spacing and background variants, while Containers control
+                max-width and centering.
+              </p>
+            </Container>
+          </Section>
+
+          {/* Project Cards */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="text-terminal-xl text-terminal-green">
+                Project Cards
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <ProjectCard
+                  title="Paglua"
+                  description="Next-generation fintech infrastructure enabling seamless payment processing at scale."
+                  techStack={['Node.js', 'Go', 'PostgreSQL', 'Redis']}
+                  status="Production"
+                  icon={<Database size={24} className="text-terminal-green" />}
+                  githubUrl="https://github.com/example/paglua"
+                  liveUrl="https://paglua.com"
+                />
+
+                <ProjectCard
+                  title="Marcaai"
+                  description="AI-powered trademark automation system for intellectual property management."
+                  techStack={['Python', 'TensorFlow', 'FastAPI', 'React']}
+                  status="Beta"
+                  icon={<Sparkles size={24} className="text-terminal-green" />}
+                  githubUrl="https://github.com/example/marcaai"
+                />
+
+                <ProjectCard
+                  title="Portfolio V2"
+                  description="Modern terminal-themed portfolio built with Next.js and unique animations."
+                  techStack={['Next.js', 'TypeScript', 'Tailwind']}
+                  status="Active"
+                  icon={<Globe size={24} className="text-terminal-green" />}
+                  githubUrl="https://github.com/PauloHSOliveira/new-portfolio"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Blog Cards */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="text-terminal-xl text-terminal-green">
+                Blog Cards
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <BlogCard
+                  title="Building Scalable Systems"
+                  excerpt="Learn how to design and implement distributed systems that scale efficiently."
+                  date="2024-01-15"
+                  readTime="8 min read"
+                  tags={['Architecture', 'Scalability', 'Systems']}
+                  href="/blog/building-scalable-systems"
+                  imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=Blog+Post"
+                />
+
+                <BlogCard
+                  title="Modern DevOps Practices"
+                  excerpt="Exploring CI/CD pipelines, containerization, and infrastructure as code."
+                  date="2024-01-10"
+                  readTime="6 min read"
+                  tags={['DevOps', 'Docker', 'CI/CD']}
+                  href="/blog/modern-devops"
+                  imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=DevOps"
+                />
+
+                <BlogCard
+                  title="AI Integration Guide"
+                  excerpt="Step-by-step guide to integrating AI models into production applications."
+                  date="2024-01-05"
+                  readTime="10 min read"
+                  tags={['AI', 'Machine Learning', 'Integration']}
+                  href="/blog/ai-integration"
+                  imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=AI+Guide"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Skill Cards */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="text-terminal-xl text-terminal-green">
+                Skill Cards
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <SkillCard
+                  title="Node.js"
+                  category="Backend"
+                  level="expert"
+                  icon={<Server size={24} />}
+                  description="Building high-performance APIs and microservices"
+                />
+
+                <SkillCard
+                  title="React"
+                  category="Frontend"
+                  level="advanced"
+                  icon={<Code size={24} />}
+                  description="Creating modern, responsive web applications"
+                />
+
+                <SkillCard
+                  title="PostgreSQL"
+                  category="Database"
+                  level="advanced"
+                  icon={<Database size={24} />}
+                  description="Database design and optimization"
+                />
+
+                <SkillCard
+                  title="Docker"
+                  category="DevOps"
+                  level="advanced"
+                  icon={<Rocket size={24} />}
+                  description="Containerization and orchestration"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Testimonial Cards */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="text-terminal-xl text-terminal-green">
+                Testimonial Cards
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <TestimonialCard
+                  quote="Paulo's expertise in distributed systems and fintech was instrumental in scaling our payment infrastructure. His technical leadership and problem-solving skills are exceptional."
+                  author="Jane Smith"
+                  authorTitle="CTO"
+                  authorCompany="TechCorp"
+                  authorImage="https://placehold.co/100x100/0a0a0a/00ff00?text=JS"
+                  rating={5}
+                />
+
+                <TestimonialCard
+                  quote="Working with Paulo on our AI integration project was a game-changer. His ability to translate complex requirements into elegant solutions is remarkable."
+                  author="John Doe"
+                  authorTitle="Product Manager"
+                  authorCompany="InnovateLab"
+                  rating={5}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )

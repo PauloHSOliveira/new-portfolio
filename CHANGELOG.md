@@ -5,6 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-12-23
+
+### Phase 2.3: Loading States - Skeleton Components and Suspense
+
+#### Added
+
+- **Skeleton Components** (`src/components/ui/Skeleton.tsx`)
+  - Base `Skeleton` component with pulse animation matching terminal aesthetic
+  - `CardSkeleton` component with optional header and footer placeholders
+  - `TextSkeleton` component with variants: heading, paragraph, and line
+  - `ImageSkeleton` component with multiple aspect ratio options (square, video, wide, portrait)
+  - `ListSkeleton` component for list item placeholders with optional icon support
+  - `LoadingSpinner` component with three sizes (sm, md, lg) and terminal theme
+  - All components use terminal color variables for consistent theming
+  - Proper ARIA labels and accessibility attributes
+  - TypeScript interfaces exported from `src/components/ui/index.ts`
+
+- **Loading States for Route Groups**
+  - `app/(home)/loading.tsx` - Home page loading state with full terminal interface skeleton
+  - `app/(content)/blog/loading.tsx` - Blog listing page with article card skeletons
+  - `app/(content)/projects/loading.tsx` - Projects page with project card skeletons and featured project placeholder
+  - All loading states match actual content layout to prevent layout shift
+  - Smooth skeleton animations with terminal-themed colors
+
+- **Suspense Boundaries**
+  - Added `Suspense` wrapper in root layout (`app/layout.tsx`)
+  - Wraps children with null fallback for seamless transitions
+  - Prevents layout shift during page transitions
+
+#### Changed
+
+- Updated `src/components/ui/index.ts` to export all skeleton component types and components
+
+#### Technical Details
+
+- All skeleton components use CSS custom properties for theming
+- Animations use `animate-pulse` for consistent loading indication
+- Loading states are optimized for performance with proper key management
+- Components are fully typed with TypeScript interfaces
+- Follows existing terminal aesthetic with border colors and spacing
+
 ## [2.2.0] - 2025-12-23
 
 ### Phase 2.2: Signature Custom Components - Hero, Section, and Card Variants
