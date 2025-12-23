@@ -1,5 +1,6 @@
 'use client'
 
+import { Palette } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/app/providers'
 
@@ -62,23 +63,12 @@ export default function ThemeSelector() {
         aria-label="Select theme"
         title={`Current: ${currentTheme.name}`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
+        <Palette
           className="w-5 h-5"
           style={{ color: currentTheme.color }}
           role="img"
           aria-label="Theme palette icon"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88a.75.75 0 00.22-.53v-.192a.75.75 0 01.75-.75h.526c.69 0 1.35.361 1.717.958l.75 1.217a.75.75 0 001.278-.783l-.75-1.217A3.75 3.75 0 0014.576 2.5h-.526A2.25 2.25 0 0011.8 4.75v.192c0 .398-.158.78-.439 1.061l-2.88 2.88z"
-          />
-        </svg>
+        />
       </button>
 
       {isOpen && (

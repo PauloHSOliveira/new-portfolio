@@ -29,6 +29,12 @@
   --glow-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
   --glow-shadow-strong: 0 0 30px rgba(0, 255, 0, 0.7);
   
+  /* Scrollbar */
+  --scrollbar-track: #050505;
+  --scrollbar-thumb: #1a1a1a;
+  --scrollbar-thumb-hover: #333333;
+  --scrollbar-thumb-active: #00ff00;
+  
   /* Spacing */
   --terminal-spacing: 0.5rem;
   --terminal-spacing-sm: 0.75rem;
@@ -67,6 +73,11 @@
   --scanline-color: rgba(80, 250, 123, 0.02);
   --glow-shadow: 0 0 20px rgba(80, 250, 123, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(80, 250, 123, 0.5);
+  
+  --scrollbar-track: #1e1f29;
+  --scrollbar-thumb: #44475a;
+  --scrollbar-thumb-hover: #6272a4;
+  --scrollbar-thumb-active: #50fa7b;
 }
 
 /* Theme: Monokai - Improved Contrast */
@@ -95,6 +106,11 @@
   --scanline-color: rgba(166, 226, 46, 0.02);
   --glow-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(166, 226, 46, 0.5);
+  
+  --scrollbar-track: #1e1f1c;
+  --scrollbar-thumb: #49483e;
+  --scrollbar-thumb-hover: #75715e;
+  --scrollbar-thumb-active: #a6e22e;
 }
 
 /* Theme: Nord - Improved Contrast */
@@ -123,6 +139,11 @@
   --scanline-color: rgba(163, 190, 140, 0.02);
   --glow-shadow: 0 0 20px rgba(163, 190, 140, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(163, 190, 140, 0.5);
+  
+  --scrollbar-track: #242933;
+  --scrollbar-thumb: #434c5e;
+  --scrollbar-thumb-hover: #4c566a;
+  --scrollbar-thumb-active: #a3be8c;
 }
 
 /* Theme: Solarized Dark - Improved Contrast */
@@ -151,6 +172,11 @@
   --scanline-color: rgba(133, 153, 0, 0.02);
   --glow-shadow: 0 0 20px rgba(133, 153, 0, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(133, 153, 0, 0.5);
+  
+  --scrollbar-track: #00212b;
+  --scrollbar-thumb: #073642;
+  --scrollbar-thumb-hover: #586e75;
+  --scrollbar-thumb-active: #859900;
 }
 
 /* Theme: One Dark - Improved Contrast */
@@ -179,6 +205,11 @@
   --scanline-color: rgba(152, 195, 121, 0.02);
   --glow-shadow: 0 0 20px rgba(152, 195, 121, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(152, 195, 121, 0.5);
+  
+  --scrollbar-track: #21252b;
+  --scrollbar-thumb: #3e4451;
+  --scrollbar-thumb-hover: #4b5263;
+  --scrollbar-thumb-active: #98c379;
 }
 
 /* Theme: Ocean - Improved Contrast */
@@ -207,6 +238,11 @@
   --scanline-color: rgba(0, 212, 255, 0.03);
   --glow-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
   --glow-shadow-strong: 0 0 30px rgba(0, 212, 255, 0.7);
+  
+  --scrollbar-track: #001420;
+  --scrollbar-thumb: #003657;
+  --scrollbar-thumb-hover: #004d7a;
+  --scrollbar-thumb-active: #00d4ff;
 }
 
 @layer base {
@@ -321,10 +357,15 @@
 
 ::selection {
   background-color: var(--terminal-green);
-  color: #0a0a0a;
+  color: var(--terminal-bg);
 }
 
 /* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
@@ -334,12 +375,18 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #00ff00;
+  background: var(--scrollbar-thumb-active);
+}
+
+/* Global Scrollbar */
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
@@ -347,17 +394,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
-  border: 2px solid #050505;
+  border: 2px solid var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333;
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
 }
 
 /* Article Content Styles */
@@ -384,8 +435,8 @@
 }
 
 .article-content pre {
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
+  background: var(--terminal-bg-light);
+  border: 1px solid var(--terminal-border);
   padding: 1.5rem;
   border-radius: 4px;
   margin: 2rem 0;
@@ -428,7 +479,7 @@
 
 .article-content a:hover {
   background: var(--terminal-green);
-  color: #0a0a0a;
+  color: var(--terminal-bg);
 }
 
 .hljs {

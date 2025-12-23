@@ -151,7 +151,7 @@ export default function Home() {
         <div className="flex-1 overflow-y-auto p-6 md:p-12 scroll-smooth custom-scrollbar relative">
           {/* Subtle vignette for focus */}
           <div
-            className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.4)]"
+            className="fixed inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.4)]"
             aria-hidden="true"
           ></div>
 
