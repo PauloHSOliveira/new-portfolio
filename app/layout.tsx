@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Suspense } from 'react'
 import './globals.css'
 import Providers from './providers'
 
@@ -110,7 +111,9 @@ export default function RootLayout({
       <body className="font-mono">
         <div className="crt-overlay" aria-hidden="true"></div>
         <div className="crt-flicker" aria-hidden="true"></div>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Suspense fallback={null}>{children}</Suspense>
+        </Providers>
       </body>
     </html>
   )
