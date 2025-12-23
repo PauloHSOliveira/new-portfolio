@@ -5,6 +5,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2025-12-23
+
+### Phase 2.4: Error Handling - Error Boundaries and Error Pages
+
+#### Added
+
+- **ErrorState Component** (`src/components/ui/ErrorState.tsx`)
+  - Terminal-themed error display component with multiple error types (404, 500, network, API, generic)
+  - Configurable error icons with Lucide React icons (AlertTriangle, XCircle, WifiOff)
+  - Custom error titles and messages with fallback to predefined configurations
+  - Retry button with callback support for recoverable errors
+  - Home link for easy navigation back to main page
+  - Terminal-styled error code display at bottom
+  - Fully typed TypeScript interface exported from `src/components/ui/index.ts`
+  - Responsive layout with centered content and proper spacing
+
+- **ErrorBoundary Component** (`src/components/ErrorBoundary.tsx`)
+  - React Error Boundary class component to catch rendering errors
+  - Custom fallback UI support with optional render prop
+  - Error logging to console with full stack trace
+  - Custom error handler callback support
+  - Reset functionality to recover from errors
+  - Integration with ErrorState component for consistent error display
+  - TypeScript typed with proper Error and ErrorInfo types
+
+- **Error Pages for Route Groups**
+  - `app/error.tsx` - Global error page for application-wide errors
+    - Client component with reset functionality
+    - Terminal header with window controls
+    - Development-only error details section with stack trace
+    - Error digest display for debugging
+  - `app/(content)/blog/error.tsx` - Blog listing page errors
+    - Specialized messaging for blog API failures
+    - Terminal header matching blog context
+  - `app/(content)/blog/[slug]/error.tsx` - Individual blog post errors
+    - Specific error handling for missing or unavailable posts
+    - Helpful messaging about potential causes
+
+- **404 Not Found Page** (`app/not-found.tsx`)
+  - Friendly terminal-themed 404 page with FileQuestion icon
+  - Quick links section with navigation to:
+    - Home page
+    - Projects section
+    - GitHub section  
+    - Contact section
+  - All links styled with terminal aesthetic and hover effects
+  - Helpful tip section with terminal command styling
+  - No retry button (not applicable for 404s)
+  - Responsive layout with proper spacing
+
+#### Changed
+
+- Updated `src/components/ui/index.ts` to export ErrorState component and types
+
+#### Technical Details
+
+- All error pages are client components (`'use client'`) as required by Next.js
+- Error boundaries follow React 18 best practices
+- Error logging uses console.error for development debugging
+- Components use terminal color variables for consistent theming
+- All error pages include terminal header with window controls
+- Error states are accessible with proper semantic HTML
+- Icons from lucide-react library matching existing component patterns
+- Retry functionality leverages Next.js error boundary reset capability
+- Components are fully typed with TypeScript interfaces
+
 ## [2.3.0] - 2025-12-23
 
 ### Phase 2.3: Loading States - Skeleton Components and Suspense
