@@ -168,12 +168,7 @@ const Navigation: React.FC<NavigationProps> = ({
               {/* Menu Items */}
               <ul className="space-y-4">
                 {links.map((link, index) => (
-                  <li
-                    key={link.id}
-                    style={{
-                      animation: `fadeInUp 0.3s ease-out ${index * 0.05}s both`,
-                    }}
-                  >
+                  <li key={link.id} className={`menu-item-${index}`}>
                     <button
                       type="button"
                       onClick={() => handleNavClick(link.id)}
