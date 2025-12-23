@@ -16,7 +16,7 @@ import {
 import { marked } from 'marked'
 import Image from 'next/image'
 import type React from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   fetchAllGitHubData,
   fetchGitHubActivityForYear,
@@ -35,12 +35,83 @@ const PINNED_NAMES = [
 const TechIcon = ({
   name,
   className,
-  color = '00ff00',
+  color,
+  useThemeColor = true,
 }: {
   name: string
   className?: string
   color?: string
+  useThemeColor?: boolean
 }) => {
+  const [iconColor, setIconColor] = useState<string>('00ff00')
+  const [glowColor, setGlowColor] = useState<string>('rgba(0,255,0,0.1)')
+
+  useEffect(() => {
+    const updateColor = () => {
+      if (useThemeColor && !color) {
+        try {
+          const computedStyle = getComputedStyle(document.documentElement)
+          const themeColor = computedStyle
+            .getPropertyValue('--terminal-green')
+            .trim()
+
+          if (!themeColor) {
+            return // CSS variable not available yet
+          }
+
+          // Convert hex color (#00ff00) to hex without # (00ff00)
+          const hexWithoutHash = themeColor.replace('#', '').replace(/\s/g, '')
+
+          // Validate hex color (should be 6 characters)
+          if (
+            hexWithoutHash.length === 6 &&
+            /^[0-9A-Fa-f]{6}$/.test(hexWithoutHash)
+          ) {
+            setIconColor(hexWithoutHash)
+
+            // Convert hex to rgba for the glow effect
+            const r = parseInt(hexWithoutHash.substring(0, 2), 16)
+            const g = parseInt(hexWithoutHash.substring(2, 4), 16)
+            const b = parseInt(hexWithoutHash.substring(4, 6), 16)
+            setGlowColor(`rgba(${r},${g},${b},0.1)`)
+          }
+        } catch (error) {
+          // Fallback to default if error occurs
+          console.warn('Failed to read theme color:', error)
+        }
+      } else if (color) {
+        const cleanColor = color.replace('#', '').replace(/\s/g, '')
+        if (cleanColor.length === 6 && /^[0-9A-Fa-f]{6}$/.test(cleanColor)) {
+          setIconColor(cleanColor)
+
+          // Convert hex to rgba for the glow effect
+          const r = parseInt(cleanColor.substring(0, 2), 16)
+          const g = parseInt(cleanColor.substring(2, 4), 16)
+          const b = parseInt(cleanColor.substring(4, 6), 16)
+          setGlowColor(`rgba(${r},${g},${b},0.1)`)
+        }
+      }
+    }
+
+    // Initial update with a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(updateColor, 0)
+
+    // Listen for theme changes
+    const observer = new MutationObserver(() => {
+      // Small delay to ensure CSS variables are updated
+      setTimeout(updateColor, 10)
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => {
+      clearTimeout(timeoutId)
+      observer.disconnect()
+    }
+  }, [color, useThemeColor])
+
   const n = name.toLowerCase().trim()
   const mappings: Record<string, string> = {
     typescript: 'typescript',
@@ -86,14 +157,14 @@ const TechIcon = ({
       aria-hidden="true"
     >
       <Image
-        src={`https://cdn.simpleicons.org/${slug}/${color}`}
+        src={`https://cdn.simpleicons.org/${slug}/${iconColor}`}
         alt={`${name} icon`}
         width={24}
         height={24}
         unoptimized
         loading="lazy"
         className="w-full h-full object-contain"
-        style={{ filter: 'drop-shadow(0 0 2px rgba(0,255,0,0.1))' }}
+        style={{ filter: `drop-shadow(0 0 2px ${glowColor})` }}
         onError={(e) => {
           ;(e.target as HTMLImageElement).style.display = 'none'
         }}
@@ -107,15 +178,16 @@ const TechBadge: React.FC<{ name: string; isTopic?: boolean }> = ({
   isTopic = false,
 }) => (
   <div
-    className={`flex items-center gap-2 px-2 py-0.5 border transition-all shrink-0 ${isTopic ? 'bg-[#0a0a0a] border-[#222]' : 'bg-[#111] border-[#222] group-hover:border-[#00ff00]/50'}`}
+    className={`flex items-center gap-2 px-2 py-0.5 border transition-all shrink-0 ${isTopic ? 'bg-[var(--terminal-bg)] border-[var(--terminal-border)]' : 'bg-[var(--terminal-bg-dark)] border-[var(--terminal-border)] group-hover:border-[var(--terminal-green)]/50'}`}
   >
     <TechIcon
       name={name}
       className="w-3 h-3"
-      color={isTopic ? '444444' : '00ff00'}
+      color={isTopic ? '444444' : undefined}
+      useThemeColor={!isTopic}
     />
     <span
-      className={`text-[8px] font-bold uppercase tracking-tight whitespace-nowrap ${isTopic ? 'text-[#555]' : 'text-[#aaa] group-hover:text-[#00ff00]'}`}
+      className={`text-[8px] font-bold uppercase tracking-tight whitespace-nowrap ${isTopic ? 'text-[var(--terminal-text-dim)]' : 'text-[var(--terminal-text-secondary)] group-hover:text-[var(--terminal-green)]'}`}
     >
       {name}
     </span>
@@ -125,6 +197,81 @@ const TechBadge: React.FC<{ name: string; isTopic?: boolean }> = ({
 const GitHub: React.FC = () => {
   const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null)
   const [selectedYear, setSelectedYear] = useState<number | 'last12'>('last12')
+  const [themeGreen, setThemeGreen] = useState<string>('#00ff00')
+
+  // Get theme color and create contribution colors based on it
+  useEffect(() => {
+    const updateThemeColor = () => {
+      const computedStyle = getComputedStyle(document.documentElement)
+      const themeColor = computedStyle
+        .getPropertyValue('--terminal-green')
+        .trim()
+      if (themeColor) {
+        setThemeGreen(themeColor)
+      }
+    }
+
+    updateThemeColor()
+
+    const observer = new MutationObserver(() => {
+      setTimeout(updateThemeColor, 10)
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Convert hex to RGB
+  const hexToRgb = (hex: string): [number, number, number] | null => {
+    const cleanHex = hex.replace('#', '')
+    if (cleanHex.length !== 6) return null
+    const r = parseInt(cleanHex.substring(0, 2), 16)
+    const g = parseInt(cleanHex.substring(2, 4), 16)
+    const b = parseInt(cleanHex.substring(4, 6), 16)
+    return [r, g, b]
+  }
+
+  // Convert RGB to hex
+  const rgbToHex = (r: number, g: number, b: number): string => {
+    return `#${[r, g, b]
+      .map((x) => {
+        const hex = x.toString(16)
+        return hex.length === 1 ? `0${hex}` : hex
+      })
+      .join('')}`
+  }
+
+  // Get theme-aware contribution color based on count
+  const getContributionColor = (count: number): string => {
+    if (count === 0) {
+      return '#111' // Dark background color
+    }
+
+    const rgb = hexToRgb(themeGreen)
+    if (!rgb) return '#00ff00' // Fallback
+
+    const [r, g, b] = rgb
+    const bgDark = '#111111'
+    const bgRgb = hexToRgb(bgDark) || [17, 17, 17]
+
+    // Create intensity levels (0-4) based on contribution count
+    let intensity = 0
+    if (count >= 20) intensity = 4
+    else if (count >= 10) intensity = 3
+    else if (count >= 5) intensity = 2
+    else intensity = 1
+
+    // Interpolate between background and theme color
+    const factor = intensity / 4
+    const newR = Math.round(bgRgb[0] + (r - bgRgb[0]) * factor)
+    const newG = Math.round(bgRgb[1] + (g - bgRgb[1]) * factor)
+    const newB = Math.round(bgRgb[2] + (b - bgRgb[2]) * factor)
+
+    return rgbToHex(newR, newG, newB)
+  }
 
   const { data: mainData, isLoading: isLoadingMain } = useQuery({
     queryKey: ['github-all-data'],
@@ -191,26 +338,26 @@ const GitHub: React.FC = () => {
       type="button"
       onClick={() => setSelectedRepo(repo)}
       aria-label={`View detailed statistics for repository ${repo.name}`}
-      className={`text-left bg-[#0f0f0f] border border-[#1a1a1a] p-5 transition-all group relative overflow-hidden h-full flex flex-col justify-between hover:border-[#00ff00] hover:bg-[#0c0c0c] ${featured ? 'border-t-2 border-t-[#00ff00]/60 shadow-[0_4px_20px_rgba(0,255,0,0.05)]' : ''} z-10`}
+      className="text-left bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-5 transition-all group relative overflow-hidden h-full flex flex-col justify-between hover:border-[var(--terminal-green)] hover:bg-[var(--terminal-bg)] z-10"
     >
       <div
         className="flex justify-between items-start mb-3 relative z-20"
         aria-hidden="true"
       >
-        <div className="text-[7px] font-black text-[#222] uppercase tracking-widest group-hover:text-[#00ff00]">
+        <div className="text-[7px] font-black text-[var(--terminal-text-dim)] uppercase tracking-widest group-hover:text-[var(--terminal-green)]">
           NODE_{repo.is_fork ? 'FORK' : 'SOURCE'}
         </div>
         {featured && (
-          <div className="flex items-center gap-1 px-1.5 py-0.5 bg-[#00ff00] text-[#0a0a0a] text-[7px] font-black uppercase tracking-widest ml-auto">
+          <div className="flex items-center gap-1 px-1.5 py-0.5 bg-[var(--terminal-green)] text-[var(--terminal-bg)] text-[7px] font-black uppercase tracking-widest ml-auto">
             PINNED
           </div>
         )}
       </div>
       <div className="space-y-4 flex-grow relative z-20">
-        <div className="text-lg font-bold text-[#00ff00] uppercase tracking-tight group-hover:translate-x-1 transition-transform truncate">
+        <div className="text-lg font-bold text-[var(--terminal-green)] uppercase tracking-tight group-hover:translate-x-1 transition-transform truncate">
           {repo.name}
         </div>
-        <p className="text-[10px] text-[#666] line-clamp-2 leading-relaxed min-h-[30px] overflow-hidden">
+        <p className="text-[10px] text-[var(--terminal-text-dim)] line-clamp-2 leading-relaxed min-h-[30px] overflow-hidden">
           {repo.description || 'System protocol description missing.'}
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -220,18 +367,26 @@ const GitHub: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="pt-4 border-t border-[#1a1a1a] mt-4 flex items-center justify-between text-[8px] text-[#444] font-bold uppercase relative z-20">
+      <div className="pt-4 border-t border-[var(--terminal-border)] mt-4 flex items-center justify-between text-[8px] text-[var(--terminal-text-dim)] font-bold uppercase relative z-20">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1">
-            <Star size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
+            <Star
+              size={10}
+              className="text-[var(--terminal-green)]"
+              aria-hidden="true"
+            />{' '}
             {repo.stars}
           </span>
           <span className="flex items-center gap-1">
-            <GitFork size={10} className="text-[#00ff00]" aria-hidden="true" />{' '}
+            <GitFork
+              size={10}
+              className="text-[var(--terminal-green)]"
+              aria-hidden="true"
+            />{' '}
             {repo.forks}
           </span>
         </div>
-        <span className="text-[#222] group-hover:text-[#444] transition-colors font-mono">
+        <span className="text-[var(--terminal-text-dim)] group-hover:text-[var(--terminal-text-dim)] transition-colors font-mono">
           {new Date(repo.pushed_at).toLocaleDateString()}
         </span>
       </div>
@@ -241,11 +396,11 @@ const GitHub: React.FC = () => {
   if (isLoadingMain)
     return (
       <div className="space-y-6 font-mono animate-pulse" aria-hidden="true">
-        <div className="text-[#00ff00] text-xl flex items-center gap-3">
+        <div className="text-[var(--terminal-green)] text-xl flex items-center gap-3">
           <Activity size={24} className="animate-spin" /> [SYSTEM]
           SYNCING_EXTERNAL_NODES...
         </div>
-        <div className="h-64 bg-[#0f0f0f] border border-[#1a1a1a]"></div>
+        <div className="h-64 bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)]"></div>
       </div>
     )
 
@@ -255,7 +410,7 @@ const GitHub: React.FC = () => {
         <button
           type="button"
           onClick={() => setSelectedRepo(null)}
-          className="text-[#666] hover:text-[#00ff00] text-sm font-bold uppercase tracking-widest flex items-center gap-2 group"
+          className="text-[var(--terminal-text-dim)] hover:text-[var(--terminal-green)] text-sm font-bold uppercase tracking-widest flex items-center gap-2 group"
           aria-label="Return to repository matrix"
         >
           <ChevronLeft
@@ -265,16 +420,16 @@ const GitHub: React.FC = () => {
           />{' '}
           <span>BACK_TO_ARCHIVE</span>
         </button>
-        <header className="border-b border-[#1a1a1a] pb-10 space-y-6">
+        <header className="border-b border-[var(--terminal-border)] pb-10 space-y-6">
           <div className="flex items-center gap-4">
             {selectedRepo.language && (
               <TechIcon
                 name={selectedRepo.language}
                 className="w-12 h-12"
-                color="00ff00"
+                useThemeColor
               />
             )}
-            <h1 className="text-4xl font-bold text-[#00ff00] uppercase tracking-tighter">
+            <h1 className="text-4xl font-bold text-[var(--terminal-green)] uppercase tracking-tighter">
               {selectedRepo.name}
             </h1>
           </div>
@@ -283,7 +438,7 @@ const GitHub: React.FC = () => {
               href={selectedRepo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#00ff00] text-[#0a0a0a] font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center gap-2"
+              className="px-6 py-3 bg-[var(--terminal-green)] text-[var(--terminal-bg)] font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-[var(--terminal-text-primary)] transition-all flex items-center gap-2"
               aria-label="Open source code on GitHub"
             >
               <ExternalLink size={14} aria-hidden="true" /> SOURCE_CODE
@@ -291,7 +446,9 @@ const GitHub: React.FC = () => {
           </div>
         </header>
         {isLoadingReadme ? (
-          <div className="animate-pulse text-[#333]">DECRYPTING_README...</div>
+          <div className="animate-pulse text-[var(--terminal-text-dim)]">
+            DECRYPTING_README...
+          </div>
         ) : (
           <div
             className="article-content"
@@ -316,13 +473,13 @@ const GitHub: React.FC = () => {
           {
             label: 'Total_Contributions',
             value: mainData?.stats?.total_contributions.toLocaleString(),
-            color: 'text-[#00ff00]',
+            color: 'text-[var(--terminal-green)]',
             icon: Activity,
           },
           {
             label: 'System_Commits',
             value: mainData?.stats?.commits.toLocaleString(),
-            color: 'text-white',
+            color: 'text-[var(--terminal-text-primary)]',
             icon: Terminal,
           },
           {
@@ -340,15 +497,15 @@ const GitHub: React.FC = () => {
         ].map((card) => (
           <div
             key={card.label}
-            className="bg-[#0f0f0f] border border-[#1a1a1a] p-5 hover:border-[#00ff00]/50 transition-colors relative group overflow-hidden flex flex-col justify-between min-h-[140px] z-10"
+            className="bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-5 hover:border-[var(--terminal-green)]/50 transition-colors relative group overflow-hidden flex flex-col justify-between min-h-[140px] z-10"
           >
             <div
-              className="absolute -right-2 -bottom-2 text-[#111] group-hover:text-[#00ff00]/5 transition-colors pointer-events-none z-0"
+              className="absolute -right-2 -bottom-2 text-[var(--terminal-bg-dark)] group-hover:text-[var(--terminal-green)]/5 transition-colors pointer-events-none z-0"
               aria-hidden="true"
             >
               <card.icon size={80} strokeWidth={1} />
             </div>
-            <div className="text-[9px] text-[#555] uppercase font-bold tracking-[0.1em] mb-2 relative z-20 leading-tight">
+            <div className="text-[9px] text-[var(--terminal-text-dim)] uppercase font-bold tracking-[0.1em] mb-2 relative z-20 leading-tight">
               {card.label}
             </div>
             <div
@@ -361,21 +518,21 @@ const GitHub: React.FC = () => {
       </section>
 
       <section
-        className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 md:p-8 space-y-8 relative overflow-visible z-30"
+        className="bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-6 md:p-8 space-y-8 relative overflow-visible z-30"
         aria-label="GitHub Contribution Heatmap"
       >
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#1a1a1a] pb-4 relative z-40">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[var(--terminal-border)] pb-4 relative z-40">
           <div className="space-y-1">
-            <h3 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#00ff00] flex items-center gap-2">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.5em] text-[var(--terminal-green)] flex items-center gap-2">
               <Activity size={14} aria-hidden="true" /> CONTRIBUTION_MATRIX
             </h3>
-            <p className="text-[8px] text-[#333] font-bold uppercase">
+            <p className="text-[8px] text-[var(--terminal-text-dim)] font-bold uppercase">
               {'ARCHIVE_READY // MODE: '}
               {selectedYear}
             </p>
           </div>
           <div
-            className="flex items-center gap-4 bg-[#0a0a0a] border border-[#1a1a1a] p-1.5 rounded-sm overflow-x-auto max-w-full"
+            className="flex items-center gap-4 bg-[var(--terminal-bg)] border border-[var(--terminal-border)] p-1.5 rounded-sm overflow-x-auto max-w-full"
             role="tablist"
           >
             <button
@@ -383,7 +540,7 @@ const GitHub: React.FC = () => {
               role="tab"
               aria-selected={selectedYear === 'last12'}
               onClick={() => setSelectedYear('last12')}
-              className={`text-[8px] font-black px-2 py-1 ${selectedYear === 'last12' ? 'bg-[#00ff00] text-[#0a0a0a]' : 'text-[#444]'}`}
+              className={`text-[8px] font-black px-2 py-1 ${selectedYear === 'last12' ? 'bg-[var(--terminal-green)] text-[var(--terminal-bg)]' : 'text-[var(--terminal-text-dim)]'}`}
             >
               L12M
             </button>
@@ -394,7 +551,7 @@ const GitHub: React.FC = () => {
                 aria-selected={selectedYear === year}
                 key={year}
                 onClick={() => setSelectedYear(year)}
-                className={`text-[8px] font-black px-2 py-1 ${selectedYear === year ? 'bg-[#00ff00] text-[#0a0a0a]' : 'text-[#444]'}`}
+                className={`text-[8px] font-black px-2 py-1 ${selectedYear === year ? 'bg-[var(--terminal-green)] text-[var(--terminal-bg)]' : 'text-[var(--terminal-text-dim)]'}`}
               >
                 {year}
               </button>
@@ -414,10 +571,14 @@ const GitHub: React.FC = () => {
                     <div
                       key={dayIdx.toString()}
                       className="w-[11px] h-[11px] rounded-[1px] relative cursor-crosshair group/tip hover:z-50"
-                      style={{ backgroundColor: day?.color || '#111' }}
+                      style={{
+                        backgroundColor: day
+                          ? getContributionColor(day.contributionCount)
+                          : '#111',
+                      }}
                     >
                       <div
-                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#00ff00] text-[#0a0a0a] text-[8px] p-2 whitespace-nowrap opacity-0 group-hover/tip:opacity-100 pointer-events-none font-bold z-[100] border border-white/10"
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[var(--terminal-green)] text-[var(--terminal-bg)] text-[8px] p-2 whitespace-nowrap opacity-0 group-hover/tip:opacity-100 pointer-events-none font-bold z-[100] border border-[var(--terminal-border)]"
                         role="tooltip"
                       >
                         {`${day?.contributionCount} commits // ${day?.date}`}
@@ -437,10 +598,10 @@ const GitHub: React.FC = () => {
         aria-label="Pinned Repositories"
       >
         <div className="flex items-center gap-6">
-          <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[#00ff00] flex items-center gap-2">
+          <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[var(--terminal-green)] flex items-center gap-2">
             <Star className="w-4 h-4" aria-hidden="true" /> CORE_NODES
           </h3>
-          <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>
+          <div className="h-[1px] bg-[var(--terminal-border)] flex-1"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
           {categorizedRepos.pinned.map((repo) => (
@@ -456,11 +617,11 @@ const GitHub: React.FC = () => {
           aria-label="Organization Repositories"
         >
           <div className="flex items-center gap-6">
-            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[#ffffff]/40 flex items-center gap-2">
+            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[var(--terminal-text-primary)]/40 flex items-center gap-2">
               <Layers className="w-4 h-4" aria-hidden="true" />{' '}
               ORGANIZATION_INFRA
             </h3>
-            <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>
+            <div className="h-[1px] bg-[var(--terminal-border)] flex-1"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
             {categorizedRepos.cosmstack.map((repo) => (
@@ -477,10 +638,10 @@ const GitHub: React.FC = () => {
           aria-label="Personal Repositories"
         >
           <div className="flex items-center gap-6">
-            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[#ffffff]/40 flex items-center gap-2">
+            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[var(--terminal-text-primary)]/40 flex items-center gap-2">
               <Box className="w-4 h-4" aria-hidden="true" /> PERSONAL_REGISTRY
             </h3>
-            <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>
+            <div className="h-[1px] bg-[var(--terminal-border)] flex-1"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
             {categorizedRepos.personal.map((repo) => (
@@ -497,10 +658,10 @@ const GitHub: React.FC = () => {
           aria-label="Forked Repositories"
         >
           <div className="flex items-center gap-6">
-            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[#ffffff]/40 flex items-center gap-2">
+            <h3 className="text-xs font-bold uppercase tracking-[0.5em] text-[var(--terminal-text-primary)]/40 flex items-center gap-2">
               <Share2 className="w-4 h-4" aria-hidden="true" /> EXTERNAL_FORKS
             </h3>
-            <div className="h-[1px] bg-[#1a1a1a] flex-1"></div>
+            <div className="h-[1px] bg-[var(--terminal-border)] flex-1"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10 opacity-70 hover:opacity-100 transition-opacity">
             {categorizedRepos.forked.map((repo) => (

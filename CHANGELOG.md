@@ -7,6 +7,123 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2025-12-22
 
+### Phase 1.4: Terminal Theme System - Multiple Theme Support
+
+#### Added
+
+- **Custom Theme System** (`app/providers.tsx`)
+  - Replaced simple dark/light mode with terminal-style theme selector
+  - Custom ThemeContext with 8 pre-defined terminal color schemes
+  - Theme persistence using localStorage (`terminal-theme` key)
+  - SSR-safe implementation with proper hydration handling
+  - Default theme: "Matrix Green" (original terminal aesthetic)
+
+- **ThemeSelector Component** (`src/components/layout/ThemeSelector.tsx`)
+  - Dropdown menu with 8 terminal themes inspired by popular IDEs and terminals
+  - Color-coded theme preview dots showing accent color
+  - Accessible with keyboard navigation and ARIA labels
+  - Click-outside-to-close functionality
+  - Visual indication of currently selected theme (✓ checkmark)
+  - Smooth hover effects and transitions
+
+- **7 Minimalist Terminal Color Schemes** (`app/globals.css`)
+  1. **Matrix Green** - Original terminal aesthetic (`#00ff00`)
+  2. **Dracula** - Popular dark theme (`#50fa7b`)
+  3. **Monokai** - Classic code editor theme (`#a6e22e`)
+  4. **Nord** - Cool, muted palette (`#a3be8c`)
+  5. **Solarized Dark** - Precision colors (`#859900`)
+  6. **One Dark** - Atom editor inspired (`#98c379`)
+  7. **Ocean** - Cyan/blue theme (`#00d4ff`)
+
+- **CSS Variable Architecture** (`app/globals.css`)
+  - Theme-specific CSS variable overrides using `[data-theme="..."]` selectors
+  - Each theme defines:
+    - Primary accent colors (green variants)
+    - Background gradients (5 shades)
+    - Border colors (3 levels)
+    - Text colors (4 levels: primary, secondary, tertiary, dim)
+    - Visual effects (grid, scanline, glow)
+  - All themes use consistent variable names for automatic component adaptation
+
+- **Component CSS Variable Migration**
+  - Updated core components to use CSS variables instead of hardcoded colors
+  - **Updated files:**
+    - `app/components/TerminalHeader.tsx` - Theme selector integration
+    - `app/components/Navigation.tsx` - Nav buttons, borders, hover states
+    - `app/page.tsx` - Terminal container, prompt, footer, decorative text
+    - `app/components/sections/About.tsx` - All text, borders, backgrounds, buttons
+  - All components automatically adapt to any selected theme
+
+#### Removed
+
+- **next-themes** dependency - Replaced with custom theme system
+- **ThemeToggle Component** - Replaced with ThemeSelector dropdown
+- Simple dark/light mode approach - Replaced with multi-theme system
+
+#### Changed
+
+- **Theme Persistence**
+  - Changed from `theme` to `terminal-theme` localStorage key
+  - Stores theme ID instead of "dark"/"light" boolean
+  - Supports 7 minimalist theme options
+
+- **Theme Application**
+  - Changed from CSS class (`.dark`/`.light`) to data attribute (`[data-theme="..."]`)
+  - Allows for unlimited theme variations
+  - More semantic and scalable approach
+
+- **Improved Contrast** (Latest update)
+  - Enhanced text contrast in all themes for better readability
+  - Increased brightness of tertiary and dim text colors
+  - Improved border brightness for better visual hierarchy
+  - Removed Cyberpunk theme (non-minimalist)
+  - All themes now maintain excellent WCAG AA contrast ratios
+
+#### Success Criteria Met
+
+- ✅ Theme system implemented with terminal-style aesthetics
+- ✅ Multiple minimalist theme options (7 pre-defined schemes)
+- ✅ Theme selector integrated in terminal header
+- ✅ Original terminal green aesthetic preserved as default
+- ✅ Theme persistence across sessions via localStorage
+- ✅ All components support all themes automatically via CSS variables
+- ✅ Smooth theme switching with instant visual updates
+- ✅ Accessible theme selector with keyboard navigation
+- ✅ Professional minimalist color schemes with proper contrast
+- ✅ Enhanced readability across all themes with improved text colors
+- ✅ Original terminal green aesthetic preserved as default
+- ✅ Theme persistence across sessions via localStorage
+- ✅ All components support all themes automatically via CSS variables
+- ✅ Smooth theme switching with instant visual updates
+- ✅ Accessible theme selector with keyboard navigation
+- ✅ Professional color schemes with proper contrast
+- ✅ Dark/light mode applied correctly across all components
+- ✅ Theme persists across page reloads via localStorage
+- ✅ All components support both themes automatically
+- ✅ Existing terminal green aesthetic preserved in dark mode
+- ✅ Light mode provides excellent contrast and readability
+- ✅ Zero TypeScript errors
+- ✅ All linting checks pass
+
+#### Technical Details
+
+**Theme Persistence:**
+- `next-themes` automatically persists theme preference to localStorage
+- Key: `theme` 
+- Value: `"dark"` or `"light"`
+- Persists across browser sessions and page reloads
+
+**Color Contrast:**
+- Dark mode maintains original terminal aesthetic
+- Light mode ensures WCAG AA compliance for contrast
+- Green adjusted from `#00ff00` to `#00cc00` in light mode for readability
+- Text colors carefully chosen for optimal legibility
+
+**SSR Considerations:**
+- ThemeToggle uses `mounted` state to prevent hydration mismatches
+- Returns invisible placeholder during SSR with same dimensions
+- Proper use of `useEffect` for client-side only operations
+
 ### Phase 1.3: Tailwind & Creative UI Setup - Enhanced Design System
 
 #### Added

@@ -37,21 +37,23 @@ marked.use({
 
 const ProgressMeter = () => {
   return (
-    <div className="space-y-4 bg-[#0a0a0a] border border-[#1a1a1a] p-5 font-mono">
+    <div className="space-y-4 bg-[var(--terminal-bg)] border border-[var(--terminal-border)] p-5 font-mono">
       <div className="flex justify-between items-end mb-1">
-        <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.3em] flex items-center gap-2">
+        <div className="text-[10px] text-[var(--terminal-text-dim)] font-black uppercase tracking-[0.3em] flex items-center gap-2">
           <TerminalIcon
             size={12}
-            className="text-[#00ff00]"
+            className="text-[var(--terminal-green)]"
             aria-hidden="true"
           />{' '}
           SYSTEM_BUILD_PROGRESS
         </div>
-        <div className="text-[16px] text-[#444] font-bold tabular-nums">0%</div>
+        <div className="text-[16px] text-[var(--terminal-text-dim)] font-bold tabular-nums">
+          0%
+        </div>
       </div>
-      <div className="h-2 w-full bg-[#111] overflow-hidden flex p-[1px]">
+      <div className="h-2 w-full bg-[var(--terminal-bg-dark)] overflow-hidden flex p-[1px]">
         <div
-          className="h-full bg-[#333] transition-all duration-100 ease-out"
+          className="h-full bg-[var(--terminal-border-bright)] transition-all duration-100 ease-out"
           style={{ width: `0%` }}
           role="progressbar"
           aria-valuenow={0}
@@ -59,7 +61,7 @@ const ProgressMeter = () => {
           aria-valuemax={100}
         />
       </div>
-      <div className="flex justify-between text-[8px] text-[#222] font-black uppercase tracking-widest">
+      <div className="flex justify-between text-[8px] text-[var(--terminal-text-dim)] font-black uppercase tracking-widest">
         <span>[0%]</span>
         <span className="text-[#ff3e3e]/40 flex items-center gap-1">
           <Lock size={8} aria-hidden="true" /> ACCESS_LOCKED_PENDING_REVIEW
@@ -86,7 +88,7 @@ const Projects: React.FC = () => {
         <button
           type="button"
           onClick={() => setSelectedProject(null)}
-          className="text-[#666] hover:text-[#00ff00] text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 group transition-all font-bold"
+          className="text-[var(--terminal-text-dim)] hover:text-[var(--terminal-green)] text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 group transition-all font-bold"
           aria-label="Back to project grid"
         >
           <ChevronLeft
@@ -98,17 +100,17 @@ const Projects: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            <header className="border-b border-[#1a1a1a] pb-10 space-y-6">
+            <header className="border-b border-[var(--terminal-border)] pb-10 space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="text-[9px] px-2 py-0.5 border border-[#ff3e3e]/40 text-[#ff3e3e] font-black uppercase tracking-widest flex items-center gap-1">
                     <Lock size={10} aria-hidden="true" /> LOCKED
                   </span>
-                  <span className="text-[#333] text-[9px] font-black uppercase tracking-widest">
+                  <span className="text-[var(--terminal-text-dim)] text-[9px] font-black uppercase tracking-widest">
                     ENCRYPTED_ID: {selectedProject.slug}
                   </span>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter text-[#00ff00] leading-none">
+                <h1 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter text-[var(--terminal-green)] leading-none">
                   {selectedProject.name}
                 </h1>
               </div>
@@ -127,42 +129,42 @@ const Projects: React.FC = () => {
             <ProgressMeter />
 
             {selectedProject.metrics && (
-              <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 space-y-6">
-                <div className="text-[10px] text-[#444] font-black uppercase tracking-[0.4em] border-b border-[#1a1a1a] pb-4">
+              <div className="bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-6 space-y-6">
+                <div className="text-[10px] text-[var(--terminal-text-dim)] font-black uppercase tracking-[0.4em] border-b border-[var(--terminal-border)] pb-4">
                   SYSTEM_METRICS
                 </div>
                 <div className="grid grid-cols-2 gap-y-6">
                   <div className="space-y-1">
-                    <div className="text-[#333] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
+                    <div className="text-[var(--terminal-text-dim)] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
                       <DollarSign className="w-2.5 h-2.5" aria-hidden="true" />{' '}
                       MRR
                     </div>
-                    <div className="text-[#ffffff] font-bold text-xs">
+                    <div className="text-[var(--terminal-text-primary)] font-bold text-xs">
                       {selectedProject.metrics.mrr}
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <div className="text-[#333] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
+                    <div className="text-[var(--terminal-text-dim)] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
                       <User className="w-2.5 h-2.5" aria-hidden="true" /> Users
                     </div>
-                    <div className="text-[#ffffff] font-bold text-xs">
+                    <div className="text-[var(--terminal-text-primary)] font-bold text-xs">
                       {selectedProject.metrics.users}
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <div className="text-[#333] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
+                    <div className="text-[var(--terminal-text-dim)] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
                       <Activity className="w-2.5 h-2.5" aria-hidden="true" />{' '}
                       Uptime
                     </div>
-                    <div className="text-[#ffffff] font-bold text-xs">
+                    <div className="text-[var(--terminal-text-primary)] font-bold text-xs">
                       {selectedProject.metrics.uptime}
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <div className="text-[#333] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
+                    <div className="text-[var(--terminal-text-dim)] text-[8px] uppercase font-bold tracking-widest flex items-center gap-1">
                       <Cpu className="w-2.5 h-2.5" aria-hidden="true" /> Version
                     </div>
-                    <div className="text-[#ffffff] font-bold text-xs">
+                    <div className="text-[var(--terminal-text-primary)] font-bold text-xs">
                       {selectedProject.metrics.version}
                     </div>
                   </div>
@@ -181,7 +183,7 @@ const Projects: React.FC = () => {
         <h1 className="text-3xl font-bold uppercase tracking-tight">
           Project Matrix
         </h1>
-        <p className="text-[#666] text-sm italic tracking-wide">
+        <p className="text-[var(--terminal-text-dim)] text-sm italic tracking-wide">
           High-impact development nodes and build logs.
         </p>
       </header>
@@ -192,14 +194,14 @@ const Projects: React.FC = () => {
             type="button"
             key={project.slug}
             onClick={() => setSelectedProject(project)}
-            className="text-left group bg-[#0f0f0f] border border-[#1a1a1a] p-8 hover:border-[#00ff00] transition-all relative overflow-hidden flex flex-col justify-between h-full min-h-[240px]"
+            className="text-left group bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-8 hover:border-[var(--terminal-green)] transition-all relative overflow-hidden flex flex-col justify-between h-full min-h-[240px]"
             aria-label={`Open project details for ${project.name}`}
           >
             <div
               className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-100 transition-all duration-500"
               aria-hidden="true"
             >
-              <Eye className="w-12 h-12 text-[#00ff00] blur-[2px] group-hover:blur-none transition-all" />
+              <Eye className="w-12 h-12 text-[var(--terminal-green)] blur-[2px] group-hover:blur-none transition-all" />
             </div>
 
             <div className="space-y-5 relative z-10">
@@ -208,20 +210,20 @@ const Projects: React.FC = () => {
                   <Lock size={10} aria-hidden="true" /> LOCKED
                 </span>
               </div>
-              <h2 className="text-2xl font-bold group-hover:text-[#00ff00] transition-colors uppercase tracking-tighter leading-none">
+              <h2 className="text-2xl font-bold group-hover:text-[var(--terminal-green)] transition-colors uppercase tracking-tighter leading-none">
                 {project.name}
               </h2>
-              <p className="text-[#666] text-xs leading-relaxed line-clamp-2 pr-6">
+              <p className="text-[var(--terminal-text-dim)] text-xs leading-relaxed line-clamp-2 pr-6">
                 {project.description}
               </p>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[#1a1a1a] flex items-center justify-between relative z-10">
-              <span className="text-[10px] text-[#222] group-hover:text-[#444] font-black uppercase tracking-widest transition-colors">
+            <div className="mt-8 pt-6 border-t border-[var(--terminal-border)] flex items-center justify-between relative z-10">
+              <span className="text-[10px] text-[var(--terminal-text-dim)] group-hover:text-[var(--terminal-text-dim)] font-black uppercase tracking-widest transition-colors">
                 ACCESS_ENCRYPTED_FILE
               </span>
               <ArrowRight
-                className="w-4 h-4 text-[#1a1a1a] group-hover:text-[#00ff00] group-hover:translate-x-1 transition-all"
+                className="w-4 h-4 text-[var(--terminal-border)] group-hover:text-[var(--terminal-green)] group-hover:translate-x-1 transition-all"
                 aria-hidden="true"
               />
             </div>

@@ -42,7 +42,7 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
   }, [currentIndex, onComplete])
 
   return (
-    <div className="fixed inset-0 bg-[#050505] z-[100] flex items-center justify-center p-6 md:p-20 font-mono text-[#00ff00]">
+    <div className="fixed inset-0 bg-[var(--terminal-bg-dark)] z-[100] flex items-center justify-center p-6 md:p-20 font-mono text-[var(--terminal-green)]">
       <div
         className="w-full max-w-2xl h-[400px] overflow-hidden flex flex-col justify-end"
         aria-live="polite"
@@ -55,7 +55,9 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
               </span>
               <span
                 className={
-                  i === BOOT_LOGS.length - 1 ? 'font-bold text-white' : ''
+                  i === BOOT_LOGS.length - 1
+                    ? 'font-bold text-[var(--terminal-text-primary)]'
+                    : ''
                 }
               >
                 {i === BOOT_LOGS.length - 1 ? '> ' : ''}
@@ -63,7 +65,7 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
               </span>
             </div>
           ))}
-          <div className="w-3 h-5 bg-[#00ff00] inline-block animate-pulse align-middle mt-2"></div>
+          <div className="w-3 h-5 bg-[var(--terminal-green)] inline-block animate-pulse align-middle mt-2"></div>
         </div>
       </div>
     </div>
