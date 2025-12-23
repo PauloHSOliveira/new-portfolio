@@ -5,6 +5,90 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2025-12-23
+
+### Phase 3.1: State Management Setup - Jotai Implementation
+
+#### Added
+
+- **Jotai State Management Library**
+  - Installed `jotai@2.16.0` for atomic client-side state management
+  - Added Jotai Provider to `app/providers.tsx` for proper SSR support and isolated state trees
+  - Integrated with existing QueryClient and ThemeContext providers
+
+- **Theme State Management** (`src/stores/theme.ts`)
+  - `themeAtom` - Main theme atom with localStorage persistence using `atomWithStorage`
+  - `isDarkThemeAtom` - Derived atom for checking dark theme state
+  - `isThemeTransitioningAtom` - Atom for tracking theme transition animations
+  - TypeScript `Theme` type with all available theme options (matrix, dracula, monokai, nord, solarized-dark, one-dark, ocean)
+  - Comprehensive JSDoc documentation for all atoms
+
+- **UI State Management** (`src/stores/ui.ts`)
+  - `sidebarOpenAtom` - Sidebar visibility with localStorage persistence
+  - `searchQueryAtom` - Global search query state
+  - `modalStateAtom` - Modal dialog state with type and data support
+  - `isModalOpenAtom` - Derived atom for modal open state
+  - `mobileMenuOpenAtom` - Mobile navigation menu visibility
+  - `isLoadingAtom` - Global loading indicator state
+  - `notificationAtom` - Toast/notification system state
+  - `commandPaletteOpenAtom` - Command palette visibility for keyboard shortcuts
+  - TypeScript interfaces: `ModalState` and `NotificationState`
+  - Comprehensive JSDoc documentation for all atoms
+
+- **Custom Hooks for Theme** (`src/hooks/useThemeAtom.ts`)
+  - `useThemeAtom()` - Main hook with theme state and setter
+  - `useThemeValue()` - Read-only theme access for optimized performance
+  - `useSetTheme()` - Write-only theme setter for optimized performance
+  - `useIsDarkTheme()` - Hook for dark theme detection
+  - `setThemeWithTransition()` - Theme setter with transition animation support
+  - Full TypeScript types and JSDoc examples
+
+- **Custom Hooks for UI State** (`src/hooks/useUIState.ts`)
+  - `useUIState()` - Main hook providing access to all UI state
+  - `useSidebar()` - Sidebar controls (isOpen, toggle, open, close)
+  - `useSearch()` - Search functionality (query, setQuery, clear)
+  - `useModal()` - Modal management (openModal, closeModal, modalType, modalData)
+  - `useMobileMenu()` - Mobile menu controls (isOpen, toggle, open, close)
+  - `useLoading()` - Loading state controls (isLoading, startLoading, stopLoading)
+  - `useNotification()` - Notification system (showNotification, hideNotification)
+  - `useCommandPalette()` - Command palette controls (isOpen, toggle, open, close)
+  - All hooks include TypeScript types and JSDoc examples
+
+- **Central Export Files**
+  - `src/stores/index.ts` - Re-exports all atoms and types
+  - `src/hooks/index.ts` - Re-exports all custom hooks
+  - Enables clean imports: `import { themeAtom, useSidebar } from '@/stores'`
+
+- **Comprehensive Documentation** (`src/stores/README.md`)
+  - Detailed usage examples for all atoms and hooks
+  - Atom patterns and best practices guide
+  - TypeScript best practices for atoms
+  - Performance optimization tips (read-only vs write-only access)
+  - Common patterns (modals, loading states, notifications)
+  - Testing guidance for atoms
+  - Migration guide from Context API
+  - Troubleshooting section
+  - Links to official Jotai documentation
+
+#### Technical Details
+
+- **Type Safety**: All atoms and hooks are fully typed with TypeScript
+- **Performance**: Leverages Jotai's atomic updates for minimal re-renders
+- **Persistence**: Theme and sidebar preferences persist via localStorage
+- **SSR Support**: Jotai Provider ensures proper server-side rendering
+- **Code Quality**: Passes all TypeScript type checks and Biome linter rules
+- **Documentation**: Every atom and hook includes JSDoc comments with examples
+- **Best Practices**: Follows Jotai recommended patterns for atom organization
+
+#### Code Quality
+
+- ✅ TypeScript compilation passes (`pnpm type-check`)
+- ✅ Biome linter compliance (`pnpm lint`)
+- ✅ Proper formatting with Biome
+- ✅ No unused imports or variables
+- ✅ Comprehensive JSDoc documentation
+- ✅ Export structure follows project conventions
+
 ## [2.4.0] - 2025-12-23
 
 ### Phase 2.4: Error Handling - Error Boundaries and Error Pages
