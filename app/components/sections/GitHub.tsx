@@ -16,7 +16,7 @@ import {
 import { marked } from 'marked'
 import Image from 'next/image'
 import type React from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   fetchAllGitHubData,
   fetchGitHubActivityForYear,
@@ -35,12 +35,78 @@ const PINNED_NAMES = [
 const TechIcon = ({
   name,
   className,
-  color = '00ff00',
+  color,
+  useThemeColor = true,
 }: {
   name: string
   className?: string
   color?: string
+  useThemeColor?: boolean
 }) => {
+  const [iconColor, setIconColor] = useState<string>('00ff00')
+  const [glowColor, setGlowColor] = useState<string>('rgba(0,255,0,0.1)')
+
+  useEffect(() => {
+    const updateColor = () => {
+      if (useThemeColor && !color) {
+        try {
+          const computedStyle = getComputedStyle(document.documentElement)
+          const themeColor = computedStyle.getPropertyValue('--terminal-green').trim()
+          
+          if (!themeColor) {
+            return // CSS variable not available yet
+          }
+          
+          // Convert hex color (#00ff00) to hex without # (00ff00)
+          let hexWithoutHash = themeColor.replace('#', '').replace(/\s/g, '')
+          
+          // Validate hex color (should be 6 characters)
+          if (hexWithoutHash.length === 6 && /^[0-9A-Fa-f]{6}$/.test(hexWithoutHash)) {
+            setIconColor(hexWithoutHash)
+            
+            // Convert hex to rgba for the glow effect
+            const r = parseInt(hexWithoutHash.substring(0, 2), 16)
+            const g = parseInt(hexWithoutHash.substring(2, 4), 16)
+            const b = parseInt(hexWithoutHash.substring(4, 6), 16)
+            setGlowColor(`rgba(${r},${g},${b},0.1)`)
+          }
+        } catch (error) {
+          // Fallback to default if error occurs
+          console.warn('Failed to read theme color:', error)
+        }
+      } else if (color) {
+        const cleanColor = color.replace('#', '').replace(/\s/g, '')
+        if (cleanColor.length === 6 && /^[0-9A-Fa-f]{6}$/.test(cleanColor)) {
+          setIconColor(cleanColor)
+          
+          // Convert hex to rgba for the glow effect
+          const r = parseInt(cleanColor.substring(0, 2), 16)
+          const g = parseInt(cleanColor.substring(2, 4), 16)
+          const b = parseInt(cleanColor.substring(4, 6), 16)
+          setGlowColor(`rgba(${r},${g},${b},0.1)`)
+        }
+      }
+    }
+
+    // Initial update with a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(updateColor, 0)
+
+    // Listen for theme changes
+    const observer = new MutationObserver(() => {
+      // Small delay to ensure CSS variables are updated
+      setTimeout(updateColor, 10)
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => {
+      clearTimeout(timeoutId)
+      observer.disconnect()
+    }
+  }, [color, useThemeColor])
+
   const n = name.toLowerCase().trim()
   const mappings: Record<string, string> = {
     typescript: 'typescript',
@@ -86,14 +152,14 @@ const TechIcon = ({
       aria-hidden="true"
     >
       <Image
-        src={`https://cdn.simpleicons.org/${slug}/${color}`}
+        src={`https://cdn.simpleicons.org/${slug}/${iconColor}`}
         alt={`${name} icon`}
         width={24}
         height={24}
         unoptimized
         loading="lazy"
         className="w-full h-full object-contain"
-        style={{ filter: 'drop-shadow(0 0 2px rgba(0,255,0,0.1))' }}
+        style={{ filter: `drop-shadow(0 0 2px ${glowColor})` }}
         onError={(e) => {
           ;(e.target as HTMLImageElement).style.display = 'none'
         }}
@@ -112,7 +178,8 @@ const TechBadge: React.FC<{ name: string; isTopic?: boolean }> = ({
     <TechIcon
       name={name}
       className="w-3 h-3"
-      color={isTopic ? '444444' : '00ff00'}
+      color={isTopic ? '444444' : undefined}
+      useThemeColor={!isTopic}
     />
     <span
       className={`text-[8px] font-bold uppercase tracking-tight whitespace-nowrap ${isTopic ? 'text-[var(--terminal-text-dim)]' : 'text-[var(--terminal-text-secondary)] group-hover:text-[var(--terminal-green)]'}`}
@@ -191,7 +258,7 @@ const GitHub: React.FC = () => {
       type="button"
       onClick={() => setSelectedRepo(repo)}
       aria-label={`View detailed statistics for repository ${repo.name}`}
-      className={`text-left bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-5 transition-all group relative overflow-hidden h-full flex flex-col justify-between hover:border-[var(--terminal-green)] hover:bg-[var(--terminal-bg)] ${featured ? 'border-t-2 border-t-[var(--terminal-green)]/60 shadow-[0_4px_20px_var(--terminal-green-glow)]' : ''} z-10`}
+      className="text-left bg-[var(--terminal-bg-light)] border border-[var(--terminal-border)] p-5 transition-all group relative overflow-hidden h-full flex flex-col justify-between hover:border-[var(--terminal-green)] hover:bg-[var(--terminal-bg)] z-10"
     >
       <div
         className="flex justify-between items-start mb-3 relative z-20"
@@ -279,7 +346,7 @@ const GitHub: React.FC = () => {
               <TechIcon
                 name={selectedRepo.language}
                 className="w-12 h-12"
-                color="00ff00"
+                useThemeColor
               />
             )}
             <h1 className="text-4xl font-bold text-[var(--terminal-green)] uppercase tracking-tighter">
