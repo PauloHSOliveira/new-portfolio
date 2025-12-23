@@ -21,16 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fully typed TypeScript interface exported from `src/components/ui/index.ts`
   - Responsive layout with centered content and proper spacing
 
-- **ErrorBoundary Component** (`src/components/ErrorBoundary.tsx`)
-  - React Error Boundary class component to catch rendering errors
-  - Custom fallback UI support with optional render prop
-  - Error logging to console with full stack trace
-  - Custom error handler callback support
-  - Reset functionality to recover from errors
-  - Integration with ErrorState component for consistent error display
-  - TypeScript typed with proper Error and ErrorInfo types
-
-- **Error Pages for Route Groups**
+- **Error Pages for Route Groups (Next.js App Router)**
   - `app/error.tsx` - Global error page for application-wide errors
     - Client component with reset functionality
     - Terminal header with window controls
@@ -61,14 +52,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Technical Details
 
-- All error pages are client components (`'use client'`) as required by Next.js
-- Error boundaries follow React 18 best practices
+- All error pages are client components (`'use client'`) as required by Next.js App Router
+- Error pages (`error.tsx`) are the recommended Next.js App Router approach for error handling
 - Error logging uses console.error for development debugging
 - Components use terminal color variables for consistent theming
 - All error pages include terminal header with window controls
 - Error states are accessible with proper semantic HTML
 - Icons from lucide-react library matching existing component patterns
-- Retry functionality leverages Next.js error boundary reset capability
+- Retry functionality leverages Next.js error.tsx reset() callback
 - Components are fully typed with TypeScript interfaces
 
 ## [2.3.0] - 2025-12-23
