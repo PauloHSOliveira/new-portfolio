@@ -55,7 +55,9 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
               </span>
               <span
                 className={
-                  i === BOOT_LOGS.length - 1 ? 'font-bold text-[var(--terminal-text-primary)]' : ''
+                  i === BOOT_LOGS.length - 1
+                    ? 'font-bold text-[var(--terminal-text-primary)]'
+                    : ''
                 }
               >
                 {i === BOOT_LOGS.length - 1 ? '> ' : ''}

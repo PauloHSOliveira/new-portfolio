@@ -223,11 +223,19 @@ const GitHub: React.FC = () => {
       <div className="pt-4 border-t border-[var(--terminal-border)] mt-4 flex items-center justify-between text-[8px] text-[var(--terminal-text-dim)] font-bold uppercase relative z-20">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1">
-            <Star size={10} className="text-[var(--terminal-green)]" aria-hidden="true" />{' '}
+            <Star
+              size={10}
+              className="text-[var(--terminal-green)]"
+              aria-hidden="true"
+            />{' '}
             {repo.stars}
           </span>
           <span className="flex items-center gap-1">
-            <GitFork size={10} className="text-[var(--terminal-green)]" aria-hidden="true" />{' '}
+            <GitFork
+              size={10}
+              className="text-[var(--terminal-green)]"
+              aria-hidden="true"
+            />{' '}
             {repo.forks}
           </span>
         </div>
@@ -291,7 +299,9 @@ const GitHub: React.FC = () => {
           </div>
         </header>
         {isLoadingReadme ? (
-          <div className="animate-pulse text-[var(--terminal-text-dim)]">DECRYPTING_README...</div>
+          <div className="animate-pulse text-[var(--terminal-text-dim)]">
+            DECRYPTING_README...
+          </div>
         ) : (
           <div
             className="article-content"

@@ -47,7 +47,9 @@ const ProgressMeter = () => {
           />{' '}
           SYSTEM_BUILD_PROGRESS
         </div>
-        <div className="text-[16px] text-[var(--terminal-text-dim)] font-bold tabular-nums">0%</div>
+        <div className="text-[16px] text-[var(--terminal-text-dim)] font-bold tabular-nums">
+          0%
+        </div>
       </div>
       <div className="h-2 w-full bg-[var(--terminal-bg-dark)] overflow-hidden flex p-[1px]">
         <div
