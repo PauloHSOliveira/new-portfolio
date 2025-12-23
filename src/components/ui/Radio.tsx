@@ -9,7 +9,7 @@
 
 import { motion } from 'framer-motion'
 import type { InputHTMLAttributes, ReactNode } from 'react'
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 
 export interface RadioProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -111,16 +111,17 @@ export function RadioGroup({
   className = '',
 }: RadioGroupProps) {
   const hasError = !!error
+  const labelId = useId()
 
   return (
     <div
       className={`flex flex-col gap-terminal ${className}`}
       role="group"
-      aria-labelledby={label ? 'radio-group-label' : undefined}
+      aria-labelledby={label ? labelId : undefined}
     >
       {label && (
         <span
-          id="radio-group-label"
+          id={labelId}
           className="text-terminal-sm text-terminal-text-secondary uppercase tracking-wider"
         >
           {label}

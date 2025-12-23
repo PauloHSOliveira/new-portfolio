@@ -8,7 +8,7 @@
 'use client'
 
 import type { TextareaHTMLAttributes } from 'react'
-import { forwardRef, useEffect, useId, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useId, useRef } from 'react'
 
 export interface TextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -38,8 +38,19 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref
   ) {
     const internalRef = useRef<HTMLTextAreaElement>(null)
-    const textareaRef =
-      (ref as React.RefObject<HTMLTextAreaElement>) || internalRef
+
+    // Merge external ref with internal ref for auto-resize
+    const mergedRef = useCallback(
+      (node: HTMLTextAreaElement | null) => {
+        internalRef.current = node
+        if (typeof ref === 'function') {
+          ref(node)
+        } else if (ref) {
+          ref.current = node
+        }
+      },
+      [ref]
+    )
 
     const generatedId = useId()
     const hasError = !!error
@@ -56,8 +67,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     // Auto-resize functionality
     useEffect(() => {
-      if (autoResize && textareaRef.current) {
-        const textarea = textareaRef.current
+      if (autoResize && internalRef.current) {
+        const textarea = internalRef.current
         const adjustHeight = () => {
           textarea.style.height = 'auto'
           textarea.style.height = `${textarea.scrollHeight}px`
@@ -70,7 +81,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           textarea.removeEventListener('input', adjustHeight)
         }
       }
-    }, [autoResize, textareaRef])
+    }, [autoResize])
 
     return (
       <div className={`flex flex-col gap-1 ${className}`}>
@@ -85,7 +96,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
 
         <textarea
-          ref={textareaRef}
+          ref={mergedRef}
           id={textareaId}
           disabled={disabled}
           required={required}
