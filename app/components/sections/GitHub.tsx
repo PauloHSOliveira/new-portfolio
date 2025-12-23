@@ -51,19 +51,24 @@ const TechIcon = ({
       if (useThemeColor && !color) {
         try {
           const computedStyle = getComputedStyle(document.documentElement)
-          const themeColor = computedStyle.getPropertyValue('--terminal-green').trim()
-          
+          const themeColor = computedStyle
+            .getPropertyValue('--terminal-green')
+            .trim()
+
           if (!themeColor) {
             return // CSS variable not available yet
           }
-          
+
           // Convert hex color (#00ff00) to hex without # (00ff00)
-          let hexWithoutHash = themeColor.replace('#', '').replace(/\s/g, '')
-          
+          const hexWithoutHash = themeColor.replace('#', '').replace(/\s/g, '')
+
           // Validate hex color (should be 6 characters)
-          if (hexWithoutHash.length === 6 && /^[0-9A-Fa-f]{6}$/.test(hexWithoutHash)) {
+          if (
+            hexWithoutHash.length === 6 &&
+            /^[0-9A-Fa-f]{6}$/.test(hexWithoutHash)
+          ) {
             setIconColor(hexWithoutHash)
-            
+
             // Convert hex to rgba for the glow effect
             const r = parseInt(hexWithoutHash.substring(0, 2), 16)
             const g = parseInt(hexWithoutHash.substring(2, 4), 16)
@@ -78,7 +83,7 @@ const TechIcon = ({
         const cleanColor = color.replace('#', '').replace(/\s/g, '')
         if (cleanColor.length === 6 && /^[0-9A-Fa-f]{6}$/.test(cleanColor)) {
           setIconColor(cleanColor)
-          
+
           // Convert hex to rgba for the glow effect
           const r = parseInt(cleanColor.substring(0, 2), 16)
           const g = parseInt(cleanColor.substring(2, 4), 16)
