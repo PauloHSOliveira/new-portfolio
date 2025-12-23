@@ -8,16 +8,35 @@ interface HeaderProps {
   className?: string
 }
 
+// Telemetry simulation parameters
+const TELEMETRY_CONFIG = {
+  CPU_MIN: 1,
+  CPU_MAX: 6,
+  RAM_MIN: 40,
+  RAM_MAX: 50,
+  UPDATE_INTERVAL_MS: 3000,
+} as const
+
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [telemetry, setTelemetry] = useState({ cpu: 1.2, ram: 42 })
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTelemetry({
-        cpu: parseFloat((Math.random() * 5 + 1).toFixed(1)),
-        ram: Math.floor(Math.random() * 10 + 40),
+        cpu: parseFloat(
+          (
+            Math.random() *
+              (TELEMETRY_CONFIG.CPU_MAX - TELEMETRY_CONFIG.CPU_MIN) +
+            TELEMETRY_CONFIG.CPU_MIN
+          ).toFixed(1)
+        ),
+        ram: Math.floor(
+          Math.random() *
+            (TELEMETRY_CONFIG.RAM_MAX - TELEMETRY_CONFIG.RAM_MIN) +
+            TELEMETRY_CONFIG.RAM_MIN
+        ),
       })
-    }, 3000)
+    }, TELEMETRY_CONFIG.UPDATE_INTERVAL_MS)
     return () => clearInterval(interval)
   }, [])
 

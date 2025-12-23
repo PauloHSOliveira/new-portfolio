@@ -525,7 +525,10 @@
   animation: slideIn 0.3s ease-out;
 }
 
-/* Staggered menu item animations */
+/* Staggered menu item animations 
+ * Note: These classes are designed for 6 navigation items.
+ * If the navigation links change, update these classes accordingly.
+ */
 .menu-item-0 { animation: fadeInUp 0.3s ease-out 0s both; }
 .menu-item-1 { animation: fadeInUp 0.3s ease-out 0.05s both; }
 .menu-item-2 { animation: fadeInUp 0.3s ease-out 0.1s both; }
