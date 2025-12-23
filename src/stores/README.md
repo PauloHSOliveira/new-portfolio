@@ -255,6 +255,18 @@ If migrating from Context:
 3. Remove Provider components (Jotai Provider handles all atoms)
 4. Enjoy better performance and less boilerplate!
 
+### Current State: Dual Theme Management
+
+**Note:** The portfolio currently has two theme management systems:
+1. **Legacy:** `app/providers.tsx` uses React Context API with localStorage
+2. **New:** `src/stores/theme.ts` uses Jotai atoms with localStorage
+
+**Future Migration Path:**
+- The new Jotai theme atoms (`themeAtom`) provide the same functionality as the legacy Context
+- To complete migration, components should switch from `useTheme()` (Context) to `useThemeAtom()` (Jotai)
+- Once all components migrate, the Context-based theme management in `providers.tsx` can be removed
+- The `Theme` type should be imported from `@/stores/theme` to maintain single source of truth
+
 ## Resources
 
 - [Jotai Documentation](https://jotai.org)
