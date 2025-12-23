@@ -2,6 +2,7 @@
 
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 import ThemeSelector from './ThemeSelector'
 
 interface HeaderProps {
@@ -42,7 +43,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   return (
     <header
-      className={`flex items-center justify-between px-4 py-2 bg-[var(--terminal-bg-lighter)] border-b border-[var(--terminal-border-bright)] rounded-t-lg ${className}`}
+      className={cn(
+        'flex items-center justify-between px-4 py-2',
+        'bg-[var(--terminal-bg-lighter)] border-b border-[var(--terminal-border-bright)]',
+        'rounded-t-lg',
+        className
+      )}
     >
       {/* Logo/Branding - Terminal window controls */}
       <div className="flex space-x-2">

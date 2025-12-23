@@ -4,6 +4,7 @@ import { List, X } from '@phosphor-icons/react'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import type { Section } from '@/app/types'
+import { cn } from '@/lib/utils'
 
 interface NavigationProps {
   currentSection: Section
@@ -85,7 +86,11 @@ const Navigation: React.FC<NavigationProps> = ({
     <>
       {/* Desktop Navigation */}
       <nav
-        className={`hidden md:flex flex-wrap gap-6 md:gap-10 mb-10 border-b border-[var(--terminal-border)] pb-6 ${className}`}
+        className={cn(
+          'hidden md:flex flex-wrap gap-6 md:gap-10 mb-10',
+          'border-b border-[var(--terminal-border)] pb-6',
+          className
+        )}
         aria-label="Main navigation"
       >
         {links.map((link) => (
@@ -96,11 +101,15 @@ const Navigation: React.FC<NavigationProps> = ({
             onKeyDown={(e) => handleKeyDown(e, link.id)}
             aria-label={link.ariaLabel}
             aria-current={currentSection === link.id ? 'page' : undefined}
-            className={`text-base transition-all duration-200 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)] focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)] rounded px-2 py-1 ${
+            className={cn(
+              'text-base transition-all duration-200 uppercase tracking-widest',
+              'focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)]',
+              'focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)]',
+              'rounded px-2 py-1',
               currentSection === link.id
                 ? 'text-[var(--terminal-green)] font-bold scale-105'
                 : 'text-[var(--terminal-text-dim)] hover:text-[var(--terminal-text-primary)]'
-            }`}
+            )}
           >
             {link.id === currentSection ? `> ${link.label}` : link.label}
           </button>
@@ -116,7 +125,13 @@ const Navigation: React.FC<NavigationProps> = ({
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
-          className="flex items-center gap-2 text-[var(--terminal-text-primary)] hover:text-[var(--terminal-green)] transition-colors duration-200 mb-6 px-4 py-2 border border-[var(--terminal-border)] rounded focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)] focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)]"
+          className={cn(
+            'flex items-center gap-2 mb-6 px-4 py-2 border rounded',
+            'text-[var(--terminal-text-primary)] hover:text-[var(--terminal-green)]',
+            'border-[var(--terminal-border)] transition-colors duration-200',
+            'focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)]',
+            'focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)]'
+          )}
         >
           {isMobileMenuOpen ? (
             <>
@@ -144,7 +159,11 @@ const Navigation: React.FC<NavigationProps> = ({
             {/* Drawer */}
             <nav
               id="mobile-menu"
-              className="fixed top-0 left-0 w-full max-w-sm h-full bg-[var(--terminal-bg)] border-r border-[var(--terminal-border-bright)] z-50 p-6 overflow-y-auto animate-slide-in"
+              className={cn(
+                'fixed top-0 left-0 w-full max-w-sm h-full z-50 p-6 overflow-y-auto',
+                'bg-[var(--terminal-bg)] border-r border-[var(--terminal-border-bright)]',
+                'animate-slide-in'
+              )}
               aria-label="Mobile navigation"
             >
               {/* Close button */}
@@ -152,7 +171,12 @@ const Navigation: React.FC<NavigationProps> = ({
                 type="button"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Close menu"
-                className="absolute top-4 right-4 text-[var(--terminal-text-dim)] hover:text-[var(--terminal-green)] transition-colors duration-200 p-2 focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)] rounded"
+                className={cn(
+                  'absolute top-4 right-4 p-2 rounded',
+                  'text-[var(--terminal-text-dim)] hover:text-[var(--terminal-green)]',
+                  'transition-colors duration-200',
+                  'focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)]'
+                )}
               >
                 <X size={24} weight="bold" />
               </button>
@@ -177,11 +201,15 @@ const Navigation: React.FC<NavigationProps> = ({
                       aria-current={
                         currentSection === link.id ? 'page' : undefined
                       }
-                      className={`w-full text-left px-4 py-3 rounded border transition-all duration-200 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)] focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)] ${
+                      className={cn(
+                        'w-full text-left px-4 py-3 rounded border',
+                        'transition-all duration-200 uppercase tracking-widest',
+                        'focus:outline-none focus:ring-2 focus:ring-[var(--terminal-green)]',
+                        'focus:ring-offset-2 focus:ring-offset-[var(--terminal-bg)]',
                         currentSection === link.id
                           ? 'text-[var(--terminal-green)] font-bold border-[var(--terminal-green)] bg-[var(--terminal-bg-lighter)]'
                           : 'text-[var(--terminal-text-dim)] border-[var(--terminal-border)] hover:text-[var(--terminal-text-primary)] hover:border-[var(--terminal-border-bright)] hover:bg-[var(--terminal-bg-light)]'
-                      }`}
+                      )}
                     >
                       {link.id === currentSection
                         ? `> ${link.label}`
