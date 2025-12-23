@@ -80,6 +80,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: Every atom and hook includes JSDoc comments with examples
 - **Best Practices**: Follows Jotai recommended patterns for atom organization
 
+#### Notes
+
+- **Dual Theme Management**: The portfolio currently maintains both the legacy Context-based theme system (`app/providers.tsx`) and the new Jotai-based theme atoms (`src/stores/theme.ts`) for backward compatibility. Future migration can consolidate to use only Jotai atoms.
+- **Incremental Adoption**: New features can immediately use Jotai atoms, while existing features continue working with the current Context API until migrated.
+- **Single Source of Truth**: The `Theme` type is defined in both places temporarily but should eventually be imported only from `@/stores/theme`.
+
 #### Code Quality
 
 - ✅ TypeScript compilation passes (`pnpm type-check`)
