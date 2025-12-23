@@ -100,6 +100,7 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* Analytics Scripts Placeholder - Add PostHog, Google Analytics, or other analytics here */}
       </head>
       <body className={jetbrainsMono.className}>
         <div className="crt-overlay" aria-hidden="true"></div>
