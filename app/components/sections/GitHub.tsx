@@ -197,6 +197,81 @@ const TechBadge: React.FC<{ name: string; isTopic?: boolean }> = ({
 const GitHub: React.FC = () => {
   const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null)
   const [selectedYear, setSelectedYear] = useState<number | 'last12'>('last12')
+  const [themeGreen, setThemeGreen] = useState<string>('#00ff00')
+
+  // Get theme color and create contribution colors based on it
+  useEffect(() => {
+    const updateThemeColor = () => {
+      const computedStyle = getComputedStyle(document.documentElement)
+      const themeColor = computedStyle
+        .getPropertyValue('--terminal-green')
+        .trim()
+      if (themeColor) {
+        setThemeGreen(themeColor)
+      }
+    }
+
+    updateThemeColor()
+
+    const observer = new MutationObserver(() => {
+      setTimeout(updateThemeColor, 10)
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Convert hex to RGB
+  const hexToRgb = (hex: string): [number, number, number] | null => {
+    const cleanHex = hex.replace('#', '')
+    if (cleanHex.length !== 6) return null
+    const r = parseInt(cleanHex.substring(0, 2), 16)
+    const g = parseInt(cleanHex.substring(2, 4), 16)
+    const b = parseInt(cleanHex.substring(4, 6), 16)
+    return [r, g, b]
+  }
+
+  // Convert RGB to hex
+  const rgbToHex = (r: number, g: number, b: number): string => {
+    return `#${[r, g, b]
+      .map((x) => {
+        const hex = x.toString(16)
+        return hex.length === 1 ? `0${hex}` : hex
+      })
+      .join('')}`
+  }
+
+  // Get theme-aware contribution color based on count
+  const getContributionColor = (count: number): string => {
+    if (count === 0) {
+      return '#111' // Dark background color
+    }
+
+    const rgb = hexToRgb(themeGreen)
+    if (!rgb) return '#00ff00' // Fallback
+
+    const [r, g, b] = rgb
+    const bgDark = '#111111'
+    const bgRgb = hexToRgb(bgDark) || [17, 17, 17]
+
+    // Create intensity levels (0-4) based on contribution count
+    let intensity = 0
+    if (count >= 20) intensity = 4
+    else if (count >= 10) intensity = 3
+    else if (count >= 5) intensity = 2
+    else intensity = 1
+
+    // Interpolate between background and theme color
+    const factor = intensity / 4
+    const newR = Math.round(bgRgb[0] + (r - bgRgb[0]) * factor)
+    const newG = Math.round(bgRgb[1] + (g - bgRgb[1]) * factor)
+    const newB = Math.round(bgRgb[2] + (b - bgRgb[2]) * factor)
+
+    return rgbToHex(newR, newG, newB)
+  }
 
   const { data: mainData, isLoading: isLoadingMain } = useQuery({
     queryKey: ['github-all-data'],
@@ -496,7 +571,11 @@ const GitHub: React.FC = () => {
                     <div
                       key={dayIdx.toString()}
                       className="w-[11px] h-[11px] rounded-[1px] relative cursor-crosshair group/tip hover:z-50"
-                      style={{ backgroundColor: day?.color || '#111' }}
+                      style={{
+                        backgroundColor: day
+                          ? getContributionColor(day.contributionCount)
+                          : '#111',
+                      }}
                     >
                       <div
                         className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[var(--terminal-green)] text-[var(--terminal-bg)] text-[8px] p-2 whitespace-nowrap opacity-0 group-hover/tip:opacity-100 pointer-events-none font-bold z-[100] border border-[var(--terminal-border)]"
