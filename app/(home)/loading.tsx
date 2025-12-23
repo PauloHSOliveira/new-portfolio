@@ -43,12 +43,14 @@ export default function HomeLoading() {
           {/* Navigation Skeleton */}
           <div className="mb-10">
             <div className="flex flex-wrap gap-2">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="h-10 w-24 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
-                />
-              ))}
+              {Array.from({ length: 6 }, (_, i) => `nav-skeleton-${i}`).map(
+                (key) => (
+                  <div
+                    key={key}
+                    className="h-10 w-24 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
+                  />
+                ),
+              )}
             </div>
           </div>
 
@@ -79,9 +81,12 @@ export default function HomeLoading() {
             <div className="flex justify-between items-center">
               <TextSkeleton variant="line" className="w-32" />
               <div className="flex gap-4">
-                {Array.from({ length: 3 }).map((_, i) => (
+                {Array.from(
+                  { length: 3 },
+                  (_, i) => `footer-icon-${i}`,
+                ).map((key) => (
                   <div
-                    key={i}
+                    key={key}
                     className="h-5 w-5 bg-terminal-bg-light rounded-full animate-pulse"
                   />
                 ))}
