@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply font-mono;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace;
+  }
+}
+
 :root {
   /* Default Theme: Matrix Green (Original) */
   --terminal-green: #00ff00;

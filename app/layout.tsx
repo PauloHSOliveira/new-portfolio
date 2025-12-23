@@ -1,13 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Paulo Oliveira — Senior Software Engineer & Architect',
@@ -55,8 +48,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={jetbrainsMono.variable}>
+    <html lang="en" className="font-mono">
       <head>
+        {/* Preconnect to Google Fonts for better performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        {/* Load JetBrains Mono font from Google Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+          rel="stylesheet"
+        />
         <link
           rel="icon"
           type="image/png"
@@ -102,7 +107,7 @@ export default function RootLayout({
         />
         {/* Analytics Scripts Placeholder - Add PostHog, Google Analytics, or other analytics here */}
       </head>
-      <body className={jetbrainsMono.className}>
+      <body className="font-mono">
         <div className="crt-overlay" aria-hidden="true"></div>
         <div className="crt-flicker" aria-hidden="true"></div>
         <Providers>{children}</Providers>
