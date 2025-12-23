@@ -8,7 +8,7 @@
 'use client'
 
 import type { SelectHTMLAttributes } from 'react'
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 
 export interface SelectOption {
   value: string
@@ -44,9 +44,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) {
+    const generatedId = useId()
     const hasError = !!error
-    const selectId =
-      id || `select-${Math.random().toString(36).substring(2, 11)}`
+    const selectId = id || generatedId
 
     const variantClasses = {
       default: 'bg-terminal-bg-darker',

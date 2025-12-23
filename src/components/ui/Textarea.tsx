@@ -8,7 +8,7 @@
 'use client'
 
 import type { TextareaHTMLAttributes } from 'react'
-import { forwardRef, useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useId, useRef } from 'react'
 
 export interface TextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -41,9 +41,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const textareaRef =
       (ref as React.RefObject<HTMLTextAreaElement>) || internalRef
 
+    const generatedId = useId()
     const hasError = !!error
-    const textareaId =
-      id || `textarea-${Math.random().toString(36).substring(2, 11)}`
+    const textareaId = id || generatedId
 
     const variantClasses = {
       default: 'bg-terminal-bg-darker',

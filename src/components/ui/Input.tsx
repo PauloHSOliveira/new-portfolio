@@ -8,7 +8,7 @@
 'use client'
 
 import type { InputHTMLAttributes, ReactNode } from 'react'
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -37,8 +37,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   },
   ref
 ) {
+  const generatedId = useId()
   const hasError = !!error
-  const inputId = id || `input-${Math.random().toString(36).substring(2, 11)}`
+  const inputId = id || generatedId
 
   const variantClasses = {
     default: 'bg-terminal-bg-darker',
