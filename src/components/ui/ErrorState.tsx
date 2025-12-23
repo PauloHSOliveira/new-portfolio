@@ -121,7 +121,9 @@ export function ErrorState({
           .trim()
           .replace(/\s+/g, ' ')}
       >
-        {typeof IconComponent === 'function' ? (
+        {icon ? (
+          icon
+        ) : typeof IconComponent === 'function' ? (
           <IconComponent size={48} strokeWidth={1.5} />
         ) : (
           IconComponent
@@ -163,15 +165,21 @@ export function ErrorState({
         )}
 
         {showHomeLink && (
-          <Link href="/">
-            <Button
-              variant="outline"
-              size="md"
-              leftIcon={<Home size={18} />}
-              className="min-w-[140px]"
-            >
-              Go Home
-            </Button>
+          <Link
+            href="/"
+            className="
+              inline-flex items-center justify-center gap-2
+              rounded-terminal-sm border-2 border-terminal-border
+              bg-transparent px-terminal-lg py-terminal
+              text-terminal-base text-terminal-text-primary
+              transition-all duration-terminal
+              hover:border-terminal-green hover:bg-terminal-bg-light
+              hover:text-terminal-green hover:shadow-terminal
+              min-w-[140px]
+            "
+          >
+            <Home size={18} />
+            Go Home
           </Link>
         )}
       </div>
