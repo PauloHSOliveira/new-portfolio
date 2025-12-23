@@ -108,6 +108,7 @@ export function SkillCard({
           <div className="flex gap-1">
             {[...Array(4)].map((_, i) => (
               <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: Static array with fixed count
                 key={`level-${i}`}
                 className={`
                   w-2 h-2 rounded-full

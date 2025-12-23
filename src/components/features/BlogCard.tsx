@@ -9,7 +9,6 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Calendar, Clock } from 'lucide-react'
-import type { AnchorHTMLAttributes, HTMLAttributes } from 'react'
 
 export interface BlogCardProps {
   title: string
@@ -98,19 +97,13 @@ export function BlogCard({
         <div className="flex items-center gap-4 pt-4 border-t border-terminal-border text-terminal-text-dim text-terminal-sm">
           {date && (
             <div className="flex items-center gap-1.5">
-              <Calendar
-                size={14}
-                aria-hidden="true"
-              />
+              <Calendar size={14} aria-hidden="true" />
               <time dateTime={date}>{date}</time>
             </div>
           )}
           {readTime && (
             <div className="flex items-center gap-1.5">
-              <Clock
-                size={14}
-                aria-hidden="true"
-              />
+              <Clock size={14} aria-hidden="true" />
               <span>{readTime}</span>
             </div>
           )}
@@ -144,17 +137,11 @@ export function BlogCard({
       className={className}
     >
       {href ? (
-        <a
-          href={href}
-          rel="noopener noreferrer"
-          className={cardClasses}
-        >
+        <a href={href} rel="noopener noreferrer" className={cardClasses}>
           {content}
         </a>
       ) : (
-        <article className={cardClasses}>
-          {content}
-        </article>
+        <article className={cardClasses}>{content}</article>
       )}
     </motion.div>
   )

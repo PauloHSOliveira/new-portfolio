@@ -53,10 +53,7 @@ export function Hero({
         .replace(/\s+/g, ' ')}
     >
       {/* Animated Background - Particle Grid */}
-      <div
-        className="absolute inset-0 opacity-30"
-        aria-hidden="true"
-      >
+      <div className="absolute inset-0 opacity-30" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(var(--terminal-border)_1px,transparent_1px),linear-gradient(90deg,var(--terminal-border)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
       </div>
 
@@ -77,6 +74,7 @@ export function Hero({
       {/* Floating Particles */}
       {[...Array(5)].map((_, i) => (
         <motion.div
+          // biome-ignore lint/suspicious/noArrayIndexKey: Static array with fixed positions
           key={`particle-${i}`}
           className="absolute w-1 h-1 bg-terminal-green rounded-full opacity-40"
           style={{

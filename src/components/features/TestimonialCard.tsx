@@ -74,17 +74,18 @@ export function TestimonialCard({
         />
         {/* Rating */}
         {rating && (
-          <div className="flex gap-1" aria-label={`Rating: ${rating} out of 5`}>
+          <div
+            className="flex gap-1"
+            role="img"
+            aria-label={`Rating: ${rating} out of 5`}
+          >
             {[...Array(5)].map((_, i) => (
               <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: Static array with fixed count
                 key={`star-${i}`}
                 className={`
                   w-1.5 h-1.5 rounded-full
-                  ${
-                    i < rating
-                      ? 'bg-terminal-green'
-                      : 'bg-terminal-border'
-                  }
+                  ${i < rating ? 'bg-terminal-green' : 'bg-terminal-border'}
                 `}
                 aria-hidden="true"
               />

@@ -50,11 +50,7 @@ export default function FeaturesShowcase() {
       </Hero>
 
       {/* Section with Projects */}
-      <Section
-        variant="filled"
-        spacing="xl"
-        containerSize="xl"
-      >
+      <Section variant="filled" spacing="xl" containerSize="xl">
         <Container size="lg">
           <h2 className="text-terminal-2xl font-bold text-terminal-green mb-4 uppercase tracking-wider">
             Featured Projects
@@ -70,12 +66,7 @@ export default function FeaturesShowcase() {
               description="Next-generation fintech infrastructure enabling seamless payment processing and financial operations at scale."
               techStack={['Node.js', 'Go', 'PostgreSQL', 'Redis', 'Docker']}
               status="Production"
-              icon={
-                <Database
-                  size={24}
-                  className="text-terminal-green"
-                />
-              }
+              icon={<Database size={24} className="text-terminal-green" />}
               githubUrl="https://github.com/example/paglua"
               liveUrl="https://paglua.com"
             />
@@ -85,12 +76,7 @@ export default function FeaturesShowcase() {
               description="AI-powered trademark automation system that streamlines intellectual property registration and management."
               techStack={['Python', 'TensorFlow', 'FastAPI', 'React', 'AWS']}
               status="Beta"
-              icon={
-                <Sparkles
-                  size={24}
-                  className="text-terminal-green"
-                />
-              }
+              icon={<Sparkles size={24} className="text-terminal-green" />}
               githubUrl="https://github.com/example/marcaai"
             />
 
@@ -99,12 +85,7 @@ export default function FeaturesShowcase() {
               description="Modern terminal-themed portfolio built with Next.js, featuring unique design and smooth animations."
               techStack={['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion']}
               status="Active"
-              icon={
-                <Globe
-                  size={24}
-                  className="text-terminal-green"
-                />
-              }
+              icon={<Globe size={24} className="text-terminal-green" />}
               githubUrl="https://github.com/PauloHSOliveira/new-portfolio"
               liveUrl="https://portfolio.example.com"
             />
@@ -113,10 +94,7 @@ export default function FeaturesShowcase() {
       </Section>
 
       {/* Section with Blog Posts */}
-      <Section
-        variant="bordered"
-        spacing="lg"
-      >
+      <Section variant="bordered" spacing="lg">
         <h2 className="text-terminal-2xl font-bold text-terminal-green mb-4 uppercase tracking-wider">
           Latest Writing
         </h2>
@@ -161,10 +139,7 @@ export default function FeaturesShowcase() {
       </Section>
 
       {/* Section with Skills */}
-      <Section
-        variant="gradient"
-        spacing="xl"
-      >
+      <Section variant="gradient" spacing="xl">
         <h2 className="text-terminal-2xl font-bold text-terminal-green mb-4 uppercase tracking-wider">
           Technical Expertise
         </h2>
@@ -176,12 +151,7 @@ export default function FeaturesShowcase() {
           <SkillCard
             title="Backend"
             description="Server-side development and API design"
-            icon={
-              <Server
-                size={32}
-                className="text-terminal-green"
-              />
-            }
+            icon={<Server size={32} className="text-terminal-green" />}
             level="expert"
             category="Development"
             technologies={['Node.js', 'Go', 'Python']}
@@ -190,12 +160,7 @@ export default function FeaturesShowcase() {
           <SkillCard
             title="Frontend"
             description="Modern UI development and frameworks"
-            icon={
-              <Code
-                size={32}
-                className="text-terminal-green"
-              />
-            }
+            icon={<Code size={32} className="text-terminal-green" />}
             level="advanced"
             category="Development"
             technologies={['React', 'Next.js', 'TypeScript']}
@@ -204,12 +169,7 @@ export default function FeaturesShowcase() {
           <SkillCard
             title="Database"
             description="Data modeling and optimization"
-            icon={
-              <Database
-                size={32}
-                className="text-terminal-green"
-              />
-            }
+            icon={<Database size={32} className="text-terminal-green" />}
             level="expert"
             category="Infrastructure"
             technologies={['PostgreSQL', 'Redis', 'MongoDB']}
@@ -218,12 +178,7 @@ export default function FeaturesShowcase() {
           <SkillCard
             title="DevOps"
             description="CI/CD and cloud infrastructure"
-            icon={
-              <Rocket
-                size={32}
-                className="text-terminal-green"
-              />
-            }
+            icon={<Rocket size={32} className="text-terminal-green" />}
             level="advanced"
             category="Operations"
             technologies={['Docker', 'K8s', 'AWS']}
@@ -232,10 +187,7 @@ export default function FeaturesShowcase() {
       </Section>
 
       {/* Section with Testimonials */}
-      <Section
-        variant="default"
-        spacing="lg"
-      >
+      <Section variant="default" spacing="lg">
         <h2 className="text-terminal-2xl font-bold text-terminal-green mb-4 uppercase tracking-wider">
           Client Testimonials
         </h2>
@@ -271,10 +223,7 @@ export default function FeaturesShowcase() {
       </Section>
 
       {/* Footer Section */}
-      <Section
-        variant="filled"
-        spacing="md"
-      >
+      <Section variant="filled" spacing="md">
         <Container size="lg">
           <div className="text-center text-terminal-text-dim text-terminal-sm">
             <p>

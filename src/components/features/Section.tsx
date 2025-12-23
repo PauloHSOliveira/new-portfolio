@@ -40,8 +40,7 @@ export function Section({
   const variantClasses = {
     default: 'bg-transparent',
     filled: 'bg-terminal-bg-light/30',
-    bordered:
-      'bg-transparent border-y border-terminal-border',
+    bordered: 'bg-transparent border-y border-terminal-border',
     gradient:
       'bg-gradient-to-b from-transparent via-terminal-bg-light/20 to-transparent',
   }
