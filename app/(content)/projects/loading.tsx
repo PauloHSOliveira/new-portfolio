@@ -32,7 +32,7 @@ export default function ProjectsLoading() {
                 key={key}
                 className="h-10 w-24 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
               />
-            ),
+            )
           )}
         </div>
         <div className="h-10 w-32 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse" />
@@ -48,15 +48,14 @@ export default function ProjectsLoading() {
               <TextSkeleton variant="heading" />
               <TextSkeleton variant="paragraph" lines={4} />
               <div className="flex gap-2">
-                {Array.from(
-                  { length: 4 },
-                  (_, i) => `featured-tech-${i}`,
-                ).map((key) => (
-                  <div
-                    key={key}
-                    className="h-6 w-16 bg-terminal-bg-light rounded-terminal-sm animate-pulse"
-                  />
-                ))}
+                {Array.from({ length: 4 }, (_, i) => `featured-tech-${i}`).map(
+                  (key) => (
+                    <div
+                      key={key}
+                      className="h-6 w-16 bg-terminal-bg-light rounded-terminal-sm animate-pulse"
+                    />
+                  )
+                )}
               </div>
               <div className="flex gap-3 pt-4">
                 <div className="h-10 w-32 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse" />
@@ -95,7 +94,7 @@ export default function ProjectsLoading() {
                   <div className="flex flex-wrap gap-2">
                     {Array.from(
                       { length: 5 },
-                      (_, j) => `tech-${index}-${j}`,
+                      (_, j) => `tech-${index}-${j}`
                     ).map((techKey) => (
                       <div
                         key={techKey}
@@ -124,7 +123,7 @@ export default function ProjectsLoading() {
                 </div>
               </div>
             </article>
-          ),
+          )
         )}
       </div>
     </div>

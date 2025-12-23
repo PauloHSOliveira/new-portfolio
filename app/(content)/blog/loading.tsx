@@ -27,7 +27,7 @@ export default function BlogLoading() {
               key={key}
               className="h-8 w-20 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
             />
-          ),
+          )
         )}
       </div>
 
@@ -57,7 +57,7 @@ export default function BlogLoading() {
                 <div className="flex gap-2">
                   {Array.from(
                     { length: 3 },
-                    (_, j) => `tag-skeleton-${index}-${j}`,
+                    (_, j) => `tag-skeleton-${index}-${j}`
                   ).map((tagKey) => (
                     <div
                       key={tagKey}
@@ -67,21 +67,20 @@ export default function BlogLoading() {
                 </div>
               </div>
             </article>
-          ),
+          )
         )}
       </div>
 
       {/* Pagination Skeleton */}
       <div className="mt-12 flex justify-center gap-2">
-        {Array.from(
-          { length: 5 },
-          (_, i) => `pagination-skeleton-${i}`,
-        ).map((key) => (
-          <div
-            key={key}
-            className="h-10 w-10 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
-          />
-        ))}
+        {Array.from({ length: 5 }, (_, i) => `pagination-skeleton-${i}`).map(
+          (key) => (
+            <div
+              key={key}
+              className="h-10 w-10 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
+            />
+          )
+        )}
       </div>
     </div>
   )

@@ -49,7 +49,7 @@ export default function HomeLoading() {
                     key={key}
                     className="h-10 w-24 bg-terminal-bg-light border border-terminal-border rounded-terminal-sm animate-pulse"
                   />
-                ),
+                )
               )}
             </div>
           </div>
@@ -81,15 +81,14 @@ export default function HomeLoading() {
             <div className="flex justify-between items-center">
               <TextSkeleton variant="line" className="w-32" />
               <div className="flex gap-4">
-                {Array.from(
-                  { length: 3 },
-                  (_, i) => `footer-icon-${i}`,
-                ).map((key) => (
-                  <div
-                    key={key}
-                    className="h-5 w-5 bg-terminal-bg-light rounded-full animate-pulse"
-                  />
-                ))}
+                {Array.from({ length: 3 }, (_, i) => `footer-icon-${i}`).map(
+                  (key) => (
+                    <div
+                      key={key}
+                      className="h-5 w-5 bg-terminal-bg-light rounded-full animate-pulse"
+                    />
+                  )
+                )}
               </div>
             </div>
           </div>

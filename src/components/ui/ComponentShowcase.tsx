@@ -567,33 +567,30 @@ export function ComponentShowcase() {
                 <BlogCard
                   title="Building Scalable Systems"
                   excerpt="Learn how to design and implement distributed systems that scale efficiently."
-                  author="Paulo Oliveira"
                   date="2024-01-15"
                   readTime="8 min read"
                   tags={['Architecture', 'Scalability', 'Systems']}
-                  slug="/blog/building-scalable-systems"
+                  href="/blog/building-scalable-systems"
                   imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=Blog+Post"
                 />
 
                 <BlogCard
                   title="Modern DevOps Practices"
                   excerpt="Exploring CI/CD pipelines, containerization, and infrastructure as code."
-                  author="Paulo Oliveira"
                   date="2024-01-10"
                   readTime="6 min read"
                   tags={['DevOps', 'Docker', 'CI/CD']}
-                  slug="/blog/modern-devops"
+                  href="/blog/modern-devops"
                   imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=DevOps"
                 />
 
                 <BlogCard
                   title="AI Integration Guide"
                   excerpt="Step-by-step guide to integrating AI models into production applications."
-                  author="Paulo Oliveira"
                   date="2024-01-05"
                   readTime="10 min read"
                   tags={['AI', 'Machine Learning', 'Integration']}
-                  slug="/blog/ai-integration"
+                  href="/blog/ai-integration"
                   imageUrl="https://placehold.co/600x400/0a0a0a/00ff00?text=AI+Guide"
                 />
               </div>
@@ -610,33 +607,33 @@ export function ComponentShowcase() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <SkillCard
-                  name="Node.js"
+                  title="Node.js"
                   category="Backend"
-                  level="Expert"
+                  level="expert"
                   icon={<Server size={24} />}
                   description="Building high-performance APIs and microservices"
                 />
 
                 <SkillCard
-                  name="React"
+                  title="React"
                   category="Frontend"
-                  level="Advanced"
+                  level="advanced"
                   icon={<Code size={24} />}
                   description="Creating modern, responsive web applications"
                 />
 
                 <SkillCard
-                  name="PostgreSQL"
+                  title="PostgreSQL"
                   category="Database"
-                  level="Advanced"
+                  level="advanced"
                   icon={<Database size={24} />}
                   description="Database design and optimization"
                 />
 
                 <SkillCard
-                  name="Docker"
+                  title="Docker"
                   category="DevOps"
-                  level="Advanced"
+                  level="advanced"
                   icon={<Rocket size={24} />}
                   description="Containerization and orchestration"
                 />
