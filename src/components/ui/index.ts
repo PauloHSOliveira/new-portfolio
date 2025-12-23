@@ -15,6 +15,8 @@ export type {
 export { Card, CardContent, CardFooter, CardHeader } from './Card'
 export type { CheckboxProps } from './Checkbox'
 export { Checkbox } from './Checkbox'
+export type { ErrorStateProps } from './ErrorState'
+export { ErrorState } from './ErrorState'
 export type { InputProps } from './Input'
 export { Input } from './Input'
 export type { RadioGroupProps, RadioProps } from './Radio'
