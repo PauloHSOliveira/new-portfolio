@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply font-mono;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace;
+  }
+}
+
 :root {
   /* Default Theme: Matrix Green (Original) */
   --terminal-green: #00ff00;
@@ -486,3 +496,52 @@
   background: transparent;
   padding: 0;
 }
+
+/* Mobile Navigation Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Staggered menu item animations 
+ * Note: These classes are designed for 6 navigation items.
+ * If the navigation links change, update these classes accordingly.
+ */
+.menu-item-0 { animation: fadeInUp 0.3s ease-out 0s both; }
+.menu-item-1 { animation: fadeInUp 0.3s ease-out 0.05s both; }
+.menu-item-2 { animation: fadeInUp 0.3s ease-out 0.1s both; }
+.menu-item-3 { animation: fadeInUp 0.3s ease-out 0.15s both; }
+.menu-item-4 { animation: fadeInUp 0.3s ease-out 0.2s both; }
+.menu-item-5 { animation: fadeInUp 0.3s ease-out 0.25s both; }

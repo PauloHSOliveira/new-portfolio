@@ -5,6 +5,131 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-12-23
+
+### Phase 1.5: Layout Components - Header, Footer, and Navigation
+
+#### Added
+
+- **Header Component** (`src/components/layout/Header.tsx`)
+  - Professional terminal-style header with logo/branding (terminal window controls)
+  - Live telemetry display showing CPU and RAM usage metrics
+  - Integrated ThemeSelector for theme switching
+  - Responsive design with mobile optimization
+  - Clean semantic HTML structure with accessibility improvements
+  - Terminal session info display (portfolio name, terminal type, dimensions)
+  
+- **Footer Component** (`src/components/layout/Footer.tsx`)
+  - Social media links (GitHub, LinkedIn, Twitter, Email) with Phosphor icons
+  - Smooth hover effects with color transitions and scale transformations
+  - Additional navigation links for quick access to main sections
+  - Newsletter signup placeholder for future implementation
+  - Copyright notice with dynamic year
+  - Connection status indicator
+  - Fully responsive layout (mobile/desktop)
+  - Consistent terminal theme styling using CSS variables
+
+- **Enhanced Navigation Component** (`src/components/layout/Navigation.tsx`)
+  - Desktop navigation with active link highlighting
+  - Mobile drawer/hamburger menu with smooth animations
+  - Keyboard accessible navigation with focus states and ARIA labels
+  - Smooth transitions and hover effects
+  - Mobile menu features:
+    - Full-screen drawer with backdrop overlay
+    - Close on backdrop click or Escape key
+    - Animated menu items with staggered entrance
+    - Prevents body scroll when open
+    - Close on section change for better UX
+  - Active state indication with ">" prefix
+  - Focus ring for keyboard navigation
+  - Touch-friendly mobile interface
+
+- **Layout Components Export** (`src/components/layout/index.ts`)
+  - Centralized exports for Header, Footer, Navigation, and ThemeSelector
+  - Simplified imports across the application
+
+- **Mobile Navigation Animations** (`app/globals.css`)
+  - `fadeInUp` keyframe animation for menu items
+  - `slideIn` keyframe animation for drawer entrance
+  - `fadeIn` keyframe animation for backdrop overlay
+  - Utility classes: `.animate-fadeIn`, `.animate-slide-in`
+
+- **Analytics Placeholder** (`app/layout.tsx`)
+  - Added comment placeholder for analytics scripts (PostHog, Google Analytics)
+  - Ready for future integration without code changes
+
+#### Changed
+
+- **Root Layout** (`app/layout.tsx`)
+  - Added analytics scripts placeholder comment for future integration
+  - No breaking changes to existing structure
+
+- **Main Page Component** (`app/page.tsx`)
+  - Updated imports to use new layout components from `@/components/layout/`
+  - Replaced inline `TerminalHeader` with new `Header` component
+  - Replaced inline footer markup with new `Footer` component
+  - Replaced local `Navigation` with enhanced `Navigation` from layout
+  - Cleaner component structure and better separation of concerns
+
+#### Removed
+
+- Inline footer markup from `app/page.tsx` (replaced with Footer component)
+
+#### Technical Details
+
+**Component Architecture:**
+- All layout components follow consistent patterns:
+  - Client components with 'use client' directive
+  - TypeScript with React.FC type annotations
+  - CSS variables for theme compatibility
+  - Proper accessibility attributes (ARIA labels, roles, semantic HTML)
+  - Responsive design with Tailwind utility classes
+
+**Accessibility Features:**
+- Semantic HTML elements (`<header>`, `<footer>`, `<nav>`)
+- ARIA labels for screen readers
+- Keyboard navigation support (Tab, Enter, Space, Escape)
+- Focus states with visible focus rings
+- Proper heading hierarchy
+- Skip to content functionality maintained
+
+**Mobile Optimization:**
+- Hamburger menu for navigation on small screens
+- Touch-friendly tap targets (minimum 44x44px)
+- Responsive spacing and typography
+- Backdrop overlay prevents interaction with page content
+- Body scroll lock when mobile menu is open
+
+**Animation Performance:**
+- GPU-accelerated CSS animations
+- Staggered animations for menu items
+- Smooth transitions using cubic-bezier timing
+- No layout shift during animations
+
+#### Success Criteria Met
+
+- ✅ Root layout has HTML structure, font configuration, and metadata (already existed)
+- ✅ Analytics scripts placeholder added to layout
+- ✅ Header component created with logo/branding
+- ✅ Header includes navigation menu integration
+- ✅ Theme toggle integrated in header (ThemeSelector)
+- ✅ Header is mobile responsive
+- ✅ Footer component created with social links
+- ✅ Footer includes copyright notice
+- ✅ Footer has additional navigation links
+- ✅ Newsletter signup placeholder added to footer
+- ✅ Navigation component created with active link highlighting
+- ✅ Mobile drawer/menu implemented
+- ✅ Keyboard accessible navigation
+- ✅ Smooth transitions throughout
+- ✅ Layout is responsive on mobile/tablet/desktop
+- ✅ Navigation is fully functional
+- ✅ Theme toggle is accessible
+- ✅ Header and footer display correctly
+- ✅ All styles preserved and enhanced
+- ✅ Zero TypeScript errors
+- ✅ All linting checks pass
+
 ## [2.0.0] - 2025-12-22
 
 ### Phase 1.4: Terminal Theme System - Multiple Theme Support

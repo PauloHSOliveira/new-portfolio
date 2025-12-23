@@ -1,15 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
+import Navigation from '@/components/layout/Navigation'
 import BootSequence from './components/BootSequence'
-import Navigation from './components/Navigation'
 import About from './components/sections/About'
 import Contact from './components/sections/Contact'
 import GitHub from './components/sections/GitHub'
 import Projects from './components/sections/Projects'
 import Skills from './components/sections/Skills'
 import Writing from './components/sections/Writing'
-import TerminalHeader from './components/TerminalHeader'
 import type { Section } from './types'
 
 export default function Home() {
@@ -146,7 +147,7 @@ export default function Home() {
         className="w-full max-w-7xl h-[90vh] bg-[var(--terminal-bg)]/95 backdrop-blur-md border border-[var(--terminal-border)] rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col animate-fadeIn overflow-hidden relative"
         aria-label="Terminal Interface"
       >
-        <TerminalHeader />
+        <Header />
 
         <div className="flex-1 overflow-y-auto p-6 md:p-12 scroll-smooth custom-scrollbar relative">
           {/* Subtle vignette for focus */}
@@ -173,14 +174,7 @@ export default function Home() {
             {renderSection()}
           </main>
 
-          <footer className="text-[11px] text-[var(--terminal-text-dim)] mt-auto uppercase tracking-wider font-bold border-t border-[var(--terminal-border)] pt-8 flex justify-between items-center">
-            <span>
-              © 2025 Paulo Oliveira — L6 Software Engineer & Architect
-            </span>
-            <span aria-hidden="true" className="opacity-50">
-              {'UTF-8 // [CONNECTED]'}
-            </span>
-          </footer>
+          <Footer />
         </div>
       </section>
     </div>
