@@ -58,11 +58,7 @@ export function useGitHubData() {
   return useQuery<GitHubDataResponse, Error>({
     queryKey: GITHUB_DATA_QUERY_KEY,
     queryFn: fetchAllGitHubData,
-    // Override defaults for GitHub data if needed
-    staleTime: 30 * 60 * 1000, // 30 minutes
-    gcTime: 60 * 60 * 1000, // 1 hour
-    retry: 3,
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    // Uses default configuration from QueryClient provider
   })
 }
 
