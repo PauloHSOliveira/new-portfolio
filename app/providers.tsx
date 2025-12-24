@@ -1,6 +1,7 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Provider as JotaiProvider } from 'jotai'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -34,11 +35,25 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
+            // Stale time: 30 minutes - data is considered fresh for this duration
             staleTime: 30 * 60 * 1000,
+            // Cache time (gcTime): 1 hour - unused data stays in cache
             gcTime: 60 * 60 * 1000,
+            // Don't refetch on window focus to avoid unnecessary requests
             refetchOnWindowFocus: false,
+            // Don't refetch on mount to use cached data when available
             refetchOnMount: false,
+            // Enable structural sharing for performance optimization
             structuralSharing: true,
+            // Retry failed requests up to 3 times with exponential backoff
+            retry: 3,
+            retryDelay: (attemptIndex) =>
+              Math.min(1000 * 2 ** attemptIndex, 30000),
+          },
+          mutations: {
+            // Retry mutations once on failure
+            retry: 1,
+            retryDelay: 1000,
           },
         },
       })
@@ -73,6 +88,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           {children}
         </ThemeContext.Provider>
       </JotaiProvider>
+      {/* React Query DevTools - only visible in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
     </QueryClientProvider>
   )
 }

@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
+    "@tanstack/react-query-devtools": "^5.91.1",
     "turbo": "^2.6.3"
   }
 }

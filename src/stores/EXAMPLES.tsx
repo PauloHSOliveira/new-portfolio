@@ -1,18 +1,13 @@
 /**
  * Example Usage of Jotai State Management
- * 
+ *
  * This file demonstrates how to use the Jotai atoms and custom hooks
  * in your components. You can copy these patterns to your actual components.
  */
 
 'use client'
 
-import {
-  useModal,
-  useSearch,
-  useSidebar,
-  useThemeAtom,
-} from '@/hooks/index'
+import { useModal, useSearch, useSidebar, useThemeAtom } from '@/hooks/index'
 
 /**
  * Example 1: Theme Management
@@ -78,11 +73,9 @@ export function ModalExample() {
       {isOpen && modalData ? (
         <p>Modal Data: {JSON.stringify(modalData)}</p>
       ) : null}
-      
+
       <div>
-        <button onClick={() => openModal('contact')}>
-          Open Contact Modal
-        </button>
+        <button onClick={() => openModal('contact')}>Open Contact Modal</button>
         <button onClick={() => openModal('project', { id: 123 })}>
           Open Project Modal with Data
         </button>

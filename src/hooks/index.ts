@@ -8,6 +8,17 @@
  * import { useThemeAtom, useSidebar } from '@/hooks/index'
  */
 
+export type { BlogPost } from './useBlogPosts'
+// TanStack Query hooks - Blog posts
+export {
+  blogKeys,
+  useBlogPost,
+  useBlogPosts,
+  useFeaturedPosts,
+} from './useBlogPosts'
+export type { GitHubDataResponse } from './useGitHubData'
+// TanStack Query hooks - GitHub data
+export { githubKeys, useGitHubData } from './useGitHubData'
 // Theme hooks
 export {
   useIsDarkTheme,
@@ -15,7 +26,6 @@ export {
   useThemeAtom,
   useThemeValue,
 } from './useThemeAtom'
-
 // UI state hooks
 export {
   useCommandPalette,
