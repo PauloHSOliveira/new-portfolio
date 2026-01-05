@@ -38,7 +38,7 @@
     "typescript": "^5.6.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
+    "@biomejs/biome": "^2.3.11",
     "@tanstack/react-query-devtools": "^5.91.1",
     "turbo": "^2.6.3"
   }
